@@ -67,5 +67,10 @@ So that there is no time boundation and whichever time the donator feels comfort
 ### Money Management:
 When the person donates the money monthly it gives the donator a sense of responsibility. Also by donating the money monthly the donator knows how to manage money and take out some for the donation. It also improves the person's money management.
 
+### Implementation:
+Implementation of the system using React in front end with Java as back end and it will be used for database connectivity. And the database part is developed by sql. Responsive web designing is used for making the website compatible for any type of screen.
+
+### Database Security
+Unauthorized people cannot access the panel and database, do not read and write the information.
 
 
