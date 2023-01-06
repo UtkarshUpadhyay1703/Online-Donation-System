@@ -1,22 +1,22 @@
-create table signupDonator(
-dId int automatic,
-dName varchar(30) required,
-dAddress varchar(50) required,
-dMobileNo int required,
-dEmailId varchar(30) required,
-dpassword varchar(20) required,
-dStatus varchar(10) default active
+create table SignupDonator(
+DonatorId int auto_increment,
+DonatorName varchar(30) not null,
+DonatorAddress varchar(50) not null,
+DonatorMobileNo int not null,
+DonatorEmailId varchar(30) not null,
+DonatorPassword varchar(20) not null,
+DonatorStatus varchar(10) default "active"
 )
 
-create table itemDonation(
-itemId int automatic,
-iType varchar(20),
+create table ItemDonation(
+ItemId int auto_increment,
+ItemType varchar(20),
 dId int,
 empid int,
 iPicViaDonator varchar(30),
 iPicViaEmployee varchar(30),
 iStatusDonation varchar(10) default hold,
-///iStatusDonated varchar(10) default notgiven ?
+#iStatusDonated varchar(10) default notgiven ?
 )
 
 create table moneyDonation(
@@ -34,14 +34,14 @@ bank
 
 create table signupVendor(
 Vid int automatic,
-//////VName varchar(20) required,
-VCompanyName varchar(30) required,
-VCompanyAddress varchar(50) required,
-VMobno int required,
-VAadharno int required,
-VCompanyBankAccountNo int required,
-VEmailid varchar(30) required,
-VPassword varchar(20) required,
+//////VName varchar(20) not null,
+VCompanyName varchar(30) not null,
+VCompanyAddress varchar(50) not null,
+VMobno int not null,
+VAadharno int not null,
+VCompanyBankAccountNo int not null,
+VEmailid varchar(30) not null,
+VPassword varchar(20) not null,
 status varchar(10) default active
 )
 
@@ -71,14 +71,14 @@ biddingStatus varchar(10) default notreceived
 
 create table signupEmployee(
 eID int automatic,
-eName varchar(30) required,
-eAddress varchar(50) required,
-eMobNo int required,
-eAadharNo int required,
-eBankAccountNo int required,
-eEmailId varchar(30) required,
-ePassword varchar(20) required,
-eQualification varchar(10) required,
+eName varchar(30) not null,
+eAddress varchar(50) not null,
+eMobNo int not null,
+eAadharNo int not null,
+eBankAccountNo int not null,
+eEmailId varchar(30) not null,
+ePassword varchar(20) not null,
+eQualification varchar(10) not null,
 status varchar(10) default active
 )
 
