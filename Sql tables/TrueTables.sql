@@ -224,7 +224,6 @@ constraint donatorid_FK foreign key(donatorid) references Signupdonator(donatori
 constraint employeeid_FK foreign key(employeeid) references Signupemployee(employeeid)
 );
 
-
 -- create table Moneydonation(
 -- Moneyid int unique,
 -- donatorid int,
@@ -248,7 +247,6 @@ constraint vendorid_biddingTable_FK foreign key(vendorid) references Signupvendo
 
 #default now() for dateOfbid in biddingTable;
 
-
 create table anonymousdonator_table(
 #Can we automatically generate id or genereted via java or dotnet
 anonymousdonatorid int,
@@ -258,7 +256,6 @@ anonymousdonatorMobileNo int unique,
 anonymousdonatorAmount double(11,2),
 constraint anonymousdonatorid_PK primary key(anonymousdonatorid)
 );
-
 
 create table bank_transaction_table(
 transaction_id int,
@@ -281,7 +278,6 @@ constraint donatoridM_PK foreign key(donatorid) references Signupdonator(donator
 -- ////create a querry to insert n number of items in the item donation table when employee tick teh received button
 -- ///// by giving quantity and the type
 
-
 -- ///
 -- create table tender(
 -- tenderid int,
@@ -291,10 +287,7 @@ constraint donatoridM_PK foreign key(donatorid) references Signupdonator(donator
 
 -- ////After finishing of bidding process a querry fires auto_incrementally to select top 5 bidders and then display to employee webpage
 
-
 -- ////After receiving the items from vendor employee will click recieved button then auto_incrementally a querry fired to change biddingStatus to received
-
-
 
 
 -- create table donator(
@@ -303,3 +296,23 @@ constraint donatoridM_PK foreign key(donatorid) references Signupdonator(donator
 -- bankTable columns if donated money
 -- make primary key and foreign key
 -- )
+
+
+
+
+
+
+
+
+
+
+
+#Queries
+
+-- insert into signup_donor(donor_id,donor_name,donor_address,donor_mobile_no,donor_emailid,donor_password) values();
+-- insert into signup_vendor(vendor_id,vendor_company_name,vendor_company_address,vendor_mobno,vendor_aadharno,vendor_company_bank_accountno,vendor_emailid,vendor_password) values();
+-- insert into signup_employee(employee_id,employee_name,empoyee_address,employee_mobno,employee_aadharno,employee_bank_accountno,employee_emailid,employee_password,employee_qualification) values();
+-- insert into item_donation(item_id,item_type,donor_id,employee_id,item_pic_via_donator,item_pic_via_employee) values();
+-- insert into bidding_table(//bid_id,vendor_id,low_price_toy,low_price_cloth,low_price_notebook,low_price_cycle,date_of_bid) values();
+ 
+
