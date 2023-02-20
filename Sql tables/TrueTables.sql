@@ -197,9 +197,24 @@ constraint bank_transaction_table_donor_id_fk foreign key(donor_id) references s
 -- constraint donor_id_pk primary key(donor_id)
 -- );
 
-insert into signup_donor(donor_id,donor_name,donor_address,donor_mobile_no,donor_email_id,donor_password) values(1,"Raju","IACSD Akurdi, Pimpri-Chinchwad, Pune",9103846472,"raju1@gmail.com","Raju$1");
+insert into signup_donor(donor_id,donor_name,donor_address,donor_mobile_no,donor_email_id,donor_password) 
+values(1,"Raju","IACSD Akurdi, Pimpri-Chinchwad, Pune",9103846472,"raju1@gmail.com","Raju$1");
+select * from signup_donor;
 
+-- employee_id int unique,
+-- employee_name varchar(30) not null,
+-- employee_address varchar(50) not null,
+-- employee_mobile_no varchar(10) not null unique,
+-- employee_aadhar_no varchar(12) not null unique,
+-- employee_bank_account_no varchar(14) not null unique,
+-- employee_email_id varchar(30) not null unique,
+-- employee_password varchar(20) not null,
+-- employee_qualification varchar(10) not null,
+-- employee_status varchar(10) default "active",
 
+insert into signup_employee(employee_id,employee_name,employee_address,employee_mobile_no,employee_aadhar_no,employee_bank_account_no,employee_email_id,employee_password,employee_qualification) 
+values(1,"Ramesh","Pune","9457788965","123456789123","12345678912345","Ramesh1@gmail.com","Ramesh$1","12th");
+select * from signup_employee;
 
 
 
