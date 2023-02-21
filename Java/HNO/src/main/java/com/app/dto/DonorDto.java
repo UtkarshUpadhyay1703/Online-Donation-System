@@ -1,36 +1,19 @@
-package com.app.pojos;
+package com.app.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
-@Entity
-@Table(name = "signup_donor")
-//Lombok annotations
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Getter
-//@Setter
-//@ToString(exclude = "donorPassword")
-public class Donor extends BaseEntity {
-	@Column(length = 20, nullable = false)
+public class DonorDto {
 	private String donorName;
-	@Column(length = 100, nullable = false)
+
 	private String donorAddress;
-	@Column(length = 10, nullable = false)
+
 	private String donor_mobile_no;
-	@Column(length = 30, unique = true, nullable = false)
+
 	private String donorEmailId;
-	@Column(length = 20, nullable = false)
-	@JsonProperty(access = Access.WRITE_ONLY)
+
 	private String donorPassword;
-	@Column(length = 10, nullable = false)
+
 	private boolean donorStatus;
 
-	public Donor(String donorName, String donorAddress, String donor_mobile_no, String donorEmailId,
+	public DonorDto(String donorName, String donorAddress, String donor_mobile_no, String donorEmailId,
 			String donorPassword, boolean donorStatus) {
 		super();
 		this.donorName = donorName;
@@ -41,7 +24,7 @@ public class Donor extends BaseEntity {
 		this.donorStatus = donorStatus;
 	}
 
-	public Donor() {
+	public DonorDto() {
 		super();
 	}
 
@@ -91,12 +74,6 @@ public class Donor extends BaseEntity {
 
 	public void setDonorStatus(boolean donorStatus) {
 		this.donorStatus = donorStatus;
-	}
-
-	@Override
-	public String toString() {
-		return "Donor [donorName=" + donorName + ", donorAddress=" + donorAddress + ", donor_mobile_no="
-				+ donor_mobile_no + ", donorEmailId=" + donorEmailId + ", donorStatus=" + donorStatus + "]";
 	}
 
 }
