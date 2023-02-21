@@ -6,4 +6,5 @@ import com.app.pojos.Donor;
 
 public interface DonorRepository extends JpaRepository<Donor,Long> {
 
+	
 }
