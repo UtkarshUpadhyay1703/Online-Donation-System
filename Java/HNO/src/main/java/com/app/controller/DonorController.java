@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.DonorDto;
+import com.app.dto.DonorLoginDto;
 import com.app.pojos.Donor;
 import com.app.service.DonorService;
 
@@ -59,6 +60,22 @@ public class DonorController {
 	@PutMapping
 	public Donor updateDonor(@RequestBody Donor don ) {
 		return donoServ.updateDonor(don);
+	}
+	@PostMapping("/signIn")
+	public Donor validateDonor(@RequestBody DonorLoginDto donLogIn) {
+		System.out.println("login"+donLogIn);
+		return donoServ.validateDon(donLogIn);
+	}
+	@GetMapping("/Donortrue")
+	public List<Donor> getAllTrueDonor(){
+		System.out.println("inside true");
+		return donoServ.getAllTrueDonors();
+	}
+	@PutMapping("/{donId}")
+	public String deleteFalseDonor(@PathVariable Long donId) {
+		System.out.println("inside false");
+		return donoServ.deleteFalseDonor(donId);
+		
 	}
 
 }
