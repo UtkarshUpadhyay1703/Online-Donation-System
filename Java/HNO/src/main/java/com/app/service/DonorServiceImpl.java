@@ -72,5 +72,4 @@ public class DonorServiceImpl implements DonorService {
 		throw new ResourceNotFoundException("Invalid Id");
 		
 	}
-
 }
