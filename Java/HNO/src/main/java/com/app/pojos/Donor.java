@@ -21,7 +21,7 @@ public class Donor extends BaseEntity {
 	@Column(length = 100, nullable = false)
 	private String donorAddress;
 	@Column(length = 10, nullable = false)
-	private String donor_mobile_no;
+	private String donorMobileNo;
 	@Column(length = 30, unique = true, nullable = false)
 	private String donorEmailId;
 	@Column(length = 20, nullable = false)
@@ -30,12 +30,12 @@ public class Donor extends BaseEntity {
 	@Column(length = 10, nullable = false)
 	private boolean donorStatus;
 
-	public Donor(String donorName, String donorAddress, String donor_mobile_no, String donorEmailId,
+	public Donor(String donorName, String donorAddress, String donorMobileNo, String donorEmailId,
 			String donorPassword, boolean donorStatus) {
 		super();
 		this.donorName = donorName;
 		this.donorAddress = donorAddress;
-		this.donor_mobile_no = donor_mobile_no;
+		this.donorMobileNo = donorMobileNo;
 		this.donorEmailId = donorEmailId;
 		this.donorPassword = donorPassword;
 		this.donorStatus = donorStatus;
@@ -62,11 +62,11 @@ public class Donor extends BaseEntity {
 	}
 
 	public String getDonor_mobile_no() {
-		return donor_mobile_no;
+		return donorMobileNo;
 	}
 
-	public void setDonor_mobile_no(String donor_mobile_no) {
-		this.donor_mobile_no = donor_mobile_no;
+	public void setDonor_mobile_no(String donorMobileNo) {
+		this.donorMobileNo = donorMobileNo;
 	}
 
 	public String getDonorEmailId() {
@@ -96,7 +96,7 @@ public class Donor extends BaseEntity {
 	@Override
 	public String toString() {
 		return "Donor [donorName=" + donorName + ", donorAddress=" + donorAddress + ", donor_mobile_no="
-				+ donor_mobile_no + ", donorEmailId=" + donorEmailId + ", donorStatus=" + donorStatus + "]";
+				+ donorMobileNo + ", donorEmailId=" + donorEmailId + ", donorStatus=" + donorStatus + "]";
 	}
 
 }
