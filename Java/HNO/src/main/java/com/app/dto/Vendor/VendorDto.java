@@ -1,4 +1,4 @@
-package com.app.dto;
+package com.app.dto.Vendor;
 
 public class VendorDto {
 	private String vendorCompanyName;
@@ -15,11 +15,10 @@ public class VendorDto {
 
 	private String vendorPassword;
 
-	private boolean vendorStatus;
+//	private boolean vendorStatus;
 
 	public VendorDto(String vendorCompanyName, String vendorCompanyAddress, String vendorMobileNo,
-			String vendorAadharNo, String vendorCompanyBankAccountNo, String vendorEmailId, String vendorPassword,
-			boolean vendorStatus) {
+			String vendorAadharNo, String vendorCompanyBankAccountNo, String vendorEmailId, String vendorPassword) {
 		super();
 		this.vendorCompanyName = vendorCompanyName;
 		this.vendorCompanyAddress = vendorCompanyAddress;
@@ -28,7 +27,7 @@ public class VendorDto {
 		this.vendorCompanyBankAccountNo = vendorCompanyBankAccountNo;
 		this.vendorEmailId = vendorEmailId;
 		this.vendorPassword = vendorPassword;
-		this.vendorStatus = vendorStatus;
+//		this.vendorStatus = vendorStatus;
 	}
 
 	public VendorDto() {
@@ -91,20 +90,20 @@ public class VendorDto {
 		this.vendorPassword = vendorPassword;
 	}
 
-	public boolean isVendorStatus() {
-		return vendorStatus;
-	}
-
-	public void setVendorStatus(boolean vendorStatus) {
-		this.vendorStatus = vendorStatus;
-	}
+//	public boolean isVendorStatus() {
+//		return vendorStatus;
+//	}
+//
+//	public void setVendorStatus(boolean vendorStatus) {
+//		this.vendorStatus = vendorStatus;
+//	}
 
 	@Override
 	public String toString() {
 		return "VendorDto [vendorCompanyName=" + vendorCompanyName + ", vendorCompanyAddress=" + vendorCompanyAddress
 				+ ", vendorMobileNo=" + vendorMobileNo + ", vendorAadharNo=" + vendorAadharNo
 				+ ", vendorCompanyBankAccountNo=" + vendorCompanyBankAccountNo + ", vendorEmailId=" + vendorEmailId
-				+ ", vendorPassword=" + vendorPassword + ", vendorStatus=" + vendorStatus + "]";
+				+ ", vendorPassword=" + vendorPassword + "]";
 	}
 
 	

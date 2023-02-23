@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Service from "../Service"
+import Service from "../Services/DonorService"
 
 const Employee=()=>{
     const [Donors,setDonors]=useState([]);

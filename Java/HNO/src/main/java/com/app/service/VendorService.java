@@ -2,7 +2,7 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.dto.VendorLoginDto;
+import com.app.dto.Vendor.VendorLoginDto;
 import com.app.pojos.Vendor;
 
 public interface VendorService {

@@ -1,6 +1,6 @@
-package com.app.dto;
+package com.app.dto.Donor;
 
-public class DonorDto {
+public class DonorAddDto {
 	private String donorName;
 
 	private String donorAddress;
@@ -11,20 +11,20 @@ public class DonorDto {
 
 	private String donorPassword;
 
-	private boolean donorStatus;
+//	private boolean donorStatus;
 
-	public DonorDto(String donorName, String donorAddress, String donor_mobile_no, String donorEmailId,
-			String donorPassword, boolean donorStatus) {
+	public DonorAddDto(String donorName, String donorAddress, String donor_mobile_no, String donorEmailId,
+			String donorPassword) {
 		super();
 		this.donorName = donorName;
 		this.donorAddress = donorAddress;
 		this.donor_mobile_no = donor_mobile_no;
 		this.donorEmailId = donorEmailId;
 		this.donorPassword = donorPassword;
-		this.donorStatus = donorStatus;
+//		this.donorStatus = donorStatus;
 	}
 
-	public DonorDto() {
+	public DonorAddDto() {
 		super();
 	}
 
@@ -68,12 +68,12 @@ public class DonorDto {
 		this.donorPassword = donorPassword;
 	}
 
-	public boolean isDonorStatus() {
-		return donorStatus;
-	}
-
-	public void setDonorStatus(boolean donorStatus) {
-		this.donorStatus = donorStatus;
-	}
+//	public boolean isDonorStatus() {
+//		return donorStatus;
+//	}
+//
+//	public void setDonorStatus(boolean donorStatus) {
+//		this.donorStatus = donorStatus;
+//	}
 
 }

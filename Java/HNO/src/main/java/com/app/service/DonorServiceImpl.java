@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exception.ResourceNotFoundException;
-import com.app.dto.DonorLoginDto;
-import com.app.dto.DonorStatusDto;
+import com.app.dto.Donor.DonorLoginDto;
+import com.app.dto.Donor.DonorStatusDto;
 import com.app.pojos.Donor;
 import com.app.repository.DonorRepository;
 

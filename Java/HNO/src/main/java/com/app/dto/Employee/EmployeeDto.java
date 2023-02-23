@@ -1,4 +1,4 @@
-package com.app.dto;
+package com.app.dto.Employee;
 
 public class EmployeeDto {
 	
@@ -18,11 +18,10 @@ public class EmployeeDto {
 
 	private String employeeQualification;
 	
-	private boolean employeeStatus;
+//	private boolean employeeStatus;
 
 	public EmployeeDto(String employeeName, String employeeAddress, String employeeMobileNo, String employeeAadharNo,
-			String employeeBankAccountNo, String employeeEmailId, String employeePassword, String employeeQualification,
-			boolean employeeStatus) {
+			String employeeBankAccountNo, String employeeEmailId, String employeePassword, String employeeQualification) {
 		super();
 		this.employeeName = employeeName;
 		this.employeeAddress = employeeAddress;
@@ -32,7 +31,7 @@ public class EmployeeDto {
 		this.employeeEmailId = employeeEmailId;
 		this.employeePassword = employeePassword;
 		this.employeeQualification = employeeQualification;
-		this.employeeStatus = employeeStatus;
+//		this.employeeStatus = employeeStatus;
 	}
 
 	public EmployeeDto() {
@@ -103,13 +102,13 @@ public class EmployeeDto {
 		this.employeeQualification = employeeQualification;
 	}
 
-	public boolean isEmployeeStatus() {
-		return employeeStatus;
-	}
-
-	public void setEmployeeStatus(boolean employeeStatus) {
-		this.employeeStatus = employeeStatus;
-	}
+//	public boolean isEmployeeStatus() {
+//		return employeeStatus;
+//	}
+//
+//	public void setEmployeeStatus(boolean employeeStatus) {
+//		this.employeeStatus = employeeStatus;
+//	}
 
 	@Override
 	public String toString() {
@@ -117,7 +116,7 @@ public class EmployeeDto {
 				+ ", employeeMobileNo=" + employeeMobileNo + ", employeeAadharNo=" + employeeAadharNo
 				+ ", employeeBankAccountNo=" + employeeBankAccountNo + ", employeeEmailId=" + employeeEmailId
 				+ ", employeePassword=" + employeePassword + ", employeeQualification=" + employeeQualification
-				+ ", employeeStatus=" + employeeStatus + "]";
+				+ "]";
 	}
 	
 }

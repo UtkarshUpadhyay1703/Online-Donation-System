@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.VendorLoginDto;
+import com.app.dto.Vendor.VendorLoginDto;
 import com.app.pojos.Employee;
 import com.app.pojos.Vendor;
 import com.app.service.VendorService;

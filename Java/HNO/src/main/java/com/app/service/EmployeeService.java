@@ -2,7 +2,7 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.dto.EmployeeLoginDto;
+import com.app.dto.Employee.EmployeeLoginDto;
 import com.app.pojos.Employee;
 
 public interface EmployeeService {

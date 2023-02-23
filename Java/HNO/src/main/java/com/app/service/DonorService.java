@@ -2,8 +2,8 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.dto.DonorLoginDto;
-import com.app.dto.DonorStatusDto;
+import com.app.dto.Donor.DonorLoginDto;
+import com.app.dto.Donor.DonorStatusDto;
 import com.app.pojos.Donor;
 
 public interface DonorService {

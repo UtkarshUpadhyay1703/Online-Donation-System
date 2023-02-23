@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.DonorDto;
-import com.app.dto.DonorLoginDto;
+import com.app.dto.Donor.DonorAddDto;
+import com.app.dto.Donor.DonorLoginDto;
 import com.app.pojos.Donor;
 import com.app.service.DonorService;
 
 @RestController
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000/")
+
 @RequestMapping("/donors")
 public class DonorController {
 	
@@ -42,7 +43,7 @@ public class DonorController {
 	}
 
 	@PostMapping
-	public Donor addDonor(@RequestBody DonorDto donor) {
+	public Donor addDonor(@RequestBody DonorAddDto donor) {
 		System.out.println("Donor add "+donor);
 		Donor dno=mapper.map(donor,Donor.class);
 		return donoServ.addDonor(dno);

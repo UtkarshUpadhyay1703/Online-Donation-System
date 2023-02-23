@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exception.ResourceNotFoundException;
-import com.app.dto.VendorLoginDto;
+import com.app.dto.Vendor.VendorLoginDto;
 import com.app.pojos.Vendor;
 import com.app.repository.VendorRepository;
 
