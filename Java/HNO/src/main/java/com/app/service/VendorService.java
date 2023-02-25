@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.List;
 
 import com.app.dto.Vendor.VendorLoginDto;
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Vendor;
 
 public interface VendorService {
@@ -16,4 +17,5 @@ public interface VendorService {
 	Vendor validateVen(VendorLoginDto ven);
 	List<Vendor> getAllTrueVendors();
 	String deleteFalseVendor(Long vendorId);
+	BankTransaction withdrawBankTransaction(BankTransaction transaction);
 }

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.BankTransaction.EmployeeSendDto;
 import com.app.dto.Employee.EmployeeDto;
 import com.app.dto.Employee.EmployeeLoginDto;
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Employee;
 import com.app.service.EmployeeService;
 
@@ -79,6 +81,13 @@ public class EmployeeController {
 	public String deleteFalseEmployee(@PathVariable Long empId) {
 		System.out.println("inside false");
 		return empServ.deleteFalseEmployee(empId);
+	}
+	
+	@PostMapping("/Transaction/withdraw/Employee")
+	public BankTransaction withdrawBankTransaction(@RequestBody EmployeeSendDto send) {
+		System.out.println("inside addTrax in Employee send");
+		BankTransaction transaction = mapper.map(send, BankTransaction.class);
+		return empServ.withdrawBankTransaction(transaction);
 	}
 
 }                  

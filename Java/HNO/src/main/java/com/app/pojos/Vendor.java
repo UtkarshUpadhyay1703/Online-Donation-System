@@ -37,8 +37,7 @@ public class Vendor extends BaseEntity {
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
 	public Vendor(String vendorCompanyName, String vendorCompanyAddress, String vendorMobileNo, String vendorAadharNo,
-			String vendorCompanyBankAccountNo, String vendorEmailId, String vendorPassword, boolean vendorStatus,
-			List<BankTransaction> transactions) {
+			String vendorCompanyBankAccountNo, String vendorEmailId, String vendorPassword, boolean vendorStatus) {
 		super();
 		this.vendorCompanyName = vendorCompanyName;
 		this.vendorCompanyAddress = vendorCompanyAddress;
@@ -48,19 +47,7 @@ public class Vendor extends BaseEntity {
 		this.vendorEmailId = vendorEmailId;
 		this.vendorPassword = vendorPassword;
 		this.vendorStatus = vendorStatus;
-		this.transactions = transactions;
 	}
-	
-
-	public List<BankTransaction> getTransactions() {
-		return transactions;
-	}
-
-
-	public void setTransactions(List<BankTransaction> transactions) {
-		this.transactions = transactions;
-	}
-
 
 	public Vendor() {
 		super();
@@ -128,6 +115,11 @@ public class Vendor extends BaseEntity {
 
 	public void setVendorStatus(boolean vendorStatus) {
 		this.vendorStatus = vendorStatus;
+	}
+
+	public void addBankTransaction(BankTransaction b) {
+		transactions.add(b);
+		b.setVendor(this);
 	}
 
 	@Override

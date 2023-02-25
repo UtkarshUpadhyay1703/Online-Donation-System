@@ -40,7 +40,7 @@ public class Employee extends BaseEntity {
 
 	public Employee(String employeeName, String employeeAddress, String employeeMobileNo, String employeeAadharNo,
 			String employeeBankAccountNo, String employeeEmailId, String employeePassword, String employeeQualification,
-			boolean employeeStatus, List<BankTransaction> transactions) {
+			boolean employeeStatus) {
 		super();
 		this.employeeName = employeeName;
 		this.employeeAddress = employeeAddress;
@@ -51,28 +51,11 @@ public class Employee extends BaseEntity {
 		this.employeePassword = employeePassword;
 		this.employeeQualification = employeeQualification;
 		this.employeeStatus = employeeStatus;
-		this.transactions = transactions;
 	}
-	
-	
-
-	public List<BankTransaction> getTransactions() {
-		return transactions;
-	}
-
-
-
-	public void setTransactions(List<BankTransaction> transactions) {
-		this.transactions = transactions;
-	}
-
-
 
 	public boolean isEmployeeStatus() {
 		return employeeStatus;
 	}
-
-
 
 	public Employee() {
 		super();
@@ -142,12 +125,17 @@ public class Employee extends BaseEntity {
 		this.employeeQualification = employeeQualification;
 	}
 
-	public boolean isemployeeStatus() {
-		return employeeStatus;
-	}
+//	public boolean isemployeeStatus() {
+//		return employeeStatus;
+//	}
 
 	public void setEmployeeStatus(boolean employeeStatus) {
 		this.employeeStatus = employeeStatus;
+	}
+	
+	public void addBankTransaction(BankTransaction b) {
+		transactions.add(b);
+		b.setEmployee(this);
 	}
 
 	@Override

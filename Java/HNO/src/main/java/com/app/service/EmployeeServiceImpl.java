@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.Employee.EmployeeLoginDto;
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Employee;
+import com.app.repository.BankTransactionRepository;
 import com.app.repository.EmployeeRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeRepository empRepo;
+	
+	@Autowired
+	private BankTransactionRepository bankRepo;
 
 	@Override
 	public List<Employee> getAllEmployees() {
@@ -68,6 +73,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return "set to false (Updated)";
 		}
 		throw new ResourceNotFoundException("Invalid Id");
+	}
+
+	@Override
+	public BankTransaction withdrawBankTransaction(BankTransaction transaction) {
+		double balance=bankRepo.findLatestBalance().getBalance();
+		transaction.setBalance(balance);
+		transaction.setAmountReceived(0);
+		transaction.withdraw(transaction.getAmountSend());
+		System.out.println(transaction.getAmountSend());
+		transaction.getEmployee().addBankTransaction(transaction);
+		return bankRepo.save(transaction);
 	}
 
 }

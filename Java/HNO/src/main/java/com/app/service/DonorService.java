@@ -3,7 +3,7 @@ package com.app.service;
 import java.util.List;
 
 import com.app.dto.Donor.DonorLoginDto;
-import com.app.dto.Donor.DonorStatusDto;
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Donor;
 
 public interface DonorService {
@@ -17,4 +17,6 @@ public interface DonorService {
 	Donor validateDon(DonorLoginDto don);
 	List<Donor> getAllTrueDonors();
 	String deleteFalseDonor(Long donorId);
+	BankTransaction depositBankTransaction(BankTransaction transaction);
+	BankTransaction withdrawBankTransaction(BankTransaction Transaction);
 }

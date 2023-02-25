@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -35,20 +36,29 @@ public class Donor extends BaseEntity {
 //	@Column
 //	@Column(columnDefinition = "boolean default true")
 	private boolean donorStatus;
-
-	@OneToMany(mappedBy = "donor",cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JsonBackReference
+	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
 //	@ManyToOne
 //	@JoinColumn(name="donor_id")
 //	private Employee donorEmployee;
 
-
 	public Donor() {
 		super();
 	}
 
 	public Donor(String donorName, String donorAddress, String donorMobileNo, String donorEmailId, String donorPassword,
+<<<<<<< HEAD
+			boolean donorStatus) {
+		super();
+		this.donorName = donorName;
+		this.donorAddress = donorAddress;
+		this.donorMobileNo = donorMobileNo;
+		this.donorEmailId = donorEmailId;
+		this.donorPassword = donorPassword;
+		this.donorStatus = donorStatus;
+=======
 		boolean donorStatus, List<BankTransaction> transactions) {
 	super();
 	this.donorName = donorName;
@@ -64,12 +74,8 @@ public class Donor extends BaseEntity {
 	public void addBankTransaction(BankTransaction b) {
 		transactions.add(b);
 		b.setDonor(this);
+>>>>>>> 61835576db8a054da0a37e4ee38f32aa6b92a7b7
 	}
-	public void removeBankTransaction(BankTransaction b) {
-		transactions.remove(b);
-		b.setDonor(null);
-	}
-	
 
 	public String getDonorMobileNo() {
 		return donorMobileNo;
@@ -79,13 +85,13 @@ public class Donor extends BaseEntity {
 		this.donorMobileNo = donorMobileNo;
 	}
 
-	public List<BankTransaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(List<BankTransaction> transactions) {
-		this.transactions = transactions;
-	}
+//	public List<BankTransaction> getTransactions() {
+//		return transactions;
+//	}
+//
+//	public void setTransactions(List<BankTransaction> transactions) {
+//		this.transactions = transactions;
+//	}
 
 	public String getDonorName() {
 		return donorName;
@@ -103,13 +109,7 @@ public class Donor extends BaseEntity {
 		this.donorAddress = donorAddress;
 	}
 
-	public String getDonor_mobile_no() {
-		return donorMobileNo;
-	}
 
-	public void setDonor_mobile_no(String donorMobileNo) {
-		this.donorMobileNo = donorMobileNo;
-	}
 
 	public String getDonorEmailId() {
 		return donorEmailId;
@@ -135,9 +135,22 @@ public class Donor extends BaseEntity {
 		this.donorStatus = donorStatus;
 	}
 
+	public void addBankTransaction(BankTransaction b) {
+//		BankTransaction bank=new BankTransaction();
+//		bank.deposit(b.getAmountSend());
+		transactions.add(b);
+		
+		b.setDonor(this);
+	}
+
+//	public void removeBankTransaction(BankTransaction b) {
+//		transactions.remove(b);
+//		b.setDonor(null);
+//	}
+
 	@Override
 	public String toString() {
-		return "Donor [donorName=" + donorName + ", donorAddress=" + donorAddress + ", donor_mobile_no=" + donorMobileNo
+		return "Donor id = "+getId()+"[donorName=" + donorName + ", donorAddress=" + donorAddress + ", donor_mobile_no=" + donorMobileNo
 				+ ", donorEmailId=" + donorEmailId + ", donorStatus=" + donorStatus + "]";
 	}
 

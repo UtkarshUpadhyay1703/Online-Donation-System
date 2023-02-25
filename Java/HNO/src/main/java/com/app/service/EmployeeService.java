@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.List;
 
 import com.app.dto.Employee.EmployeeLoginDto;
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Employee;
 
 public interface EmployeeService {
@@ -14,4 +15,6 @@ public interface EmployeeService {
 	Employee validateEmp(EmployeeLoginDto emp);
 	List<Employee> getAllTrueEmployees();
 	String deleteFalseEmployee(Long employeeId);
+	//
+	BankTransaction withdrawBankTransaction(BankTransaction transaction);
 }

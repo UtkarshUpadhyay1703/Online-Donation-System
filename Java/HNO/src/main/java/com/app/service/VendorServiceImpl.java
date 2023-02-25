@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.Vendor.VendorLoginDto;
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Vendor;
+import com.app.repository.BankTransactionRepository;
 import com.app.repository.VendorRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class VendorServiceImpl implements VendorService {
 
 	@Autowired
 	private VendorRepository venRepo;
+	
+	@Autowired
+	private BankTransactionRepository bankRepo;
 
 	@Override
 	public List<Vendor> getAllVendors() {
@@ -69,6 +74,18 @@ public class VendorServiceImpl implements VendorService {
 			return "set to false (Updated)";
 		}
 		throw new ResourceNotFoundException("Invalid Id");
+	}
+
+	@Override
+	public BankTransaction withdrawBankTransaction(BankTransaction transaction) {
+		System.out.println("inside withdraw of vendor");
+		double balance=bankRepo.findLatestBalance().getBalance();
+		transaction.setBalance(balance);
+		transaction.setAmountReceived(0);
+		transaction.withdraw(transaction.getAmountSend());
+		System.out.println(transaction.getAmountSend());
+		transaction.getVendor().addBankTransaction(transaction);
+		return bankRepo.save(transaction);
 	}
 
 }

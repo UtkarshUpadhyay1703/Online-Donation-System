@@ -34,6 +34,7 @@ public class BankTransaction extends BaseEntity {
 	private double amountReceived;
 	private double amountSend;
 	private double balance;
+
 	public BankTransaction(Donor donor, Employee employee, Vendor vendor, LocalDateTime createdOn,
 			double amountReceived, double amountSend, double balance) {
 		super();
@@ -45,55 +46,96 @@ public class BankTransaction extends BaseEntity {
 		this.amountSend = amountSend;
 		this.balance = balance;
 	}
+	
+
+	public BankTransaction(Donor donor, double amountReceived) {
+		super();
+		this.donor = donor;
+		this.amountReceived = amountReceived;
+	}
+
+
+	public BankTransaction(double balance) {
+		super();
+		this.balance = balance;
+	}
+
+	// deposit
+	public void deposit(double amount) {
+		this.balance += amount;
+	}
+
+	// withdraw
+	public void withdraw(double amount) {
+		if (this.balance > amount) {
+			this.balance -= amount;
+		}
+	}
+
 	public BankTransaction() {
 		super();
 	}
+
 	public Donor getDonor() {
 		return donor;
 	}
+
 	public void setDonor(Donor donor) {
 		this.donor = donor;
 	}
+
 	public Employee getEmployee() {
 		return employee;
 	}
+
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
 	public Vendor getVendor() {
 		return vendor;
 	}
+
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
 	}
+
 	public LocalDateTime getCreatedOn() {
 		return createdOn;
 	}
+
 	public void setCreatedOn(LocalDateTime createdOn) {
 		this.createdOn = createdOn;
 	}
+
 	public double getAmountReceived() {
 		return amountReceived;
 	}
+
 	public void setAmountReceived(double amountReceived) {
 		this.amountReceived = amountReceived;
 	}
+
 	public double getAmountSend() {
 		return amountSend;
 	}
+
 	public void setAmountSend(double amountSend) {
 		this.amountSend = amountSend;
 	}
+
 	public double getBalance() {
 		return balance;
 	}
+
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+
 	@Override
 	public String toString() {
 		return "BankTransaction [createdOn=" + createdOn + ", amountReceived=" + amountReceived + ", amountSend="
 				+ amountSend + ", balance=" + balance + "]";
 	}
-	
+
 }
