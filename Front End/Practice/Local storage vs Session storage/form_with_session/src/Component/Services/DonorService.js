@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class Service{
+class DonorService{
     constructor(){
         this.url="http://localhost:8080/donors";
     }
@@ -20,4 +20,4 @@ class Service{
         return axios.put(this.url,donor);
     }
 }
-export default new Service();
+export default new DonorService();

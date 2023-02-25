@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Service from "../Services/DonorService";
+import DonorService from "../Services/DonorService";
 import { useHistory } from "react-router-dom";
 
 const DonorUpdate = () => {
@@ -12,7 +12,7 @@ const DonorUpdate = () => {
     }
 
     const Update = (event) => {
-        Service.UpdateDonor(donorob).then((response) => {
+        DonorService.UpdateDonor(donorob).then((response) => {
             console.log(response.data);
             history.push("DonorSignIn");
         });

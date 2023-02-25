@@ -2,6 +2,7 @@ package com.app.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,18 +12,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.Vendor.VendorDto;
 import com.app.dto.Vendor.VendorLoginDto;
-import com.app.pojos.Employee;
 import com.app.pojos.Vendor;
 import com.app.service.VendorService;
+import org.springframework.web.bind.annotation.RequestBody;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 
 @RestController
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/vendors")
 public class VendorController {
+	@Autowired
+	private ModelMapper mapper;
+	
 	@Autowired
 	private VendorService venServ;
 
@@ -37,6 +42,13 @@ public class VendorController {
 	@PutMapping
 	public Vendor updateVendor(@RequestBody Vendor ven ) {
 		return venServ.updateVendor(ven);
+	}
+	@PostMapping
+	public Vendor addVendor(@RequestBody VendorDto vendor) {
+		System.out.println("Vendor add"+vendor);
+		Vendor vno=mapper.map(vendor,Vendor.class);
+		vno.setVendorStatus(true);
+		return venServ.addVendor(vno);
 	}
 	@PostMapping("/signIn")
 	public Vendor validateVendor(@RequestBody VendorLoginDto venLogIn) {

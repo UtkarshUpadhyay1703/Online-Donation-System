@@ -46,6 +46,7 @@ public class DonorController {
 	public Donor addDonor(@RequestBody DonorAddDto donor) {
 		System.out.println("Donor add "+donor);
 		Donor dno=mapper.map(donor,Donor.class);
+		dno.setDonorStatus(true);
 		return donoServ.addDonor(dno);
 	}
 

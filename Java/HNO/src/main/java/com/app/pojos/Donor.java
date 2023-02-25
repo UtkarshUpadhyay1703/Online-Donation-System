@@ -32,8 +32,8 @@ public class Donor extends BaseEntity {
 	@Column(length = 20, nullable = false)
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String donorPassword;
-//	@Column(length = 10, nullable = false)
-	@Column(columnDefinition = "boolean default true")
+//	@Column
+//	@Column(columnDefinition = "boolean default true")
 	private boolean donorStatus;
 
 	@OneToMany(mappedBy = "donor",cascade = CascadeType.ALL, orphanRemoval = true)
@@ -58,6 +58,7 @@ public class Donor extends BaseEntity {
 	this.donorPassword = donorPassword;
 	this.donorStatus = donorStatus;
 	this.transactions = transactions;
+//	this.donorStatus=true;
 }
 	
 	public void addBankTransaction(BankTransaction b) {

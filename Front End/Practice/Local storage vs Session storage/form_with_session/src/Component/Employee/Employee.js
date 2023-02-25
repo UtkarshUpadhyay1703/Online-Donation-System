@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react"
-import Service from "../Services/DonorService"
+import DonorService from "../Services/DonorService"
+import VendorService from "../Services/VendorService"
 
 const Employee=()=>{
     const [Donors,setDonors]=useState([]);
     useEffect (()=>{
-        Service.GetAllDonors().then((resp)=>{
+        DonorService.GetAllDonors().then((resp)=>{
             console.log(resp.data);
             setDonors(resp.data);
         });
     },[]);
 
-    let Render=()=>{
+    const [Vendors,setVendors]=useState([]);
+    useEffect (()=>{
+        VendorService.GetAllVendors().then((resp)=>{
+            console.log(resp.data);
+            setVendors(resp.data);
+        });
+    },[]);
+
+    let DonorRender=()=>{
         return Donors.map((don)=>{
             return <tr key={don.id}>
                 <td>{don.id}</td>
@@ -22,8 +31,23 @@ const Employee=()=>{
             </tr>
         })
     }
+
+    let VendorRender=()=>{
+        return Vendors.map((ven)=>{
+            return <tr key={ven.id}>
+                <td>{ven.id}</td>
+                <td>{ven.vendorCompanyName}</td>
+                <td>{ven.vendorCompanyAddress}</td>
+                <td>{ven.vendor_mobile_no}</td>
+                <td>{ven.vendor_aadhar_no}</td>
+                <td>{ven.vendorEmailId}</td>
+                <td>{ven.vendorStatus}</td>
+            </tr>
+        })
+    }
     return(
         <div>
+            <div>
             Donors Table
             <table>
                 <tr>
@@ -34,9 +58,25 @@ const Employee=()=>{
                     <th>Status</th>
                     <th>Mobile Number</th>
                 </tr>
-                {Render()}
+                {DonorRender()}
             </table>
+            </div>
+            <div>
+        Vendors Table
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Company Name</th>
+                <th>Company Address</th>
+                <th>Mobile Number</th>
+                <th>Aadhar Number</th>
+                <th>Email Id</th>
+                <th>Status</th>
+            </tr>
+            {VendorRender()}
+        </table>
         </div>
+    </div>
     )
 }
 export default Employee;

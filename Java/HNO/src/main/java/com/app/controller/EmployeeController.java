@@ -44,6 +44,7 @@ public class EmployeeController {
 	public Employee addEmployee(@RequestBody EmployeeDto employee) {
 		System.out.println("Employee add "+employee);
 		Employee empno=mapper.map(employee,Employee.class);
+		empno.setEmployeeStatus(true);
 		return empServ.addEmployee(empno);
 	}
 
