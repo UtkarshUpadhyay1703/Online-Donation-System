@@ -38,6 +38,9 @@ public class Employee extends BaseEntity {
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
+	@OneToMany(mappedBy = "itemEmployee", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ItemDonation> items = new ArrayList<ItemDonation>();
+
 	public Employee(String employeeName, String employeeAddress, String employeeMobileNo, String employeeAadharNo,
 			String employeeBankAccountNo, String employeeEmailId, String employeePassword, String employeeQualification,
 			boolean employeeStatus) {
@@ -132,12 +135,16 @@ public class Employee extends BaseEntity {
 	public void setEmployeeStatus(boolean employeeStatus) {
 		this.employeeStatus = employeeStatus;
 	}
-	
+
 	public void addBankTransaction(BankTransaction b) {
 		transactions.add(b);
 		b.setEmployee(this);
 	}
 
+	public void addItemDonation(ItemDonation id) {
+		items.add(id);
+		id.setItemEmployee(this);
+	}
 	@Override
 	public String toString() {
 		return "Employee [employeeName=" + employeeName + ", employeeAddress=" + employeeAddress + ", employeeMobileNo="

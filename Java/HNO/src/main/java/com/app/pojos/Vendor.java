@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -21,10 +22,16 @@ public class Vendor extends BaseEntity {
 	private String vendorCompanyAddress;
 	@Column(length = 10, unique = true, nullable = false)
 	private String vendorMobileNo;
-	@Column(length = 12, unique = true, nullable = false)
+//	@Pattern(regexp = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$", message = "Please write right Aadhar Number    Thank you!!!")
+	@Column(unique = true, nullable = false)
 	private String vendorAadharNo;
-	@Column(length = 18, unique = true, nullable = false)
+//	@Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$", message = "Please write right Account Number    Thank you!!!")  
+	@Column(unique = true, nullable = false)
 	private String vendorCompanyBankAccountNo;
+//	@Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Please write right IFSC    Thank you!!!")
+	@Column(unique = true, nullable = false)
+	private String vendorCompanyBankIFSC;
+
 	@Column(length = 30, unique = true, nullable = false)
 	private String vendorEmailId;
 	@Column(length = 20, nullable = false)

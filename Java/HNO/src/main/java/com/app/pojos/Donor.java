@@ -39,9 +39,9 @@ public class Donor extends BaseEntity {
 //	@JsonBackReference
 	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
-	
-	@OneToMany(mappedBy = "itemDonor",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<ItemDonation> items=new ArrayList<ItemDonation>();
+
+	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ItemDonation> items = new ArrayList<ItemDonation>();
 
 //	@ManyToOne
 //	@JoinColumn(name="donor_id")
@@ -61,7 +61,7 @@ public class Donor extends BaseEntity {
 		this.donorPassword = donorPassword;
 		this.donorStatus = donorStatus;
 //	this.donorStatus=true;
-}
+	}
 
 	public String getDonorMobileNo() {
 		return donorMobileNo;
@@ -95,8 +95,6 @@ public class Donor extends BaseEntity {
 		this.donorAddress = donorAddress;
 	}
 
-
-
 	public String getDonorEmailId() {
 		return donorEmailId;
 	}
@@ -125,22 +123,14 @@ public class Donor extends BaseEntity {
 //		BankTransaction bank=new BankTransaction();
 //		bank.deposit(b.getAmountSend());
 		transactions.add(b);
-		
+
 		b.setDonor(this);
 	}
-	
+
 	public void addItemDonor(ItemDonation id) {
 		items.add(id);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		id.setItemDonor(this);
+
 	}
 
 //	public void removeBankTransaction(BankTransaction b) {
@@ -150,8 +140,9 @@ public class Donor extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "Donor id = "+getId()+"[donorName=" + donorName + ", donorAddress=" + donorAddress + ", donor_mobile_no=" + donorMobileNo
-				+ ", donorEmailId=" + donorEmailId + ", donorStatus=" + donorStatus + "]";
+		return "Donor id = " + getId() + "[donorName=" + donorName + ", donorAddress=" + donorAddress
+				+ ", donor_mobile_no=" + donorMobileNo + ", donorEmailId=" + donorEmailId + ", donorStatus="
+				+ donorStatus + "]";
 	}
 
 }
