@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
 import com.app.dto.BankTransaction.VendorSendDto;
-import com.app.dto.Vendor.VendorLoginDto;
-import com.app.pojos.BankTransaction;
-=======
 import com.app.dto.Vendor.VendorDto;
 import com.app.dto.Vendor.VendorLoginDto;
->>>>>>> 61835576db8a054da0a37e4ee38f32aa6b92a7b7
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Vendor;
 import com.app.service.VendorService;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 

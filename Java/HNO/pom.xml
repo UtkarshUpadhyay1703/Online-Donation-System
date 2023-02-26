@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>helping</groupId>
 	<artifactId>HNO</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>HNO</name>
 	<description>Starting with project Register and login</description>
 	<properties>

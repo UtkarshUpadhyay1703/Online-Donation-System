@@ -49,7 +49,6 @@ public class Donor extends BaseEntity {
 	}
 
 	public Donor(String donorName, String donorAddress, String donorMobileNo, String donorEmailId, String donorPassword,
-<<<<<<< HEAD
 			boolean donorStatus) {
 		super();
 		this.donorName = donorName;
@@ -58,24 +57,8 @@ public class Donor extends BaseEntity {
 		this.donorEmailId = donorEmailId;
 		this.donorPassword = donorPassword;
 		this.donorStatus = donorStatus;
-=======
-		boolean donorStatus, List<BankTransaction> transactions) {
-	super();
-	this.donorName = donorName;
-	this.donorAddress = donorAddress;
-	this.donorMobileNo = donorMobileNo;
-	this.donorEmailId = donorEmailId;
-	this.donorPassword = donorPassword;
-	this.donorStatus = donorStatus;
-	this.transactions = transactions;
 //	this.donorStatus=true;
 }
-	
-	public void addBankTransaction(BankTransaction b) {
-		transactions.add(b);
-		b.setDonor(this);
->>>>>>> 61835576db8a054da0a37e4ee38f32aa6b92a7b7
-	}
 
 	public String getDonorMobileNo() {
 		return donorMobileNo;

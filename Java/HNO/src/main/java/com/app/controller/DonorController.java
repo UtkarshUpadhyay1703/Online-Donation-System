@@ -46,15 +46,15 @@ public class DonorController {
 
 	@PostMapping
 	public Donor addDonor(@RequestBody DonorAddDto donor) {
-<<<<<<< HEAD
+
 		System.out.println("Donor add " + donor);
 		Donor dno = mapper.map(donor, Donor.class);
-=======
+
 		System.out.println("Donor add "+donor);
-		Donor dno=mapper.map(donor,Donor.class);
->>>>>>> 61835576db8a054da0a37e4ee38f32aa6b92a7b7
+		Donor dno1=mapper.map(donor,Donor.class);
+
 		dno.setDonorStatus(true);
-		return donoServ.addDonor(dno);
+		return donoServ.addDonor(dno1);
 	}
 
 	@DeleteMapping("/{donId}")
