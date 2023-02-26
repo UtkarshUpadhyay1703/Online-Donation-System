@@ -39,6 +39,9 @@ public class Donor extends BaseEntity {
 //	@JsonBackReference
 	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
+	
+	@OneToMany(mappedBy = "itemDonor",cascade = CascadeType.ALL,orphanRemoval = true)
+	private List<ItemDonation> items=new ArrayList<ItemDonation>();
 
 //	@ManyToOne
 //	@JoinColumn(name="donor_id")
@@ -124,6 +127,20 @@ public class Donor extends BaseEntity {
 		transactions.add(b);
 		
 		b.setDonor(this);
+	}
+	
+	public void addItemDonor(ItemDonation id) {
+		items.add(id);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 //	public void removeBankTransaction(BankTransaction b) {
