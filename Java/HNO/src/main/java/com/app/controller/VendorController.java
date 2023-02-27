@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.BankTransaction.VendorSendDto;
 import com.app.dto.Vendor.VendorDto;
 import com.app.dto.Vendor.VendorLoginDto;
+import com.app.dto.bidding.BiddingDto;
 import com.app.pojos.BankTransaction;
+import com.app.pojos.Bidding;
 import com.app.pojos.Vendor;
 import com.app.service.VendorService;
 
@@ -74,4 +76,14 @@ public class VendorController {
 		BankTransaction transaction = mapper.map(send, BankTransaction.class);
 		return venServ.withdrawBankTransaction(transaction);
 	}
+	
+	@PostMapping("/Bidding/Vendor")
+	public Bidding addBidding(@RequestBody BiddingDto biddingDto) {
+		Bidding bidding=mapper.map(biddingDto, Bidding.class);
+		return venServ.addBidding(bidding);
+	}
+	
+
+	
+	
 }

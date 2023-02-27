@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.app.custom_exception.ResourceNotFoundException;
+
 @Entity
 @Table(name = "bank_transaction")
 public class BankTransaction extends BaseEntity {
@@ -70,6 +72,7 @@ public class BankTransaction extends BaseEntity {
 		if (this.balance > amount) {
 			this.balance -= amount;
 		}
+		throw new ResourceNotFoundException("Insufficient balance");
 	}
 
 	public BankTransaction() {

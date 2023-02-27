@@ -25,6 +25,9 @@ public class Employee extends BaseEntity {
 	private String employeeAadharNo;
 	@Column(length = 18, unique = true, nullable = false)
 	private String employeeBankAccountNo;
+//	@Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Please write right IFSC    Thank you!!!")
+	@Column(length=11,unique = true, nullable = false)
+	private String vendorCompanyBankIFSC;
 	@Column(length = 30, unique = true, nullable = false)
 	private String employeeEmailId;
 	@Column(length = 20, nullable = false)

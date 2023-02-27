@@ -23,15 +23,14 @@ public class Vendor extends BaseEntity {
 	@Column(length = 10, unique = true, nullable = false)
 	private String vendorMobileNo;
 //	@Pattern(regexp = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$", message = "Please write right Aadhar Number    Thank you!!!")
-	@Column(unique = true, nullable = false)
+	@Column(length=18,unique = true, nullable = false)
 	private String vendorAadharNo;
-//	@Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$", message = "Please write right Account Number    Thank you!!!")  
-	@Column(unique = true, nullable = false)
+//	@Pattern(regexp = ”^[0-9]{9,18}$”, message = "Please write right Account Number    Thank you!!!")  
+	@Column(length=18,unique = true, nullable = false)
 	private String vendorCompanyBankAccountNo;
 //	@Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Please write right IFSC    Thank you!!!")
-	@Column(unique = true, nullable = false)
+	@Column(length=11,unique = true, nullable = false)
 	private String vendorCompanyBankIFSC;
-
 	@Column(length = 30, unique = true, nullable = false)
 	private String vendorEmailId;
 	@Column(length = 20, nullable = false)
@@ -43,6 +42,9 @@ public class Vendor extends BaseEntity {
 	@OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
+	@OneToMany(mappedBy = "vendorBidding",cascade = CascadeType.ALL,orphanRemoval = true)
+	private List<Bidding> biddings=new ArrayList<Bidding>();
+	
 	public Vendor(String vendorCompanyName, String vendorCompanyAddress, String vendorMobileNo, String vendorAadharNo,
 			String vendorCompanyBankAccountNo, String vendorEmailId, String vendorPassword, boolean vendorStatus) {
 		super();
@@ -126,6 +128,10 @@ public class Vendor extends BaseEntity {
 
 	public void addBankTransaction(BankTransaction b) {
 		transactions.add(b);
+		b.setVendor(this);
+	}
+	public void addBidding(Bidding b) {
+		biddings.add(b);
 		b.setVendor(this);
 	}
 
