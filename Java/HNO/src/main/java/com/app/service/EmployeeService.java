@@ -17,4 +17,5 @@ public interface EmployeeService {
 	String deleteFalseEmployee(Long employeeId);
 	//
 	BankTransaction withdrawBankTransaction(BankTransaction transaction);
+	double getCurrentBalance();
 }

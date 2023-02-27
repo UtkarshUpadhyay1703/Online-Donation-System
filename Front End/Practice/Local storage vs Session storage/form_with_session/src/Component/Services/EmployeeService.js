@@ -19,5 +19,8 @@ class EmployeeService{
     UpdateEmployee(employee){
         return axios.put(this.url,employee);
     }
+    GetBalance(){
+        return axios.get(this.url+"/Balance");
+    }
 }
 export default new EmployeeService();
