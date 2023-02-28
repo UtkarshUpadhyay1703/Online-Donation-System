@@ -89,5 +89,10 @@ public class EmployeeController {
 		BankTransaction transaction = mapper.map(send, BankTransaction.class);
 		return empServ.withdrawBankTransaction(transaction);
 	}
+	
+	@GetMapping("/Balance")
+	public double getCurrentBalance() {
+		return empServ.getCurrentBalance();
+	}
 
 }                  

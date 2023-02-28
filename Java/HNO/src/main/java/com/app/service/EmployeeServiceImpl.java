@@ -85,5 +85,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		transaction.getEmployee().addBankTransaction(transaction);
 		return bankRepo.save(transaction);
 	}
+	
+	@Override
+	public double getCurrentBalance() {
+		return bankRepo.findLatestBalance().getBalance();
+	}
 
 }
