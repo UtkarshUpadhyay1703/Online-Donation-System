@@ -19,6 +19,7 @@ import com.app.dto.Employee.EmployeeDto;
 import com.app.dto.Employee.EmployeeLoginDto;
 import com.app.pojos.BankTransaction;
 import com.app.pojos.Employee;
+import com.app.service.BankTransactionService;
 import com.app.service.EmployeeService;
 
 @RestController
@@ -28,6 +29,8 @@ import com.app.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private ModelMapper mapper;
+	@Autowired
+	private BankTransactionService bankService;
 	
 	@Autowired
 	private EmployeeService empServ;
@@ -87,12 +90,12 @@ public class EmployeeController {
 	public BankTransaction withdrawBankTransaction(@RequestBody EmployeeSendDto send) {
 		System.out.println("inside addTrax in Employee send");
 		BankTransaction transaction = mapper.map(send, BankTransaction.class);
+		
+		//Not right but check how to do with jwt 
+		if(bankService.validateEmployee(transaction.getEmployee().getId())){
 		return empServ.withdrawBankTransaction(transaction);
-	}
-	
-	@GetMapping("/Balance")
-	public double getCurrentBalance() {
-		return empServ.getCurrentBalance();
+		}
+		return null;
 	}
 
 }                  

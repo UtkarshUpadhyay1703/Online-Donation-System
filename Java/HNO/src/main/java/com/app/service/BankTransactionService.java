@@ -5,4 +5,5 @@ import com.app.pojos.BankTransaction;
 public interface BankTransactionService {
 	double getBalance();
 	BankTransaction saveTransaction(BankTransaction transaction);
+	boolean validateEmployee(Long id);
 }
