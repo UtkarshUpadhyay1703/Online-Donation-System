@@ -47,13 +47,13 @@ public class DonorController {
 	@PostMapping
 	public Donor addDonor(@RequestBody DonorAddDto donor) {
 
-		System.out.println("Donor add " + donor);
-		Donor dno = mapper.map(donor, Donor.class);
+//		System.out.println("Donor add " + donor);
+//		Donor dno = mapper.map(donor, Donor.class);
 
 		System.out.println("Donor add "+donor);
 		Donor dno1=mapper.map(donor,Donor.class);
 
-		dno.setDonorStatus(true);
+		dno1.setDonorStatus(true);
 		return donoServ.addDonor(dno1);
 	}
 

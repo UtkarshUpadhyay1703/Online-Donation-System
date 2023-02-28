@@ -59,7 +59,7 @@ public class DonorServiceImpl implements DonorService {
 	public Donor validateDon(DonorLoginDto don) {
 
 		return donRepo.findByDonorEmailIdAndDonorPassword(don.getDonorEmailId(), don.getDonorPassword())
-				.orElseThrow(() -> new ResourceNotFoundException("Invalid Email and password"));
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Email or password"));
 	}
 
 	@Override
