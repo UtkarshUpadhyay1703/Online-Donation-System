@@ -18,8 +18,10 @@ import com.app.dto.BankTransaction.EmployeeSendDto;
 import com.app.dto.Employee.EmployeeDto;
 import com.app.dto.Employee.EmployeeLoginDto;
 import com.app.pojos.BankTransaction;
+import com.app.pojos.Bidding;
 import com.app.pojos.Employee;
 import com.app.service.BankTransactionService;
+import com.app.service.BiddingService;
 import com.app.service.EmployeeService;
 
 @RestController
@@ -29,6 +31,10 @@ import com.app.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+	private BiddingService bidService;
+	
 	@Autowired
 	private BankTransactionService bankService;
 	
@@ -110,5 +116,10 @@ public class EmployeeController {
 //		}
 //		return null;
 //	}
+	@GetMapping("/books")
+	public List<Bidding> getAllTopFiveBooks(){
+		System.out.println("inside getAllFiveBooks");
+		return bidService.getRecentBiddingUpToFiveBooks();
+	}
 
 }                  

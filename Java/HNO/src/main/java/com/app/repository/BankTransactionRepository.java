@@ -1,5 +1,8 @@
 package com.app.repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -18,4 +21,5 @@ public interface BankTransactionRepository extends JpaRepository<BankTransaction
 //	@Query(value="select new com.app.pojos.BankTransaction(balance) from BankTransaction b where employee=?1 order by createdOn desc limit 1")
 	@Query(value="select new com.app.pojos.BankTransaction(createdOn) from BankTransaction b where b.employee.id=1")
 	BankTransaction validateEmployee(Long id);
+	
 }
