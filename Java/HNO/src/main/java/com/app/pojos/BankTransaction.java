@@ -62,6 +62,12 @@ public class BankTransaction extends BaseEntity {
 		this.balance = balance;
 	}
 
+	public BankTransaction(LocalDateTime createdOn) {
+		super();
+		this.createdOn = createdOn;
+	}
+
+
 	// deposit
 	public void deposit(double amount) {
 		this.balance += amount;
@@ -69,10 +75,13 @@ public class BankTransaction extends BaseEntity {
 
 	// withdraw
 	public void withdraw(double amount) {
+		System.out.println("inside withdraw balance = "+this.balance+"Amount = "+amount);
 		if (this.balance > amount) {
 			this.balance -= amount;
 		}
+		else {
 		throw new ResourceNotFoundException("Insufficient balance");
+		}
 	}
 
 	public BankTransaction() {

@@ -88,14 +88,27 @@ public class EmployeeController {
 	
 	@PostMapping("/Transaction/withdraw/Employee")
 	public BankTransaction withdrawBankTransaction(@RequestBody EmployeeSendDto send) {
-		System.out.println("inside addTrax in Employee send");
+		System.out.println("inside Trax in Employee send");
 		BankTransaction transaction = mapper.map(send, BankTransaction.class);
 		
 		//Not right but check how to do with jwt 
 		if(bankService.validateEmployee(transaction.getEmployee().getId())){
+			System.out.println("after validating inside transaction");
 		return empServ.withdrawBankTransaction(transaction);
 		}
 		return null;
 	}
+	
+//	@PostMapping("/Transaction/withdraw/{empId}")
+//	public BankTransaction withdrawBankTransaction(@PathVariable String empId) {
+//		System.out.println("inside addTrax in Employee empId"+empId);
+////		BankTransaction transaction = mapper.map(send, BankTransaction.class);
+//		
+//		//Not right but check how to do with jwt 
+//		if(bankService.validateEmployee(empId)){
+//		return empServ.withdrawBankTransaction(transaction);
+//		}
+//		return null;
+//	}
 
 }                  

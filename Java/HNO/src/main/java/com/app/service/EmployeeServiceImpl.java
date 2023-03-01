@@ -77,7 +77,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public BankTransaction withdrawBankTransaction(BankTransaction transaction) {
+		System.out.println("withdrawBankTransaction");
 		double balance=bankRepo.findLatestBalance().getBalance();
+		System.out.println("Current balance = "+balance);
 		transaction.setBalance(balance);
 		transaction.setAmountReceived(0);
 		transaction.withdraw(transaction.getAmountSend());
