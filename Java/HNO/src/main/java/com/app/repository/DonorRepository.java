@@ -13,9 +13,7 @@ public interface DonorRepository extends JpaRepository<Donor,Long> {
 
 	Optional<Donor> findByDonorEmailIdAndDonorPassword(String em,String pass);
 	List<Donor> findByDonorStatus(Boolean status);
-//	Optional<Donor> set
 	@Modifying
 	@Query(value="update com.app.pojos.Donor set donor_status = false where id=?1")
 	void setDonorStatusToFalse(Long id);
 }
-//findByDonorStatus

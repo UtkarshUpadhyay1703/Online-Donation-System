@@ -1,9 +1,15 @@
 package com.app.pojos;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -27,11 +33,26 @@ public class Donor extends BaseEntity {
 	@Column(length = 20, nullable = false)
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String donorPassword;
-	@Column(length = 10, nullable = false)
+//	@Column
+//	@Column(columnDefinition = "boolean default true")
 	private boolean donorStatus;
+//	@JsonBackReference
+	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
-	public Donor(String donorName, String donorAddress, String donorMobileNo, String donorEmailId,
-			String donorPassword, boolean donorStatus) {
+	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ItemDonation> items = new ArrayList<ItemDonation>();
+
+//	@ManyToOne
+//	@JoinColumn(name="donor_id")
+//	private Employee donorEmployee;
+
+	public Donor() {
+		super();
+	}
+
+	public Donor(String donorName, String donorAddress, String donorMobileNo, String donorEmailId, String donorPassword,
+			boolean donorStatus) {
 		super();
 		this.donorName = donorName;
 		this.donorAddress = donorAddress;
@@ -39,11 +60,24 @@ public class Donor extends BaseEntity {
 		this.donorEmailId = donorEmailId;
 		this.donorPassword = donorPassword;
 		this.donorStatus = donorStatus;
+//	this.donorStatus=true;
 	}
 
-	public Donor() {
-		super();
+	public String getDonorMobileNo() {
+		return donorMobileNo;
 	}
+
+	public void setDonorMobileNo(String donorMobileNo) {
+		this.donorMobileNo = donorMobileNo;
+	}
+
+//	public List<BankTransaction> getTransactions() {
+//		return transactions;
+//	}
+//
+//	public void setTransactions(List<BankTransaction> transactions) {
+//		this.transactions = transactions;
+//	}
 
 	public String getDonorName() {
 		return donorName;
@@ -59,14 +93,6 @@ public class Donor extends BaseEntity {
 
 	public void setDonorAddress(String donorAddress) {
 		this.donorAddress = donorAddress;
-	}
-
-	public String getDonor_mobile_no() {
-		return donorMobileNo;
-	}
-
-	public void setDonor_mobile_no(String donorMobileNo) {
-		this.donorMobileNo = donorMobileNo;
 	}
 
 	public String getDonorEmailId() {
@@ -93,10 +119,30 @@ public class Donor extends BaseEntity {
 		this.donorStatus = donorStatus;
 	}
 
+	public void addBankTransaction(BankTransaction b) {
+//		BankTransaction bank=new BankTransaction();
+//		bank.deposit(b.getAmountSend());
+		transactions.add(b);
+
+		b.setDonor(this);
+	}
+
+	public void addItemDonor(ItemDonation id) {
+		items.add(id);
+		id.setItemDonor(this);
+
+	}
+
+//	public void removeBankTransaction(BankTransaction b) {
+//		transactions.remove(b);
+//		b.setDonor(null);
+//	}
+
 	@Override
 	public String toString() {
-		return "Donor [donorName=" + donorName + ", donorAddress=" + donorAddress + ", donor_mobile_no="
-				+ donorMobileNo + ", donorEmailId=" + donorEmailId + ", donorStatus=" + donorStatus + "]";
+		return "Donor id = " + getId() + "[donorName=" + donorName + ", donorAddress=" + donorAddress
+				+ ", donor_mobile_no=" + donorMobileNo + ", donorEmailId=" + donorEmailId + ", donorStatus="
+				+ donorStatus + "]";
 	}
 
 }

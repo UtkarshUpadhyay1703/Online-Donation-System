@@ -1,6 +1,6 @@
 // import DonorRegisterComponent from "./DonorRegisterComponent";
 import './DonorRegister.css';
-const DonorRegitster=()=>{
+const DonorRegister=()=>{
 
     
 
@@ -70,4 +70,4 @@ const DonorRegitster=()=>{
         </div>
     )
 }
-export default DonorRegitster;
+export default DonorRegister;

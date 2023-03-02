@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exception.ResourceNotFoundException;
-import com.app.dto.DonorLoginDto;
-import com.app.dto.DonorStatusDto;
+import com.app.dto.Donor.DonorLoginDto;
+import com.app.pojos.BankTransaction;
 import com.app.pojos.Donor;
+import com.app.repository.BankTransactionRepository;
 import com.app.repository.DonorRepository;
 
 @Service
@@ -19,6 +20,9 @@ public class DonorServiceImpl implements DonorService {
 	@Autowired
 	private DonorRepository donRepo;
 
+	@Autowired
+	private BankTransactionRepository bankRepo;
+	
 	@Override
 	public List<Donor> getAllDonors() {
 		return donRepo.findAll();
@@ -55,7 +59,7 @@ public class DonorServiceImpl implements DonorService {
 	public Donor validateDon(DonorLoginDto don) {
 
 		return donRepo.findByDonorEmailIdAndDonorPassword(don.getDonorEmailId(), don.getDonorPassword())
-				.orElseThrow(() -> new ResourceNotFoundException("Invalid Email and password"));
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Email or password"));
 	}
 
 	@Override
@@ -69,8 +73,27 @@ public class DonorServiceImpl implements DonorService {
 			donRepo.setDonorStatusToFalse(donorId);	
 			return "set to false (Updated)";
 		}
-		throw new ResourceNotFoundException("Invalid Id");
-		
+		throw new ResourceNotFoundException("Invalid Id");		
+	}
+	
+	@Override
+	public BankTransaction depositBankTransaction(BankTransaction transaction) {
+		double balance=bankRepo.findLatestBalance().getBalance();
+		transaction.setBalance(balance);
+		transaction.setAmountSend(0);
+//		BankTransaction bank=new BankTransaction();
+//		bank.deposit(balance);
+		transaction.deposit(transaction.getAmountReceived());
+//		Donor don=new Donor();
+		System.out.println(transaction.getDonor());
+		transaction.getDonor().addBankTransaction(transaction);
+		return bankRepo.save(transaction);
 	}
 
+	@Override
+	public BankTransaction withdrawBankTransaction(BankTransaction Transaction) {
+		
+		return null;
+	}
+	
 }
