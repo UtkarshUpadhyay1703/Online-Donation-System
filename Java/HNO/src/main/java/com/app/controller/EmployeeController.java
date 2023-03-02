@@ -121,5 +121,40 @@ public class EmployeeController {
 		System.out.println("inside getAllFiveBooks");
 		return bidService.getRecentBiddingUpToFiveBooks();
 	}
+	
+	@GetMapping("/Cloths")
+	public List<Bidding> getAllTopFiveCloths(){
+		System.out.println("inside getAllFiveBooks");
+		return bidService.getRecentBiddingUpToFiveCloths();
+	}
+	
+	@GetMapping("/toys")
+	public List<Bidding> getAllTopFiveToys(){
+		System.out.println("inside getAllFiveBooks");
+		return bidService.getRecentBiddingUpToFiveToys();
+	}
+	
+	@GetMapping("/cycles")
+	public List<Bidding> getAllTopFiveCycles(){
+		System.out.println("inside getAllFiveBooks");
+		return bidService.getRecentBiddingUpToFiveCycles();
+	}
+	
+	@GetMapping("/setSelected/{bidId}")
+	public boolean setStatusToSelected(@PathVariable Long bidId){
+		System.out.println("inside set status");
+		return bidService.setBiddingStatusToSelected(bidId);
+	}
+	
+	@GetMapping("/getSelected")
+	public List<Bidding> getAllSelected(){
+		return bidService.getAllSelectedBidders();
+	}
+	
+	@GetMapping("/setReceived/Books/{bidId}")
+	public boolean setStatusToReceived(@PathVariable Long bidId){
+		System.out.println("inside set status to approve");
+		return bidService.setBiddingStatusToApproveBooks(bidId);
+	}
 
 }                  
