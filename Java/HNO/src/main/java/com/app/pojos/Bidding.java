@@ -23,13 +23,14 @@ public class Bidding extends BaseEntity {
 	@Column(length = 8, columnDefinition = "varchar(8) default 'APPLIED'")
 	@Enumerated(value = EnumType.STRING)
 	private BiddingStatus biddingStatusApprove;
+	private int quantity;
 
 	@ManyToOne
 	@JoinColumn(name = "vendor_id")
 	private Vendor vendorBidding;
 
 	public Bidding(double lowPriceToy, double lowPriceCloth, double lowPriceNotebook, double lowPriceCycle,
-			Date dateOfBid, BiddingStatus biddingStatusApprove, Vendor vendorBidding) {
+			Date dateOfBid, BiddingStatus biddingStatusApprove, Vendor vendorBidding,int quantity) {
 		super();
 		this.lowPriceToy = lowPriceToy;
 		this.lowPriceCloth = lowPriceCloth;
@@ -38,6 +39,7 @@ public class Bidding extends BaseEntity {
 		this.dateOfBid = dateOfBid;
 		this.biddingStatusApprove = biddingStatusApprove;
 		this.vendorBidding = vendorBidding;
+		this.quantity=quantity;
 	}
 
 	public Bidding() {
@@ -98,6 +100,14 @@ public class Bidding extends BaseEntity {
 
 	public void setVendor(Vendor vendorBidding) {
 		this.vendorBidding = vendorBidding;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	@Override

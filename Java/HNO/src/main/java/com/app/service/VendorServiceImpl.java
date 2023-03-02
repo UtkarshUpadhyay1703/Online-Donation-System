@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.Vendor.VendorLoginDto;
-import com.app.dto.bidding.BiddingDto;
 import com.app.pojos.BankTransaction;
 import com.app.pojos.Bidding;
 import com.app.pojos.BiddingStatus;
