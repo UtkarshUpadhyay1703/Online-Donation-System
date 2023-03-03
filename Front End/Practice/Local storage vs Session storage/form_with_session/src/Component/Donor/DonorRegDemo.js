@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DonorService from "../Services/DonorService";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const DonorRegDemo=()=>{
     let [donorob,setdonorob]=useState({});
@@ -15,6 +15,7 @@ const DonorRegDemo=()=>{
         DonorService.AddDonor(donorob).then((response)=>{
             console.log(response.data);
             history.push("DonorSignIn");
+           
         });
     }
     return(
@@ -34,8 +35,9 @@ const DonorRegDemo=()=>{
                 Email Id : <input id="email" name="donorEmailId" value={donorob.donorEmailId} onChange={Change} placeholder="Email Id"></input><br/><br/>
 
                 Password : <input id="password" name="donorPassword" value={donorob.donorPassword} onChange={Change} placeholder="Password"></input><br/><br/>
-
-                <button type="button" id="btn" name="btn1" onClick={Add}>Submit</button>
+<Link to={"/DonorSignIn"}>
+                <button type="button" id="btn" name="btn1" onClick={Add} >Submit</button>
+            </Link>
             </form>
         </div>
     )
