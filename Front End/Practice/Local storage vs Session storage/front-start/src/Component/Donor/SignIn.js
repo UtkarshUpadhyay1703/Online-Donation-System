@@ -17,7 +17,11 @@ const SignIn=()=>{
 
     const SignInFun=(event)=>{
         DonorService.SignInDonor(donorob).then((response)=>{
-            console.log(response.data);
+         // localStorage.don=response;
+         // history.push("/rfvhe")
+         localStorage.setItem("don",JSON.stringify(response));
+         // setdonorob1(JSON.stringify(response));
+         // alert(donorob1);
         });
     }
     return(
@@ -28,29 +32,29 @@ const SignIn=()=>{
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
           </head>
           <body>
-          <img src="./logo.png">
+
           <div class="sidenav">
          <div class="login-main-text">
             <h2>Application<br/> Login Page</h2>
             <p>Login or register from here to access.</p>
          </div>
       </div>
-      </img>
+
       <div class="main">
          <div class="col-md-6 col-sm-12">
             <div class="login-form">
                <form>
                   <div class="form-group">
-                     <label>User Name</label>
-                     <input type="text" class="form-control" placeholder="User Name"/>
+                     <label>Email Id</label>
+                     <input type="text" class="form-control" id="email" name="donorEmailId" value={donorob.donorEmailId} onChange={Change} placeholder="Email Id"/>
                   </div>
                   <div class="form-group">
                      <label>Password</label>
-                     <input type="password" class="form-control" placeholder="Password"/>
+                     <input type="password" class="form-control" id="password" name="donorPassword" value={donorob.donorPassword} onChange={Change} placeholder="Password"/>
                   </div>
-                  <button type="submit" class="btn btn-black">Login</button>
+                  <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={SignInFun}>Submit</button>
                   <Link to="/DonorRegister">
-                  <button type="submit" class="btn btn-secondary">Register</button></Link>
+                  <button type="button" class="btn btn-secondary">Register</button></Link>
                </form>
             </div>
          </div>

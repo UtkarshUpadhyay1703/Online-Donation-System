@@ -50,17 +50,20 @@ public class Donor extends BaseEntity {
 		super();
 	}
 
+
+
 	public Donor(String donorName, String donorAddress, String donorMobileNo, String donorEmailId, String donorPassword,
-			boolean donorStatus) {
-		super();
-		this.donorName = donorName;
-		this.donorAddress = donorAddress;
-		this.donorMobileNo = donorMobileNo;
-		this.donorEmailId = donorEmailId;
-		this.donorPassword = donorPassword;
-		this.donorStatus = donorStatus;
-//	this.donorStatus=true;
-	}
+		boolean donorStatus) {
+	super();
+	this.donorName = donorName;
+	this.donorAddress = donorAddress;
+	this.donorMobileNo = donorMobileNo;
+	this.donorEmailId = donorEmailId;
+	this.donorPassword = donorPassword;
+	this.donorStatus = donorStatus;
+}
+
+
 
 	public String getDonorMobileNo() {
 		return donorMobileNo;

@@ -30,6 +30,7 @@ public class DonorServiceImpl implements DonorService {
 
 	@Override
 	public Donor addDonor(Donor donor) {
+		System.out.println(donor);
 		return donRepo.save(donor);
 	}
 
