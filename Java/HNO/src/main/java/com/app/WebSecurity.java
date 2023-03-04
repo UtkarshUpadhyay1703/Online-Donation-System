@@ -2,6 +2,7 @@ package com.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authorization.AuthenticatedAuthorizationManager;
@@ -16,12 +17,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 //import com.app.security.JwtAuthenticationEntryPoint;
 
 @SuppressWarnings("deprecation")
+@Configuration
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 //	@Autowired
 //	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 //	@Autowired
 //	private JwtAuthanticationFilter jwtAuthanticationFilter;
+	
+
 	
 @Override
 protected void configure(HttpSecurity http) throws Exception {
