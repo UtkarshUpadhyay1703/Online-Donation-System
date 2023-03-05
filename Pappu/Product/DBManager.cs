@@ -1,10 +1,10 @@
 using BOL;
 namespace DAL;
 public class DBManager:IDBManager{
-    public List<Product> GetAllProducts(){
+    public List<Donor> GetColAllDonors(){
         using(var context=new CollectionContext()){
-            var products=from prod in context.Products select prod;
-            return products.ToList<Product>();
+            var donors=from don in context.Donors select don;
+            return products.ToList<Donor>();
         }
     }
 }
