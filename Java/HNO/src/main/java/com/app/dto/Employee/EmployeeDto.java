@@ -1,7 +1,7 @@
 package com.app.dto.Employee;
 
 public class EmployeeDto {
-	
+
 	private String employeeName;
 
 	private String employeeAddress;
@@ -11,31 +11,33 @@ public class EmployeeDto {
 	private String employeeAadharNo;
 
 	private String employeeBankAccountNo;
-	
+	private String vendorCompanyBankIFSC;
+
 	private String employeeEmailId;
 
 	private String employeePassword;
 
 	private String employeeQualification;
-	
+
 //	private boolean employeeStatus;
 
+	public EmployeeDto() {
+		super();
+	}
+
 	public EmployeeDto(String employeeName, String employeeAddress, String employeeMobileNo, String employeeAadharNo,
-			String employeeBankAccountNo, String employeeEmailId, String employeePassword, String employeeQualification) {
+			String employeeBankAccountNo, String vendorCompanyBankIFSC, String employeeEmailId, String employeePassword,
+			String employeeQualification) {
 		super();
 		this.employeeName = employeeName;
 		this.employeeAddress = employeeAddress;
 		this.employeeMobileNo = employeeMobileNo;
 		this.employeeAadharNo = employeeAadharNo;
 		this.employeeBankAccountNo = employeeBankAccountNo;
+		this.vendorCompanyBankIFSC = vendorCompanyBankIFSC;
 		this.employeeEmailId = employeeEmailId;
 		this.employeePassword = employeePassword;
 		this.employeeQualification = employeeQualification;
-//		this.employeeStatus = employeeStatus;
-	}
-
-	public EmployeeDto() {
-		super();
 	}
 
 	public String getEmployeeName() {
@@ -102,6 +104,23 @@ public class EmployeeDto {
 		this.employeeQualification = employeeQualification;
 	}
 
+	public String getVendorCompanyBankIFSC() {
+		return vendorCompanyBankIFSC;
+	}
+
+	public void setVendorCompanyBankIFSC(String vendorCompanyBankIFSC) {
+		this.vendorCompanyBankIFSC = vendorCompanyBankIFSC;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeDto [employeeName=" + employeeName + ", employeeAddress=" + employeeAddress
+				+ ", employeeMobileNo=" + employeeMobileNo + ", employeeAadharNo=" + employeeAadharNo
+				+ ", employeeBankAccountNo=" + employeeBankAccountNo + ", vendorCompanyBankIFSC="
+				+ vendorCompanyBankIFSC + ", employeeEmailId=" + employeeEmailId + ", employeePassword="
+				+ employeePassword + ", employeeQualification=" + employeeQualification + "]";
+	}
+
 //	public boolean isEmployeeStatus() {
 //		return employeeStatus;
 //	}
@@ -110,13 +129,4 @@ public class EmployeeDto {
 //		this.employeeStatus = employeeStatus;
 //	}
 
-	@Override
-	public String toString() {
-		return "EmployeeDto [employeeName=" + employeeName + ", employeeAddress=" + employeeAddress
-				+ ", employeeMobileNo=" + employeeMobileNo + ", employeeAadharNo=" + employeeAadharNo
-				+ ", employeeBankAccountNo=" + employeeBankAccountNo + ", employeeEmailId=" + employeeEmailId
-				+ ", employeePassword=" + employeePassword + ", employeeQualification=" + employeeQualification
-				+ "]";
-	}
-	
 }

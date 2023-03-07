@@ -45,12 +45,12 @@ public class DonorAddDto {
 		this.donorAddress = donorAddress;
 	}
 
-	public String getDonor_mobile_no() {
+	public String getDonorMobileNo() {
 		return donorMobileNo;
 	}
 
-	public void setDonor_mobile_no(String donor_mobile_no) {
-		this.donorMobileNo = donor_mobile_no;
+	public void setDonorMobileNo(String donorMobileNo) {
+		this.donorMobileNo = donorMobileNo;
 	}
 
 	public String getDonorEmailId() {

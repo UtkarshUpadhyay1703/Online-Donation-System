@@ -18,8 +18,8 @@ const SignIn=()=>{
     const SignInFun=(event)=>{
         DonorService.SignInDonor(donorob).then((response)=>{
          // localStorage.don=response;
-         // history.push("/rfvhe")
-         localStorage.setItem("don",JSON.stringify(response));
+         localStorage.setItem("don",JSON.stringify(response.data));
+         history.push("/DonorDonateForm")
          // setdonorob1(JSON.stringify(response));
          // alert(donorob1);
         });
@@ -36,12 +36,12 @@ const SignIn=()=>{
           <div class="sidenav">
          <div class="login-main-text">
             <h2>Application<br/> Login Page</h2>
-            <p>Login or register from here to access.</p>
+            <p>Login from here to access.</p>
          </div>
       </div>
 
       <div class="main">
-         <div class="col-md-6 col-sm-12">
+         <div class="col-md-3 col-sm-12">
             <div class="login-form">
                <form>
                   <div class="form-group">

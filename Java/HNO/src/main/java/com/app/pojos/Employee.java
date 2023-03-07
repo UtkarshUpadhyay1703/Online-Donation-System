@@ -26,7 +26,7 @@ public class Employee extends BaseEntity {
 	@Column(length = 18, unique = true, nullable = false)
 	private String employeeBankAccountNo;
 //	@Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Please write right IFSC    Thank you!!!")
-	@Column(length=11,unique = true, nullable = false)
+	@Column(length = 11, unique = true, nullable = false)
 	private String vendorCompanyBankIFSC;
 	@Column(length = 30, unique = true, nullable = false)
 	private String employeeEmailId;
@@ -148,6 +148,7 @@ public class Employee extends BaseEntity {
 		items.add(id);
 		id.setItemEmployee(this);
 	}
+
 	@Override
 	public String toString() {
 		return "Employee [employeeName=" + employeeName + ", employeeAddress=" + employeeAddress + ", employeeMobileNo="

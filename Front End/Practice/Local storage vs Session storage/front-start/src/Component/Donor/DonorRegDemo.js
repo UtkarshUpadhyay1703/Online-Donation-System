@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DonorService from "../Services/DonorService";
 import { Link, useHistory } from "react-router-dom";
+// import './Donor.css';
 
 const DonorRegDemo = () => {
     let [donorob, setdonorob] = useState({});
@@ -45,16 +46,14 @@ const DonorRegDemo = () => {
                 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
             </head>
             <body>
-                {/* <img src="./logo.png">
-      <div class="sidenav">
-     <div class="login-main-text">
-        <h2>Application<br/> Login Page</h2>
-        <p>Login or register from here to access.</p>
-     </div>
-  </div>
-  </img> */}
+                <div class="sidenav">
+         <div class="login-main-text">
+            <h2>Application<br/>Registration Donor</h2>
+            <p>Register from here to access.</p>
+         </div>
+      </div>
                 <div class="main">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-3 col-sm-12">
                         <div class="login-form">
                             <form>
                                 <div class="form-group">
