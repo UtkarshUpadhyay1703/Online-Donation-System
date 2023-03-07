@@ -10,28 +10,30 @@ public class VendorDto {
 	private String vendorAadharNo;
 
 	private String vendorCompanyBankAccountNo;
-	
+	private String vendorCompanyBankIFSC;
+
 	private String vendorEmailId;
 
 	private String vendorPassword;
 
 //	private boolean vendorStatus;
 
+	public VendorDto() {
+		super();
+	}
+
 	public VendorDto(String vendorCompanyName, String vendorCompanyAddress, String vendorMobileNo,
-			String vendorAadharNo, String vendorCompanyBankAccountNo, String vendorEmailId, String vendorPassword) {
+			String vendorAadharNo, String vendorCompanyBankAccountNo, String vendorCompanyBankIFSC,
+			String vendorEmailId, String vendorPassword) {
 		super();
 		this.vendorCompanyName = vendorCompanyName;
 		this.vendorCompanyAddress = vendorCompanyAddress;
 		this.vendorMobileNo = vendorMobileNo;
 		this.vendorAadharNo = vendorAadharNo;
 		this.vendorCompanyBankAccountNo = vendorCompanyBankAccountNo;
+		this.vendorCompanyBankIFSC = vendorCompanyBankIFSC;
 		this.vendorEmailId = vendorEmailId;
 		this.vendorPassword = vendorPassword;
-//		this.vendorStatus = vendorStatus;
-	}
-
-	public VendorDto() {
-		super();
 	}
 
 	public String getVendorCompanyName() {
@@ -74,6 +76,14 @@ public class VendorDto {
 		this.vendorCompanyBankAccountNo = vendorCompanyBankAccountNo;
 	}
 
+	public String getVendorCompanyBankIFSC() {
+		return vendorCompanyBankIFSC;
+	}
+
+	public void setVendorCompanyBankIFSC(String vendorCompanyBankIFSC) {
+		this.vendorCompanyBankIFSC = vendorCompanyBankIFSC;
+	}
+
 	public String getVendorEmailId() {
 		return vendorEmailId;
 	}
@@ -90,6 +100,15 @@ public class VendorDto {
 		this.vendorPassword = vendorPassword;
 	}
 
+	@Override
+	public String toString() {
+		return "VendorDto [vendorCompanyName=" + vendorCompanyName + ", vendorCompanyAddress=" + vendorCompanyAddress
+				+ ", vendorMobileNo=" + vendorMobileNo + ", vendorAadharNo=" + vendorAadharNo
+				+ ", vendorCompanyBankAccountNo=" + vendorCompanyBankAccountNo + ", vendorCompanyBankIFSC="
+				+ vendorCompanyBankIFSC + ", vendorEmailId=" + vendorEmailId + ", vendorPassword=" + vendorPassword
+				+ "]";
+	}
+
 //	public boolean isVendorStatus() {
 //		return vendorStatus;
 //	}
@@ -98,13 +117,4 @@ public class VendorDto {
 //		this.vendorStatus = vendorStatus;
 //	}
 
-	@Override
-	public String toString() {
-		return "VendorDto [vendorCompanyName=" + vendorCompanyName + ", vendorCompanyAddress=" + vendorCompanyAddress
-				+ ", vendorMobileNo=" + vendorMobileNo + ", vendorAadharNo=" + vendorAadharNo
-				+ ", vendorCompanyBankAccountNo=" + vendorCompanyBankAccountNo + ", vendorEmailId=" + vendorEmailId
-				+ ", vendorPassword=" + vendorPassword + "]";
-	}
-
-	
 }

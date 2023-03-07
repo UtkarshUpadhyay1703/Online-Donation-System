@@ -54,6 +54,7 @@ public class DonorController {
 		Donor dno1=mapper.map(donor,Donor.class);
 
 		dno1.setDonorStatus(true);
+		System.out.println(dno1);
 		return donoServ.addDonor(dno1);
 	}
 
@@ -76,6 +77,7 @@ public class DonorController {
 	@PostMapping("/signIn")
 	public Donor validateDonor(@RequestBody DonorLoginDto donLogIn) {
 		System.out.println("login" + donLogIn);
+		System.out.println(donoServ.validateDon(donLogIn));
 		return donoServ.validateDon(donLogIn);
 	}
 

@@ -18,5 +18,5 @@ public interface DonorService {
 	List<Donor> getAllTrueDonors();
 	String deleteFalseDonor(Long donorId);
 	BankTransaction depositBankTransaction(BankTransaction transaction);
-	BankTransaction withdrawBankTransaction(BankTransaction Transaction);
+//	BankTransaction withdrawBankTransaction(BankTransaction Transaction);
 }

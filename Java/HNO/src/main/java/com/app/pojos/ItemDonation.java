@@ -57,6 +57,11 @@ public class ItemDonation extends BaseEntity {
 	}
 
 
+	public ItemDonation() {
+		super();
+	}
+
+
 	public Donor getItemDonor() {
 		return itemDonor;
 	}

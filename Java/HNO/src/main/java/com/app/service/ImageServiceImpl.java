@@ -17,13 +17,14 @@ import com.app.repository.ItemDonationRepository;
 public class ImageServiceImpl implements ImageService {
 //	@Autowired
 //	private ModelMapper mapper;
-	
+	private Donor itemDonor;
 	@Autowired
 	ItemDonationRepository donationRepo;
 
 	@Override
-	public String uploadImage(String type,String path, MultipartFile file,Donor donor) throws IOException {
+	public String uploadImage(String type,String path, MultipartFile file,Donor itemDonor) throws IOException {
 		// TODO Auto-generated method stub
+		System.out.println(itemDonor);
 		String name = file.getOriginalFilename();
 
 		String filepath = path + File.separator + name;
@@ -34,7 +35,11 @@ public class ImageServiceImpl implements ImageService {
 		System.out.println("path = "+path);
 System.out.println("Paths.get(filepath) = "+Paths.get(filepath));
 		Files.copy(file.getInputStream(), Paths.get(filepath));
-		ItemDonation item =new ItemDonation(type, filepath, false, donor);
+		System.out.println(itemDonor.getId()+" "+itemDonor);
+		ItemDonation item =new ItemDonation(type, filepath, false, itemDonor);
+		System.out.println(item);
+//		donationRepo.save(item);
+		itemDonor.addItemDonor(item);
 		donationRepo.save(item);
 		return name;
 	}

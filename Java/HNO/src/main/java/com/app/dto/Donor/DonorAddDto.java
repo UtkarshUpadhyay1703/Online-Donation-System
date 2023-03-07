@@ -5,7 +5,7 @@ public class DonorAddDto {
 
 	private String donorAddress;
 
-	private String donor_mobile_no;
+	private String donorMobileNo;
 
 	private String donorEmailId;
 
@@ -13,20 +13,21 @@ public class DonorAddDto {
 
 //	private boolean donorStatus;
 
-	public DonorAddDto(String donorName, String donorAddress, String donor_mobile_no, String donorEmailId,
-			String donorPassword) {
-		super();
-		this.donorName = donorName;
-		this.donorAddress = donorAddress;
-		this.donor_mobile_no = donor_mobile_no;
-		this.donorEmailId = donorEmailId;
-		this.donorPassword = donorPassword;
-//		this.donorStatus = donorStatus;
-	}
+
 
 	public DonorAddDto() {
 		super();
 	}
+
+	public DonorAddDto(String donorName, String donorAddress, String donorMobileNo, String donorEmailId,
+		String donorPassword) {
+	super();
+	this.donorName = donorName;
+	this.donorAddress = donorAddress;
+	this.donorMobileNo = donorMobileNo;
+	this.donorEmailId = donorEmailId;
+	this.donorPassword = donorPassword;
+}
 
 	public String getDonorName() {
 		return donorName;
@@ -44,12 +45,12 @@ public class DonorAddDto {
 		this.donorAddress = donorAddress;
 	}
 
-	public String getDonor_mobile_no() {
-		return donor_mobile_no;
+	public String getDonorMobileNo() {
+		return donorMobileNo;
 	}
 
-	public void setDonor_mobile_no(String donor_mobile_no) {
-		this.donor_mobile_no = donor_mobile_no;
+	public void setDonorMobileNo(String donorMobileNo) {
+		this.donorMobileNo = donorMobileNo;
 	}
 
 	public String getDonorEmailId() {
@@ -68,6 +69,12 @@ public class DonorAddDto {
 		this.donorPassword = donorPassword;
 	}
 
+	@Override
+	public String toString() {
+		return "DonorAddDto [donorName=" + donorName + ", donorAddress=" + donorAddress + ", donorMobileNo="
+				+ donorMobileNo + ", donorEmailId=" + donorEmailId + ", donorPassword=" + donorPassword + "]";
+	}
+
 //	public boolean isDonorStatus() {
 //		return donorStatus;
 //	}
@@ -75,5 +82,6 @@ public class DonorAddDto {
 //	public void setDonorStatus(boolean donorStatus) {
 //		this.donorStatus = donorStatus;
 //	}
+	
 
 }

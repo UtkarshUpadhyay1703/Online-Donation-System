@@ -30,6 +30,7 @@ public class DonorServiceImpl implements DonorService {
 
 	@Override
 	public Donor addDonor(Donor donor) {
+		System.out.println(donor);
 		return donRepo.save(donor);
 	}
 
@@ -90,10 +91,10 @@ public class DonorServiceImpl implements DonorService {
 		return bankRepo.save(transaction);
 	}
 
-	@Override
-	public BankTransaction withdrawBankTransaction(BankTransaction Transaction) {
-		
-		return null;
-	}
+//	@Override
+//	public BankTransaction withdrawBankTransaction(BankTransaction Transaction) {
+//		
+//		return null;
+//	}
 	
 }

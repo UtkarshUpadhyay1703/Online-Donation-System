@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -39,7 +40,7 @@ public class Donor extends BaseEntity {
 	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
-	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<ItemDonation> items = new ArrayList<ItemDonation>();
 
 //	@ManyToOne
@@ -50,17 +51,20 @@ public class Donor extends BaseEntity {
 		super();
 	}
 
+
+
 	public Donor(String donorName, String donorAddress, String donorMobileNo, String donorEmailId, String donorPassword,
-			boolean donorStatus) {
-		super();
-		this.donorName = donorName;
-		this.donorAddress = donorAddress;
-		this.donorMobileNo = donorMobileNo;
-		this.donorEmailId = donorEmailId;
-		this.donorPassword = donorPassword;
-		this.donorStatus = donorStatus;
-//	this.donorStatus=true;
-	}
+		boolean donorStatus) {
+	super();
+	this.donorName = donorName;
+	this.donorAddress = donorAddress;
+	this.donorMobileNo = donorMobileNo;
+	this.donorEmailId = donorEmailId;
+	this.donorPassword = donorPassword;
+	this.donorStatus = donorStatus;
+}
+
+
 
 	public String getDonorMobileNo() {
 		return donorMobileNo;
@@ -140,7 +144,7 @@ public class Donor extends BaseEntity {
 	@Override
 	public String toString() {
 		return "Donor id = " + getId() + "[donorName=" + donorName + ", donorAddress=" + donorAddress
-				+ ", donor_mobile_no=" + donorMobileNo + ", donorEmailId=" + donorEmailId + ", donorStatus="
+				+ ", donorMobileNo=" + donorMobileNo + ", donorEmailId=" + donorEmailId + ", donorStatus="
 				+ donorStatus + "]";
 	}
 
