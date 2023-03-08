@@ -90,7 +90,7 @@ const DonorDonateForm = () => {
                     <div class="col-md-6 col-sm-12">
                         <div class="login-form">
                             <form>
-                                <select className="type" name="type" id="type">
+                                <select class="selectpicker" data-style="btn-success" name="type" id="type">
                                     <option value="Cloth">Cloth</option>
                                     <option value="Books">Books</option>
                                     <option value="Toys">Toys</option>
