@@ -4,29 +4,6 @@ import DonorService from "../Services/DonorService"
 import VendorService from "../Services/VendorService"
 
 const EmployeeDashBoard = () => {
-
-    const [Vendors, setVendors] = useState([]);
-    useEffect(() => {
-        VendorService.GetAllVendors().then((resp) => {
-            console.log(resp.data);
-            setVendors(resp.data);
-        });
-    }, []);
-
-    let VendorRender = () => {
-        return Vendors.map((ven) => {
-            return <tr key={ven.id}>
-                <td>{ven.id}</td>
-                <td>{ven.vendorCompanyName}</td>
-                <td>{ven.vendorCompanyAddress}</td>
-                <td>{ven.vendorMobileNo}</td>
-                <td>{ven.vendorAadharNo}</td>
-                <td>{ven.vendorCompanyBankAccountNo}</td>
-                <td>{ven.vendorEmailId}</td>
-                <td>{ven.vendorStatus}</td>
-            </tr>
-        })
-    }
     return (
         <div>
             
@@ -318,21 +295,22 @@ const EmployeeDashBoard = () => {
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Employee
+                                            </span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>
                                         {/* <!-- Dropdown - User Information --> */}
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a className="dropdown-item" href="#">
+                                            <Link to="/UpdateEmployee" className="dropdown-item">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Profile
-                                            </a>
-                                            <a className="dropdown-item" href="#">
-                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Settings
-                                            </a>
+                                                Update
+                                            </Link>
+                                            <Link to="/DeleteEmployee" className="dropdown-item">
+                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Delete
+                                            </Link>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -354,26 +332,6 @@ const EmployeeDashBoard = () => {
                                     <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                                </div>
-
-
-                                <div>
-                                
-                                    <div>
-                                        Vendors Table
-                                        <table class="table table-dark table-striped">
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Company Name</th>
-                                                <th>Company Address</th>
-                                                <th>Mobile Number</th>
-                                                <th>Aadhar Number</th>
-                                                <th>Email Id</th>
-                                                <th>Status</th>
-                                            </tr>
-                                            {VendorRender()}
-                                        </table>
-                                    </div>
                                 </div>
                                 {/* <!-- Footer --> */}
                                 <footer className="sticky-footer bg-white">
