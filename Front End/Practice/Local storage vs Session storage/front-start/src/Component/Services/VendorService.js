@@ -19,5 +19,8 @@ class VendorService{
     UpdateVendor(vendor){
         return axios.put(this.url,vendor);
     }
+    DoBidding(formob,id){
+        return axios.post(this.url+"/Bidding/Vendor"+id,formob);
+    }
 }
 export default new VendorService();

@@ -1,8 +1,15 @@
-// import CustomerLogin from "../Login/CustomerLogin";
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
+import DonorService from "../Services/DonorService"
+import VendorService from "../Services/VendorService"
 
-const DonorDashBoard = () => {
+const VendorDashBoard = () => {
     return (
         <div>
+            
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+            
             <body id="page-top">
 
                 {/* <!-- Page Wrapper --> */}
@@ -16,7 +23,7 @@ const DonorDashBoard = () => {
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Customer DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Vendor DashBoard</div>
                         </a>
 
                         {/* <!-- Divider --> */}
@@ -82,6 +89,21 @@ const DonorDashBoard = () => {
                             <a className="nav-link" href="tables.html">
                                 <i className="fas fa-fw fa-table"></i>
                                 <span>Tables</span></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Tables</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Custom Components:</h6>
+                                    
+                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                </div>
+                            </div>
                         </li>
 
                         {/* <!-- Divider --> */}
@@ -273,21 +295,22 @@ const DonorDashBoard = () => {
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Employee
+                                            </span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>
                                         {/* <!-- Dropdown - User Information --> */}
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a className="dropdown-item" href="#">
+                                            <Link to="/UpdateEmployee" className="dropdown-item">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Profile
-                                            </a>
-                                            <a className="dropdown-item" href="#">
-                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Settings
-                                            </a>
+                                                Update
+                                            </Link>
+                                            <Link to="/DeleteEmployee" className="dropdown-item">
+                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Delete
+                                            </Link>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -310,79 +333,50 @@ const DonorDashBoard = () => {
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                                 </div>
-
-
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Car Id</th>
-                                                    <th>Car Name</th>
-                                                    <th>Car Type</th>
-                                                    <th>Car Detail Id</th>
-                                                    <th>Car Variant Id</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                <th>Car Id</th>
-                                                    <th>Car Name</th>
-                                                    <th>Car Type</th>
-                                                    <th>Car Detail Id</th>
-                                                    <th>Car Variant Id</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                                {/* {renderList()} */}
-                                            </tbody>
-                                        </table>
+                                {/* <!-- Footer --> */}
+                                <footer className="sticky-footer bg-white">
+                                    <div className="container my-auto">
+                                        <div className="copyright text-center my-auto">
+                                            <span>Copyright &copy; Your Website 2021</span>
+                                        </div>
                                     </div>
-                                </div>
-                            {/* <!-- Footer --> */}
-                            <footer className="sticky-footer bg-white">
-                                <div className="container my-auto">
-                                    <div className="copyright text-center my-auto">
-                                        <span>Copyright &copy; Your Website 2021</span>
-                                    </div>
-                                </div>
-                            </footer>
-                            {/* <!-- End of Footer --> */}
+                                </footer>
+                                {/* <!-- End of Footer --> */}
+
+                            </div>
+                            {/* <!-- End of Content Wrapper --> */}
 
                         </div>
-                        {/* <!-- End of Content Wrapper --> */}
+                        {/* <!-- End of Page Wrapper --> */}
 
-                    </div>
-                    {/* <!-- End of Page Wrapper --> */}
+                        {/* <!-- Scroll to Top Button--> */}
+                        <a className="scroll-to-top rounded" href="#page-top">
+                            <i className="fas fa-angle-up"></i>
+                        </a>
 
-                    {/* <!-- Scroll to Top Button--> */}
-                    <a className="scroll-to-top rounded" href="#page-top">
-                        <i className="fas fa-angle-up"></i>
-                    </a>
-
-                    {/* <!-- Logout Modal--> */}
-                    <div className="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                                    <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                                <div className="modal-footer">
-                                    <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <a className="btn btn-primary" href="login.html">Logout</a>
+                        {/* <!-- Logout Modal--> */}
+                        <div className="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                        <button className="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                                    <div className="modal-footer">
+                                        <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                        <a className="btn btn-primary" href="login.html">Logout</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
             </body >
         </div >
     );
 }
-export default DonorDashBoard;
+export default VendorDashBoard;

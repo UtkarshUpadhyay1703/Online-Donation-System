@@ -23,7 +23,7 @@ const EmployeeDashBoard = () => {
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Customer DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
                         </a>
 
                         {/* <!-- Divider --> */}
