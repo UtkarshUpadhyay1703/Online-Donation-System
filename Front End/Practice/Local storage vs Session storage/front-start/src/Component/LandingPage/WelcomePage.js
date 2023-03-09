@@ -76,6 +76,15 @@ const WelcomePage=()=>{
 			  
 		    </ul>
 		</li>
+        <li class="nav-item dropdown">
+			<Link class="nav-link dropdown-toggle" to="/Vendor" data-bs-toggle="dropdown"> Vendor </Link>
+		    <ul class="dropdown-menu">
+            <li><Link class="dropdown-item" to="/VendorSignIn"> VendorSignIn </Link></li>
+            <li><Link class="dropdown-item" to="/VendorRegister"> VendorRegister </Link></li>
+			  
+		    </ul>
+		</li>
+
 	</ul>
 	<ul class="navbar-nav ms-auto">
 		<li class="nav-item"><Link class="nav-link" to="/AvailableBidding"> Menu item </Link></li>

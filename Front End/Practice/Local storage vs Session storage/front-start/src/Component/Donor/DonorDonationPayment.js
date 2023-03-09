@@ -13,26 +13,25 @@ import {
 import DonorService from "../Services/DonorService";
 
 export default function DonorDonationPayment() {
-  const [donob,setdonorob]=useState({});
+  var [donorob,setdonorob] = useState({});
   setdonorob=useContext(UserContext);
   // alert(donor.donorEmailId);
 
   
-  let [payob,setpayob]=useState({
-  //   "amountReceived": 487,
-  // "cardNumber": "hiih",
-  //   "don":this.donob
-  });
+  let [payob,setpayob]=useState({});
     var history=useHistory();
 
     const Change=(event)=>{
         var {name,value}=event.target
         setpayob({...payob,[name]:value});
+        alert(payob.cardNumber);
     }
 
     const SignInFun=(event)=>{
-       // DonorService.DonateMoney(payob,donorob).then((response)=>{
-        DonorService.DonateMoney(payob).then((response)=>{
+      alert(payob.cardNumber);
+      alert(payob.amountReceived);
+      alert(donorob.id);
+        DonorService.DonateMoney(payob,donorob.id).then((response)=>{
           console.log(response.data);
          history.push("/");
         });

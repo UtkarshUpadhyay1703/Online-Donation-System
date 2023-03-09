@@ -19,8 +19,8 @@ class DonorService{
     UpdateDonor(donor){
         return axios.put(this.url,donor);
     }
-    DonateMoney(donorob,payob){
-        return axios.post(this.url+"/Transaction/deposit",payob,donorob);
+    DonateMoney(payob,id){
+        return axios.post(this.url+"/Transaction/deposit/"+id,payob);
     }
     
 }

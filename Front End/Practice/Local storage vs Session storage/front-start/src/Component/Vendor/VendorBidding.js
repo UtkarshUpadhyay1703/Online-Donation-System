@@ -1,13 +1,48 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
-import DonorService from "../Services/DonorService"
-import VendorService from "../Services/VendorService"
+import { Link, useHistory } from "react-router-dom";
 
-const EmployeeDashBoard = () => {
+import VendorService from "../Services/VendorService";
+import EmployeeService from "../Services/EmployeeService";
+
+const VendorBidding=()=>{
+    const [form1, setform1] = useState(false);
+    const [form2, setform2] = useState(false);
+    const [form3, setform3] = useState(false);
+    const [form4, setform4] = useState(false);
+    useEffect(() => {
+        EmployeeService.GetBalance().then((resp) => {
+            alert("hello"+resp.data);
+            let bal=resp.data-30000;
+            let book=.3*bal;
+            let cloth=.3*bal;
+            let toy=.2*bal;
+            let cycle=.2*bal;
+            if(cycle>50000){
+             alert(resp.data);
+             setform4(true);
+            }
+            else if(toy>20000){
+             alert(resp.data);
+             setform3(true);
+            }
+            else if(cloth>10000){
+             alert(resp.data);
+             setform2(true);
+            }
+           else if(book>5000){
+            alert(resp.data);
+            setform1(true);
+           }
+        });
+    }, []);
+
     return (
         <div>
-            
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+          <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+          
+                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
             
             <body id="page-top">
@@ -19,21 +54,23 @@ const EmployeeDashBoard = () => {
                     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                         {/* <!-- Sidebar - Brand --> */}
-                        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                        <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/Employee">
+                        
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
-                        </a>
+                            <div className="sidebar-brand-text mx-3">Bidding DashBoard</div>
+                        
+                        </Link>
 
                         {/* <!-- Divider --> */}
                         <hr className="sidebar-divider my-0" />
 
                         {/* <!-- Nav Item - Dashboard --> */}
                         <li className="nav-item active">
-                            <a className="nav-link" href="index.html">
+                            <Link to="/Employee" className="nav-link">
                                 <i className="fas fa-fw fa-tachometer-alt"></i>
-                                <span>Dashboard</span></a>
+                                <span> Dashboard</span></Link>
                         </li>
 
                         {/* <!-- Divider --> */}
@@ -46,19 +83,21 @@ const EmployeeDashBoard = () => {
 
                         {/* <!-- Nav Item - Pages Collapse Menu --> */}
                         <li className="nav-item">
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                                aria-expanded="true" aria-controls="collapseTwo">
-                                <i className="fas fa-fw fa-cog"></i>
-                                <span>Components</span>
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Tables</span>
                             </a>
-                            <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
-                                    <a className="collapse-item" href="buttons.html" target={"lol"}>Buttons</a>
-                                    <a className="collapse-item" href="cards.html">Cards</a>
+                                    
+                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
                                 </div>
                             </div>
                         </li>
+                        <hr className="sidebar-divider" />
 
                         {/* <!-- Nav Item - Utilities Collapse Menu --> */}
                         <li className="nav-item">
@@ -80,34 +119,19 @@ const EmployeeDashBoard = () => {
                         </li>
 
                         {/* <!-- Divider --> */}
-                        <hr className="sidebar-divider" />
+                        {/* <hr className="sidebar-divider" /> */}
 
 
 
                         {/* <!-- Nav Item - Tables --> */}
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link" href="tables.html">
                                 <i className="fas fa-fw fa-table"></i>
                                 <span>Tables</span></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
-                                aria-expanded="true" aria-controls="collapseDonor">
-                                <i className="fas fa-fw fa-table"></i>
-                                <span>Tables</span>
-                            </a>
-                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                                <div className="bg-white py-2 collapse-inner rounded">
-                                    <h6 className="collapse-header">Custom Components:</h6>
-                                    
-                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
-                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
-                                </div>
-                            </div>
-                        </li>
+                        </li> */}
 
                         {/* <!-- Divider --> */}
-                        <hr className="sidebar-divider d-none d-md-block" />
+                        {/* <hr className="sidebar-divider d-none d-md-block" /> */}
 
                         {/* <!-- Sidebar Toggler (Sidebar) --> */}
                         <div className="text-center d-none d-md-inline">
@@ -295,22 +319,21 @@ const EmployeeDashBoard = () => {
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Employee
-                                            </span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>
                                         {/* <!-- Dropdown - User Information --> */}
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <Link to="/UpdateEmployee" className="dropdown-item">
+                                            <a className="dropdown-item" href="#">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Update
-                                            </Link>
-                                            <Link to="/DeleteEmployee" className="dropdown-item">
-                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Delete
-                                            </Link>
+                                                Profile
+                                            </a>
+                                            <a className="dropdown-item" href="#">
+                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Settings
+                                            </a>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -333,11 +356,155 @@ const EmployeeDashBoard = () => {
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                                 </div>
+                                <table>
+                            <tr>
+                                <td>
+                                    <h3> Bidding available for Books</h3>
+                                    </td>
+                                <td>
+                                <Link to="/VendorSignIn">
+                                <button type="button" id="btn" name="btn1">Bid</button></Link>
+                                </td>
+                            </tr>
+                            </table>
+                {/* {form1?(<div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h3> Bidding available for Books</h3>
+                                    </td>
+                                <td>
+                                <Link to="/VendorSignIn">
+                                <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+                                </td>
+                            </tr>
+                            </table>
+                        </div>):""}; */}
+
+{form1?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
+
+
+
+    {form2?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cloths</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
+
+
+
+
+
+    {form3?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cloths</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Toys</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
+
+
+
+    {form4?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cloths</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Toys</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cycle</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
+
+                                
                                 {/* <!-- Footer --> */}
                                 <footer className="sticky-footer bg-white">
                                     <div className="container my-auto">
                                         <div className="copyright text-center my-auto">
-                                            <span>Copyright &copy; Your Website 2021</span>
+                                            <span>Copyright &copy; Your Website 2023</span>
                                         </div>
                                     </div>
                                 </footer>
@@ -377,6 +544,6 @@ const EmployeeDashBoard = () => {
                 </div>
             </body >
         </div >
-    );
+        )
 }
-export default EmployeeDashBoard;
+export default VendorBidding;

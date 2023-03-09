@@ -1,42 +1,48 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import VendorService from "../Services/VendorService";
 import EmployeeService from "../Services/EmployeeService";
 
 const AvailableBidding=()=>{
-    const [Donors, setDonors] = useState([]);
     const [form1, setform1] = useState(false);
     const [form2, setform2] = useState(false);
     const [form3, setform3] = useState(false);
     const [form4, setform4] = useState(false);
     useEffect(() => {
-        EmployeeService.GetBalance.then((resp) => {
-            console.log(resp.data);
-            if(resp.data>5000&&resp.data<10000){
-                form1=true;
+        EmployeeService.GetBalance().then((resp) => {
+            alert("hello"+resp.data);
+            let bal=resp.data-30000;
+            let book=.3*bal;
+            let cloth=.3*bal;
+            let toy=.2*bal;
+            let cycle=.2*bal;
+            if(cycle>50000){
+             alert(resp.data);
+             setform4(true);
             }
+            else if(toy>20000){
+             alert(resp.data);
+             setform3(true);
+            }
+            else if(cloth>10000){
+             alert(resp.data);
+             setform2(true);
+            }
+           else if(book>5000){
+            alert(resp.data);
+            setform1(true);
+           }
         });
     }, []);
 
-
-    let DonorRender = () => {
-        return Donors.map((don) => {
-            return <tr key={don.id}>
-                <td>{don.id}</td>
-                <td>{don.donorName}</td>
-                <td>{don.donorAddress}</td>
-                <td>{don.donorEmailId}</td>
-                <td>{don.donorStatus}</td>
-                <td>{don.donorMobileNo}</td>
-            </tr>
-        })
-    }
-
     return (
         <div>
-            
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+          <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+          
+                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
             
             <body id="page-top">
@@ -53,7 +59,7 @@ const AvailableBidding=()=>{
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Bidding DashBoard</div>
                         
                         </Link>
 
@@ -350,29 +356,155 @@ const AvailableBidding=()=>{
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                                 </div>
+                                <table>
+                            <tr>
+                                <td>
+                                    <h3> Bidding available for Books</h3>
+                                    </td>
+                                <td>
+                                <Link to="/VendorSignIn">
+                                <button type="button" id="btn" name="btn1">Bid</button></Link>
+                                </td>
+                            </tr>
+                            </table>
+                {/* {form1?(<div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h3> Bidding available for Books</h3>
+                                    </td>
+                                <td>
+                                <Link to="/VendorSignIn">
+                                <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+                                </td>
+                            </tr>
+                            </table>
+                        </div>):""}; */}
+
+{form1?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
 
 
-                                <div>
-                                <div class="m-4">
-                                        Donors Table
-                                        <table class="table table-hover table-secondary">
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Address</th>
-                                                <th>Email Id</th>
-                                                <th>Name</th>
-                                                <th>Status</th>
-                                                <th>Mobile Number</th>
-                                            </tr>
-                                            {DonorRender()}
-                                        </table>
-                                    </div>
-                                </div>
+
+    {form2?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cloths</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
+
+
+
+
+
+    {form3?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cloths</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Toys</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
+
+
+
+    {form4?(<div>
+    <table>
+        <tr>
+            <th>
+                <h3> Bidding available for Books</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cloths</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Toys</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h3> Bidding available for Cycle</h3>
+                </th>
+            <td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+        </tr>
+        </table>
+    </div>):""}
+
+                                
                                 {/* <!-- Footer --> */}
                                 <footer className="sticky-footer bg-white">
                                     <div className="container my-auto">
                                         <div className="copyright text-center my-auto">
-                                            <span>Copyright &copy; Your Website 2021</span>
+                                            <span>Copyright &copy; Your Website 2023</span>
                                         </div>
                                     </div>
                                 </footer>

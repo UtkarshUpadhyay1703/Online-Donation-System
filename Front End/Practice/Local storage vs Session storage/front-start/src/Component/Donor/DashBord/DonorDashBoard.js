@@ -1,7 +1,8 @@
 // import CustomerLogin from "../Login/CustomerLogin";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import DonorService from "../../Services/DonorService";
 import DonorDonationPayment from "../DonorDonationPayment";
 export const UserContext = React.createContext()
 
@@ -9,10 +10,17 @@ const DonorDashBoard = () => {
 
     let [donorob, setdonorob] = useState({});
     var history = useHistory();
+
     useEffect(() => {
         // if (localStorage.getItem("don") != null) {
             setdonorob(JSON.parse(localStorage.getItem('don')));
     }, [])
+    // const del=()=>{
+    //     alert(donorob.id)
+    //     DonorService.DeleteDonor(donorob.id).then((resp)=>{
+    //         alert("deleted");
+    //     })
+    // }
 
     return (
         <div>
@@ -326,8 +334,7 @@ const DonorDashBoard = () => {
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                                 </div>
-
-
+                                {/* <button type="button" onClick={del()} >Delete</button> */}
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

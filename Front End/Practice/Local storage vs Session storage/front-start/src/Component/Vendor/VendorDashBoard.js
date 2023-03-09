@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DonorService from "../Services/DonorService"
 import VendorService from "../Services/VendorService"
 
-const EmployeeDashBoard = () => {
+const VendorDashBoard = () => {
     return (
         <div>
             
@@ -23,7 +23,7 @@ const EmployeeDashBoard = () => {
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Vendor DashBoard</div>
                         </a>
 
                         {/* <!-- Divider --> */}
@@ -379,4 +379,4 @@ const EmployeeDashBoard = () => {
         </div >
     );
 }
-export default EmployeeDashBoard;
+export default VendorDashBoard;

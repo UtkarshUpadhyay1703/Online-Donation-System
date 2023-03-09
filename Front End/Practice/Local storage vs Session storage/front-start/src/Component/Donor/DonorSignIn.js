@@ -19,7 +19,7 @@ const DonorSignIn=()=>{
         DonorService.SignInDonor(donorob).then((response)=>{
          // localStorage.don=response;
          localStorage.setItem("don",JSON.stringify(response.data));
-         history.push("/DonorDonateForm")
+         history.push("/Donor")
          // setdonorob1(JSON.stringify(response));
          // alert(donorob1);
         });

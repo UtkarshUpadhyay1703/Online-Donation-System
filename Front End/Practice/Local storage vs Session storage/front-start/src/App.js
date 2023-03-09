@@ -21,10 +21,11 @@ import EmployeeRegister from './Component/Employee/EmployeeRegister';
 
 import VendorRegister from './Component/Vendor/VendorRegister';
 import VendorSignIn from './Component/Vendor/VendorSignIn';
-
+import VendorBiddingSystem from './Component/Vendor/VendorBiddingSystem';
 
 
 import AvailableBidding from './Component/Bidding/AvailableBidding';
+import Tester from './Component/Bidding/Tester';
 
 function App() {
   return (
@@ -49,8 +50,10 @@ function App() {
         
         <Route path="/VendorRegister" exact component={VendorRegister}></Route>
         <Route path="/VendorSignIn" exact component={VendorSignIn}></Route>
+        <Route path="/VendorBiddingSystem" exact component={VendorBiddingSystem}></Route>
 
         <Route path="/AvailableBidding" exact component={AvailableBidding}></Route>
+        <Route path="/Tester" exact component={Tester}></Route>
         
         </Switch>
         </Router>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.BankTransaction.DonorDto;
 import com.app.dto.BankTransaction.ReceivedDto;
 import com.app.dto.Donor.DonorAddDto;
 import com.app.dto.Donor.DonorLoginDto;
@@ -93,8 +94,9 @@ public class DonorController {
 		return donoServ.deleteFalseDonor(donId);
 	}
 
-	@PostMapping("/Transaction/deposit")
-	public BankTransaction depositBankTransaction(@RequestBody ReceivedDto rec) {
+	@PostMapping("/Transaction/deposit/{donId}")
+	public BankTransaction depositBankTransaction(@RequestBody DonorDto money,@PathVariable Long donId) {
+		ReceivedDto rec=new ReceivedDto(money.getAmountReceived(), money.getCardNumber(), donoServ.getOneDonor(Long.valueOf(donId)));
 		System.out.println(rec.getDon());
 		System.out.println("inside addTrax in donor send");
 		BankTransaction transaction = new BankTransaction(rec.getDon(),rec.getAmountReceived(),rec.getCardNumber());
