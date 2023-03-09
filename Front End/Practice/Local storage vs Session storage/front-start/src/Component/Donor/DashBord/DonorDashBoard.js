@@ -1,9 +1,25 @@
 // import CustomerLogin from "../Login/CustomerLogin";
 
+import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import DonorDonationPayment from "../DonorDonationPayment";
+export const UserContext = React.createContext()
+
 const DonorDashBoard = () => {
+
+    let [donorob, setdonorob] = useState({});
+    var history = useHistory();
+    useEffect(() => {
+        // if (localStorage.getItem("don") != null) {
+            setdonorob(JSON.parse(localStorage.getItem('don')));
+    }, [])
+
     return (
         <div>
             <body id="page-top">
+                <UserContext.Provider value={donorob}>
+                    <DonorDonationPayment/>
+                </UserContext.Provider>
 
                 {/* <!-- Page Wrapper --> */}
                 <div id="wrapper">
@@ -16,7 +32,7 @@ const DonorDashBoard = () => {
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Customer DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Donor DashBoard</div>
                         </a>
 
                         {/* <!-- Divider --> */}
@@ -47,8 +63,8 @@ const DonorDashBoard = () => {
                             <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
-                                    <a className="collapse-item" href="buttons.html" target={"lol"}>Buttons</a>
-                                    <a className="collapse-item" href="cards.html">Cards</a>
+                                    <Link className="collapse-item" to="/DonorDonateForm">Donation Form</Link>
+                                    <Link className="collapse-item" to="/DonorDonationPayment">Donate Money</Link>
                                 </div>
                             </div>
                         </li>

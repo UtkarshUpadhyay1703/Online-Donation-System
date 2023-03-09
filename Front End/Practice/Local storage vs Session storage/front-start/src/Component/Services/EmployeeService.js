@@ -20,7 +20,7 @@ class EmployeeService{
         return axios.put(this.url,employee);
     }
     GetBalance(){
-        return axios.get(this.url+"/Balance");
+        return axios.get(this.url+"/balance");
     }
 }
 export default new EmployeeService();
