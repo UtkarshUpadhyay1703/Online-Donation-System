@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import VendorService from "../Services/VendorService";
 // import './Donor.css';
 
-const VendorRegister = () => {
+const VendorUpdate = () => {
+    let [vendorobOld, setvendorobOld] = useState({});
     let [vendorob,setvendorob]=useState({});
     var history=useHistory();
-                
+              
+    useEffect(() => {
+        //if (localStorage.getItem("don") != null) {
+            if(!localStorage.getItem('don')){
+                history.push("/VendorSignIn");
+            }
+            setvendorobOld(JSON.parse(localStorage.getItem('ven')));
+        }, [])
+
     const Change=(event)=>{
         var {name,value}=event.target
         setvendorob({...vendorob,[name]:value});
     }
               
     const Add=(event)=>{
+        alert(vendorob.vendorName)
         VendorService.AddVendor(vendorob).then((response)=>{
             console.log(response.data);
             history.push("/VendorSignIn");
@@ -29,7 +39,7 @@ const VendorRegister = () => {
             <body>
                 <div class="sidenav">
          <div class="login-main-text">
-            <h2>Application<br/>Registration Vendor</h2>
+            <h2>Application<br/>Update Vendor</h2>
             <p>Register from here to access.</p>
          </div>
       </div>
@@ -37,6 +47,10 @@ const VendorRegister = () => {
                     <div class="col-md-3 col-sm-12">
                         <div class="login-form">
                             <form>
+                            <div class="form-group">
+                                    <label>Id</label>
+                                    <input type="number" class="form-control" id="id" name="id" value={vendorobOld.id} onChange={Change} placeholder="id" readOnly />
+                                </div>
                                 <div class="form-group">
                                     <label for="name11">Name</label>
                                     <input type="text" class="form-control" id="name11" name="vendorCompanyName" value={vendorob.vendorName} onChange={Change} placeholder="Name" autoFocus required />
@@ -48,11 +62,11 @@ const VendorRegister = () => {
                                 
                                 <div class="form-group">
                                     <label>Mobile Number</label>
-                                    <input type="tel" class="form-control" id="mobile" name="vendorMobileNo" value={vendorob.vendorMobileNo} onChange={Change} placeholder="Mobile Number" required />
+                                    <input type="tel" class="form-control" id="mobile" name="vendor_mobile_no" value={vendorob.vendor_mobile_no} onChange={Change} placeholder="Mobile Number" required />
                                 </div>
                                 <div class="form-group">
                                     <label>Aadhar Number</label>
-                                    <input type="number" class="form-control" id="aadhar" name="vendorAadharNo" value={vendorob.vendorAadharNo} onChange={Change} placeholder="Aadhar Number" required />
+                                    <input type="number" class="form-control" id="aadhar" name="vendor_aadhar_no" value={vendorob.vendor_aadhar_no} onChange={Change} placeholder="Aadhar Number" required />
                                 </div>
                                 <div class="form-group">
                                     <label>Company Bank Account Number</label>
@@ -83,4 +97,4 @@ const VendorRegister = () => {
         </div>
     )
 }
-export default VendorRegister;
+export default VendorUpdate;
