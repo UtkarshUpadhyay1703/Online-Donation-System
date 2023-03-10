@@ -14,7 +14,7 @@ const VendorSignIn=()=>{
 
     const SignInFun=(event)=>{
         VendorService.SignInVendor(vendorob).then((response)=>{
-         localStorage.setItem("don",JSON.stringify(response.data));
+         localStorage.setItem("ven",JSON.stringify(response.data));
          history.push("/Vendor")
         });
     }

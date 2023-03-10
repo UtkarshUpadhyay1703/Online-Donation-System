@@ -4,6 +4,6 @@ class ImageService{
     constructor(){
         this.url="http://localhost:8080/file";
     }
-    AddDonorImage(,donor)
+    AddDonorImage(donor)
 }
 export default new ImageService;

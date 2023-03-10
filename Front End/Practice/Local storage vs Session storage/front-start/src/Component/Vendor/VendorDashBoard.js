@@ -1,17 +1,23 @@
-import { useEffect, useState } from "react"
+// import CustomerLogin from "../Login/CustomerLogin";
+
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import DonorService from "../Services/DonorService"
-import VendorService from "../Services/VendorService"
+// import DonorService from "../../Services/DonorService";
+// import DonorDonationPayment from "../DonorDonationPayment";
+export const UserContext = React.createContext()
 
 const VendorDashBoard = () => {
-    const [vendorob,setvendorob]=useState({});
+
+    let [vendorob, setvendorob] = useState({});
     const history=useHistory();
     useEffect(() => {
-        if(!localStorage.getItem('ven')){
-            history.push("/VendorSignIn");
-        }
-        setvendorob(JSON.parse(localStorage.getItem('ven')));
-    }, []);
+        // if (localStorage.getItem("don") != null) {
+            // if(!localStorage.getItem('ven')){
+            //     history.push("/VendorSignIn");
+            // }
+            setvendorob(JSON.parse(localStorage.getItem('ven')));
+            
+    }, [])
     return (
         <div>
             
@@ -31,7 +37,7 @@ const VendorDashBoard = () => {
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Vendor DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
                         </a>
 
                         {/* <!-- Divider --> */}

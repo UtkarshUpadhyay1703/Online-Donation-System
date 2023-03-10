@@ -14,6 +14,7 @@ import WelcomePage from './Component/LandingPage/WelcomePage';
 import DonationPayment from './Component/Payment/DonationPayment';
 import DonorDonationPayment from './Component/Donor/DonorDonationPayment';
 
+
 import EmployeeSignIn from './Component/Employee/EmployeeSignIn';
 import EmployeeRegister from './Component/Employee/EmployeeRegister';
 
@@ -22,7 +23,7 @@ import EmployeeRegister from './Component/Employee/EmployeeRegister';
 import VendorRegister from './Component/Vendor/VendorRegister';
 import VendorSignIn from './Component/Vendor/VendorSignIn';
 import VendorBiddingSystem from './Component/Vendor/VendorBiddingSystem';
-import VendorDashBoard from './Component/Vendor/VendorDashBoard';
+import VendorDashBoard from './Component/Vendor/VendorDashBoard.js';
 
 
 import AvailableBidding from './Component/Bidding/AvailableBidding';
@@ -42,6 +43,9 @@ function App() {
         <Route path="/DonorTable" exact component={DonorTableDashBoard}></Route>
         <Route path="/DonationPayment" exact component={DonationPayment}></Route>
         <Route path="/DonorDonationPayment" exact component={DonorDonationPayment}></Route>
+        
+        
+
 
 
         <Route path="/Employee" exact component={EmployeeDashBoard}></Route>
@@ -49,10 +53,15 @@ function App() {
         <Route path="/EmployeeRegister" exact component={EmployeeRegister}></Route>
         
         
+        
         <Route path="/VendorRegister" exact component={VendorRegister}></Route>
         <Route path="/VendorSignIn" exact component={VendorSignIn}></Route>
         <Route path="/VendorBiddingSystem" exact component={VendorBiddingSystem}></Route>
-        <Route path="/Vendor" exact component={VendorDashBoard}></Route>
+        {/* <Route path="/Vendor" exact component={VendorDashBoard}></Route> */}
+        <Route path="/vendor" exact component={VendorDashBoard}></Route>
+        {/* <Route path="/VendorSignInDashBoard" exact component={VendorSignInDashBoard}></Route> */}
+        {/* <Route path="/VendorRegisterDashBoard" exact component={VendorRegisterDashBoard}></Route> */}
+
 
         <Route path="/AvailableBidding" exact component={AvailableBidding}></Route>
         <Route path="/Tester" exact component={Tester}></Route>
