@@ -40,11 +40,11 @@ const VendorSignIn=()=>{
                <form>
                   <div class="form-group">
                      <label for="email">Email Id</label>
-                     <input type="text" class="form-control" id="email" name="donorEmailId" value={vendorob.donorEmailId} onChange={Change} autoFocus placeholder="Email Id"/>
+                     <input type="text" class="form-control" id="email" name="vendorEmailId" value={vendorob.vendorEmailId} onChange={Change} autoFocus placeholder="Email Id"/>
                   </div>
                   <div class="form-group">
                      <label for="password">Password</label>
-                     <input type="password" class="form-control" id="password" name="donorPassword" value={vendorob.donorPassword} onChange={Change} placeholder="Password"/>
+                     <input type="password" class="form-control" id="password" name="vendorPassword" value={vendorob.vendorPassword} onChange={Change} placeholder="Password"/>
                   </div>
                   <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={SignInFun}>Submit</button>
                   <Link to="/VendorRegister">
