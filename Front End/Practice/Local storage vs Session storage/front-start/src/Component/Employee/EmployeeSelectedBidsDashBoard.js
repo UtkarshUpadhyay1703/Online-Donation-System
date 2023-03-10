@@ -17,7 +17,7 @@ const EmployeeSelectedBidsDashBoard = () => {
             }
             setempob(JSON.stringify(localStorage.getItem('emp')));
             const date=new Date();
-            if(date.getDate()==10){
+            if(date.getDate()==11){
                 EmployeeService.GetSelected().then((resp)=>{
                     console.log(resp.data);
                     setArrBids(resp.data);
@@ -52,16 +52,6 @@ const EmployeeSelectedBidsDashBoard = () => {
             </tr>)
         })
     }
-
-
-
-
-<td>
-            <Link to="/VendorSignIn">
-            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
-            </td>
-
-
 
     return (
         <div>

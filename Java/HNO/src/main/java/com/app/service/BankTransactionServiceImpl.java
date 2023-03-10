@@ -16,7 +16,7 @@ public class BankTransactionServiceImpl implements BankTransactionService {
 	BankTransactionRepository bankRepo;
 	@Override
 	public double getBalance() {
-		return 0;
+		return bankRepo.findLatestBalance().getBalance();
 	}
 	@Override
 	public BankTransaction saveTransaction(BankTransaction transaction) {

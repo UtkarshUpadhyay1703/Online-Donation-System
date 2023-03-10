@@ -13,9 +13,9 @@ const DonorDashBoard = () => {
 
     useEffect(() => {
         // if (localStorage.getItem("don") != null) {
-        // if(!localStorage.getItem('don')){
-        //     history.push("/DonorSignIn");
-        // }
+        if(!localStorage.getItem('don')){
+            history.push("/DonorSignIn");
+        }
         setdonorob(JSON.parse(localStorage.getItem('don')));
     }, [])
     // const del=()=>{

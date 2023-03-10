@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "./DashBord/DonorDashBoard";
 
 import {
   MDBCard,
@@ -14,7 +13,13 @@ import DonorService from "../Services/DonorService";
 
 export default function DonorDonationPayment() {
   var [donorob,setdonorob] = useState({});
-  setdonorob=useContext(UserContext);
+  useEffect(() => {
+    if(!localStorage.getItem('don')){
+        history.push("/DonorSignIn");
+    }
+    setdonorob(JSON.parse(localStorage.getItem('don')));
+}, [])
+
   
   // alert(donor.donorEmailId);
 
@@ -29,9 +34,7 @@ export default function DonorDonationPayment() {
     }
 
     const SignInFun=(event)=>{
-      alert(payob.cardNumber);
-      alert(payob.amountReceived);
-      alert(donorob.id);
+      alert("Thank You"+donorob.donorName+" for donation")
         DonorService.DonateMoney(payob,donorob.id).then((response)=>{
           console.log(response.data);
          history.push("/");

@@ -38,5 +38,29 @@ class EmployeeService{
     GetSelected(){
         return axios.get(this.url+"/getSelected");
     }
+    SetSelectedBook(id){
+        return axios.put(this.url+"/setSelectedBook/"+id);
+    }
+    SetSelectedCloth(id){
+        return axios.put(this.url+"/setSelectedCloth/"+id);
+    }
+    SetSelectedToy(id){
+        return axios.put(this.url+"/setSelectedToy/"+id);
+    }
+    SetSelectedCycle(id){
+        return axios.put(this.url+"/setSelectedCycle/"+id);
+    }
+    SetReceivedBooks(id){
+        return axios.put(this.url+"/setReceived/Books/"+id);
+    }
+    SetReceivedCloths(id){
+        return axios.put(this.url+"/setReceived/Cloths/"+id);
+    }
+    SetReceivedToys(id){
+        return axios.put(this.url+"/setReceived/Toys/"+id);
+    }
+    SetReceivedCycles(id){
+        return axios.put(this.url+"/setReceived/Cycles/"+id);
+    }
 }
 export default new EmployeeService();

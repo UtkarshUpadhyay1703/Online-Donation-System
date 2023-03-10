@@ -52,11 +52,53 @@ public class BiddingServiceImpl implements BiddingService {
 		return bidRepo.getTopFiveCycleBidders(biddingStartDate);
 	}
 	@Override
-	public boolean setBiddingStatusToSelected(Long id) {
+	public boolean setBiddingStatusToSelectedBook(Long id) {
 		curBalance=bankService.getBalance();
+		System.out.println("Current balance = "+curBalance +"id = "+id);
 		double bookAllocated=(curBalance-30000)*.3;
 		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
-		int qty=(int) (bookAllocated/book.getLowPriceNotebook());
+		System.out.println("Book allocated = "+bookAllocated + "low price = "+book.getLowPriceNotebook());
+		int qty=(int) (bookAllocated/(book.getLowPriceNotebook()));
+//		bidRepo.setBiddingQuantity(qty, id);
+		System.out.println("quantity = "+qty);
+		bidRepo.setBiddingStatusAndQuantity("SELECTED",qty, id);
+		return true;
+	}
+	
+	
+	@Override
+	public boolean setBiddingStatusToSelectedCloth(Long id) {
+		curBalance=bankService.getBalance();
+
+		double bookAllocated=(curBalance-30000)*.3;
+		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
+
+		int qty=(int) (bookAllocated/book.getLowPriceCloth());
+//		bidRepo.setBiddingQuantity(qty, id);
+		System.out.println("quantity = "+qty);
+		bidRepo.setBiddingStatusAndQuantity("SELECTED",qty, id);
+		return true;
+	}
+	
+	
+	@Override
+	public boolean setBiddingStatusToSelectedToy(Long id) {
+		curBalance=bankService.getBalance();
+		double bookAllocated=(curBalance-30000)*.2;
+		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
+		int qty=(int) (bookAllocated/book.getLowPriceToy());
+//		bidRepo.setBiddingQuantity(qty, id);
+		System.out.println("quantity = "+qty);
+		bidRepo.setBiddingStatusAndQuantity("SELECTED",qty, id);
+		return true;
+	}
+	
+	@Override
+	public boolean setBiddingStatusToSelectedCycle(Long id) {
+		curBalance=bankService.getBalance();
+		double bookAllocated=(curBalance-30000)*.2;
+		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
+		int qty=(int) (bookAllocated/book.getLowPriceCycle());
 //		bidRepo.setBiddingQuantity(qty, id);
 		System.out.println("quantity = "+qty);
 		bidRepo.setBiddingStatusAndQuantity("SELECTED",qty, id);
@@ -69,14 +111,49 @@ public class BiddingServiceImpl implements BiddingService {
 	double curBalance;
 	
 	@Override
-	public boolean setBiddingStatusToApproveBooks(Long id) {
+	public boolean setBiddingStatusToApproveBook(Long id) {
 		bidRepo.setBiddingStatus("RECEIVED", id);
-		curBalance=bankService.getBalance();
-		double bookAllocated=(curBalance-30000)*.3;
 		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
+		double bookMoney=book.getLowPriceNotebook()*book.getQuantity();
 		BankTransaction bank=new BankTransaction();
-		bank.setAmountSend(bookAllocated);
 		bank.setVendor(book.getVendor());
+		bank.setAmountSend(bookMoney);
+		bankService.saveTransaction(bank);
+		return true;
+	}
+	
+	@Override
+	public boolean setBiddingStatusToApproveCloth(Long id) {
+		bidRepo.setBiddingStatus("RECEIVED", id);
+		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
+		double bookMoney=book.getLowPriceCloth()*book.getQuantity();
+		BankTransaction bank=new BankTransaction();
+		bank.setVendor(book.getVendor());
+		bank.setAmountSend(bookMoney);
+		bankService.saveTransaction(bank);
+		return true;
+	}
+	
+	@Override
+	public boolean setBiddingStatusToApproveToy(Long id) {
+		bidRepo.setBiddingStatus("RECEIVED", id);
+		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
+		double bookMoney=book.getLowPriceToy()*book.getQuantity();
+		BankTransaction bank=new BankTransaction();
+		bank.setVendor(book.getVendor());
+		bank.setAmountSend(bookMoney);
+		bankService.saveTransaction(bank);
+		return true;
+	}
+	
+	@Override
+	public boolean setBiddingStatusToApproveCycle(Long id) {
+		bidRepo.setBiddingStatus("RECEIVED", id);
+		Bidding book= bidRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Vendor Id"));
+		double bookMoney=book.getLowPriceCycle()*book.getQuantity();
+		BankTransaction bank=new BankTransaction();
+		bank.setVendor(book.getVendor());
+		bank.setAmountSend(bookMoney);
 		bankService.saveTransaction(bank);
 		return true;
 	}

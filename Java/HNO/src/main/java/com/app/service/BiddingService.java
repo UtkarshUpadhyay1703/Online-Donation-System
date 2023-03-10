@@ -10,7 +10,13 @@ public interface BiddingService {
 	List<Bidding> getRecentBiddingUpToFiveCloths();
 	List<Bidding> getRecentBiddingUpToFiveToys();
 	List<Bidding> getRecentBiddingUpToFiveCycles();
-	boolean setBiddingStatusToSelected(Long id);
+	boolean setBiddingStatusToSelectedBook(Long id);
+	boolean setBiddingStatusToSelectedCycle(Long id);
+	boolean setBiddingStatusToSelectedCloth(Long id);
+	boolean setBiddingStatusToSelectedToy(Long id);
 	List<Bidding> getAllSelectedBidders();
-	boolean setBiddingStatusToApproveBooks(Long id);
+	boolean setBiddingStatusToApproveBook(Long id);
+	boolean setBiddingStatusToApproveCloth(Long id);
+	boolean setBiddingStatusToApproveToy(Long id);
+	boolean setBiddingStatusToApproveCycle(Long id);
 }

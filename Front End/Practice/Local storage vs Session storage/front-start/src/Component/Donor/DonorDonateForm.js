@@ -16,24 +16,10 @@ const DonorDonateForm = () => {
     let [donorob, setdonorob] = useState({});
     var history = useHistory();
     useEffect(() => {
-        //if (localStorage.getItem("don") != null) {
             if(!localStorage.getItem('don')){
                 history.push("/DonorSignIn");
             }
             setdonorob(JSON.parse(localStorage.getItem('don')));
-            // alert(donorob.toSource());
-            // alert(donorob.id);
-        // }
-        // alert(donorob.data);
-        // let list=localStorage.getItem("don").data;
-        // console.log(list);
-        // alert(JSON.parse(list));
-        // alert(list.data.id.value);
-        // if(list){
-            
-        // }else{
-        //     return [];
-        // }
     }, [])
 
 

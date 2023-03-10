@@ -29,15 +29,15 @@ import com.app.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private ModelMapper mapper;
-	
+
 	@Autowired
 	private BiddingService bidService;
-	
+
 	@Autowired
 	private BankTransactionRepository bankRepo;
 //	@Autowired
 //	private BankTransactionService bankService;
-	
+
 	@Autowired
 	private EmployeeService empServ;
 
@@ -53,8 +53,8 @@ public class EmployeeController {
 
 	@PostMapping
 	public Employee addEmployee(@RequestBody EmployeeDto employee) {
-		System.out.println("Employee add "+employee);
-		Employee empno=mapper.map(employee,Employee.class);
+		System.out.println("Employee add " + employee);
+		Employee empno = mapper.map(employee, Employee.class);
 		empno.setEmployeeStatus(true);
 		return empServ.addEmployee(empno);
 	}
@@ -64,39 +64,41 @@ public class EmployeeController {
 		System.out.println("in del id = " + empId);
 		return empServ.deleteEmployee(empId);
 	}
+
 	@GetMapping("/{empId}")
 	public Employee getOneEmployee(@PathVariable Long empId) {
 		return empServ.getOneEmployee(empId);
 	}
+
 	@PutMapping
-	public Employee updateEmployee(@RequestBody Employee emp ) {
+	public Employee updateEmployee(@RequestBody Employee emp) {
 		return empServ.updateEmployee(emp);
 	}
-	
+
 	@PostMapping("/signIn")
-	public Employee validateEmployee(@RequestBody EmployeeLoginDto empLogIn )
-	{
-		System.out.println("login"+empLogIn);
+	public Employee validateEmployee(@RequestBody EmployeeLoginDto empLogIn) {
+		System.out.println("login" + empLogIn);
 		return empServ.validateEmp(empLogIn);
 	}
-	
+
 	@GetMapping("/Employeetrue")
-	public List<Employee> getAllTrueEmployee(){
+	public List<Employee> getAllTrueEmployee() {
 		System.out.println("inside true");
 		return empServ.getAllTrueEmployees();
 	}
-	//delete
+
+	// delete
 	@PutMapping("/{empId}")
 	public String deleteFalseEmployee(@PathVariable Long empId) {
 		System.out.println("inside false");
 		return empServ.deleteFalseEmployee(empId);
 	}
-	
+
 	@GetMapping("/balance")
 	public double findBalance() {
 		return bankRepo.findLatestBalance().getBalance();
 	}
-	
+
 //	@PostMapping("/Transaction/withdraw/Employee")
 //	public BankTransaction withdrawBankTransaction(@RequestBody EmployeeSendDto send) {
 //		System.out.println("inside Trax in Employee send");
@@ -109,7 +111,7 @@ public class EmployeeController {
 //		}
 //		return null;
 //	}
-	
+
 //	@PostMapping("/Transaction/withdraw/{empId}")
 //	public BankTransaction withdrawBankTransaction(@PathVariable String empId) {
 //		System.out.println("inside addTrax in Employee empId"+empId);
@@ -122,44 +124,80 @@ public class EmployeeController {
 //		return null;
 //	}
 	@GetMapping("/books")
-	public List<Bidding> getAllTopFiveBooks(){
+	public List<Bidding> getAllTopFiveBooks() {
 		System.out.println("inside getAllFiveBooks");
 		return bidService.getRecentBiddingUpToFiveBooks();
 	}
-	
+
 	@GetMapping("/Cloths")
-	public List<Bidding> getAllTopFiveCloths(){
+	public List<Bidding> getAllTopFiveCloths() {
 		System.out.println("inside getAllFiveBooks");
 		return bidService.getRecentBiddingUpToFiveCloths();
 	}
-	
+
 	@GetMapping("/toys")
-	public List<Bidding> getAllTopFiveToys(){
+	public List<Bidding> getAllTopFiveToys() {
 		System.out.println("inside getAllFiveBooks");
 		return bidService.getRecentBiddingUpToFiveToys();
 	}
-	
+
 	@GetMapping("/cycles")
-	public List<Bidding> getAllTopFiveCycles(){
+	public List<Bidding> getAllTopFiveCycles() {
 		System.out.println("inside getAllFiveBooks");
 		return bidService.getRecentBiddingUpToFiveCycles();
 	}
-	
-	@GetMapping("/setSelected/{bidId}")
-	public boolean setStatusToSelected(@PathVariable Long bidId){
-		System.out.println("inside set status");
-		return bidService.setBiddingStatusToSelected(bidId);
-	}
-	
-	@GetMapping("/getSelected")
-	public List<Bidding> getAllSelected(){
-		return bidService.getAllSelectedBidders();
-	}
-	
-	@GetMapping("/setReceived/Books/{bidId}")
-	public boolean setStatusToReceived(@PathVariable Long bidId){
-		System.out.println("inside set status to approve");
-		return bidService.setBiddingStatusToApproveBooks(bidId);
+
+	@PutMapping("/setSelectedBook/{bidId}")
+	public boolean setStatusToSelectedBook(@PathVariable Long bidId) {
+		System.out.println("inside book set status");
+		return bidService.setBiddingStatusToSelectedBook(bidId);
 	}
 
-}                  
+	@PutMapping("/setSelectedCloth/{bidId}")
+	public boolean setStatusToSelectedCloth(@PathVariable Long bidId) {
+		System.out.println("inside set status");
+		return bidService.setBiddingStatusToSelectedCloth(bidId);
+	}
+
+	@PutMapping("/setSelectedToy/{bidId}")
+	public boolean setStatusToSelectedToy(@PathVariable Long bidId) {
+		System.out.println("inside set status");
+		return bidService.setBiddingStatusToSelectedToy(bidId);
+	}
+
+	@PutMapping("/setSelectedCycle/{bidId}")
+	public boolean setStatusToSelectedCycle(@PathVariable Long bidId) {
+		System.out.println("inside set status");
+		return bidService.setBiddingStatusToSelectedCycle(bidId);
+	}
+
+	@GetMapping("/getSelected")
+	public List<Bidding> getAllSelected() {
+		return bidService.getAllSelectedBidders();
+	}
+
+	@PutMapping("/setReceived/Books/{bidId}")
+	public boolean setStatusToReceivedBook(@PathVariable Long bidId) {
+		System.out.println("inside set status to approve");
+		return bidService.setBiddingStatusToApproveBook(bidId);
+	}
+
+	@PutMapping("/setReceived/Cloths/{bidId}")
+	public boolean setStatusToReceivedCloth(@PathVariable Long bidId) {
+		System.out.println("inside set status to approve");
+		return bidService.setBiddingStatusToApproveCloth(bidId);
+	}
+
+	@PutMapping("/setReceived/Toys/{bidId}")
+	public boolean setStatusToReceivedToy(@PathVariable Long bidId) {
+		System.out.println("inside set status to approve");
+		return bidService.setBiddingStatusToApproveToy(bidId);
+	}
+
+	@PutMapping("/setReceived/Cycles/{bidId}")
+	public boolean setStatusToReceivedCycle(@PathVariable Long bidId) {
+		System.out.println("inside set status to approve");
+		return bidService.setBiddingStatusToApproveCycle(bidId);
+	}
+
+}

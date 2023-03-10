@@ -41,6 +41,11 @@ const EmployeeBidsDashBoard = () => {
         }
     }, [])
 
+    const setBook=(id)=>{
+        EmployeeService.SetSelectedBook(id).then((resp)=>{
+            alert("set Book");
+        })
+    }
 
     const book = () => {
         return arrBooks.map((bid) => {
@@ -60,11 +65,15 @@ const EmployeeBidsDashBoard = () => {
             <td> {bid.vendor.vendorStatus} </td> 
             
 <td>
-            <Link to="/VendorSignIn">
-            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={()=>setBook(bid.id)}>Bid</button>
             </td>
            
             </tr>)
+        })
+    }
+    const setCloth=(id)=>{
+        EmployeeService.SetSelectedCloth(id).then((resp)=>{
+            alert("set Cloth");
         })
     }
     const shirt = () => {
@@ -84,14 +93,20 @@ const EmployeeBidsDashBoard = () => {
             <td> {bid.vendor.vendorEmailId} </td>
             <td> {bid.vendor.vendorStatus} </td> 
             
-<td>
-            <Link to="/VendorSignIn">
-            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={()=>setCloth(bid.id)}>Bid</button>
             </td>
            
             </tr>)
         })
     }
+
+    const setToy=(id)=>{
+        EmployeeService.SetSelectedToy(id).then((resp)=>{
+            alert("set Toy");
+        })
+    }
+    
     const toy = () => {
         return arrToys.map((bid) => {
             // alert(bid.id);
@@ -109,14 +124,20 @@ const EmployeeBidsDashBoard = () => {
             <td> {bid.vendor.vendorEmailId} </td>
             <td> {bid.vendor.vendorStatus} </td> 
             
-<td>
-            <Link to="/VendorSignIn">
-            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={()=>setToy(bid.id)}>Bid</button>
             </td>
            
             </tr>)
         })
     }
+
+    const setCycle=(id)=>{
+        EmployeeService.SetSelectedCycle(id).then((resp)=>{
+            alert("set Cycle");
+        })
+    }
+
     const cycle = () => {
         return arrCycle.map((bid) => {
             // alert(bid.id);
@@ -134,9 +155,8 @@ const EmployeeBidsDashBoard = () => {
             <td> {bid.vendor.vendorEmailId} </td>
             <td> {bid.vendor.vendorStatus} </td> 
             
-<td>
-            <Link to="/VendorSignIn">
-            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={()=>setCycle(bid.id)}>Bid</button>
             </td>
            
             </tr>)
