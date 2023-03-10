@@ -1,30 +1,70 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DonorService from "../Services/DonorService"
 import EmployeeService from "../Services/EmployeeService";
 import VendorService from "../Services/VendorService"
 
 const EmployeeBidsDashBoard = () => {
-    let [vendorob, setvendorob] = useState({});
+    const [empob, setempob] = useState({});
+    const [arrBids, setArrBids] = useState([]);
+    const [flag, setFlag] = useState(false);
+    const history = useHistory();
+
     useEffect(() => {
         // if (localStorage.getItem("don") != null) {
-            if(!localStorage.getItem('emp')){
-                history.push("/EmployeeSignIn");
-            }
-            setvendorob(JSON.parse(localStorage.getItem('emp')));
-            const date=new Date();
-            if(date.getDate()==2){
-                EmployeeService.GetAllTopFiveBookBids.then((resp)=>{
-                    console.log(resp.data);
-                })
-            }
+        if (!localStorage.getItem('emp')) {
+            history.push("/EmployeeSignIn");
+        }
+        setempob(JSON.stringify(localStorage.getItem('emp')));
+        const date = new Date();
+        if (date.getDate() == 10) {
+            EmployeeService.GetAllTopFiveBookBids().then((resp) => {
+                console.log(resp.data);
+                setArrBids(resp.data);
+                setFlag(true);
+            });
+        }
     }, [])
+
+
+    const biddersDetails = () => {
+        return arrBids.map((bid) => {
+            // alert(bid.id);
+            return (<tr key={bid.id}>
+                <td> {bid.id} </td>
+                <td> {bid.lowPriceToy} </td>
+                <td>{bid.dateOfBid} </td>
+                <td>{bid.biddingStatusApprove} </td>
+                <td> {bid.vendor.id} </td>
+            <td> {bid.vendor.vendorCompanyName} </td>
+            <td> {bid.vendor.vendorCompanyAddress} </td>
+            <td> {bid.vendor.vendorMobileNo} </td>
+            <td> {bid.vendor.vendorAadharNo} </td>
+            <td> {bid.vendor.vendorCompanyBankAccountNo} </td>
+            <td> {bid.vendor.vendorEmailId} </td>
+            <td> {bid.vendor.vendorStatus} </td> 
+            
+<td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+           
+            </tr>)
+        })
+    }
+
+
+
+
+
+
+
     return (
         <div>
-            
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-            
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
             <body id="page-top">
 
                 {/* <!-- Page Wrapper --> */}
@@ -114,7 +154,7 @@ const EmployeeBidsDashBoard = () => {
                             <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
-                                    
+
                                     <Link className="collapse-item" to="/DonorTable">Donor table</Link>
                                     <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
                                 </div>
@@ -347,7 +387,34 @@ const EmployeeBidsDashBoard = () => {
                                     <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
                                 </div>
+
+
+                                {flag ? (<div>
+                                    <h3> Bids available for Notebook</h3>
+                                    <table class="table table-hover table-danger">
+                                        <thead>
+                                            <tr>
+                                                <th> Bidd id </th>
+                                                <th> Price </th>
+                                                <th> Date Of Bid </th>
+                                                <th> Bidding Status </th>
+                                                <th> vendor id </th>
+            <th> Name </th>
+            <th> Address </th>
+            <th> MobileNo </th>
+            <th> AadharNo </th>
+            <th> AccountNo </th>
+            <th> EmailId </th>
+            <th> Status </th>
+                                            </tr></thead>
+                                        <tbody>
+                                            {biddersDetails()}</tbody>
+                                    </table>
+                                </div>) : ""}
+
+
                                 {/* <!-- Footer --> */}
                                 <footer className="sticky-footer bg-white">
                                     <div className="container my-auto">

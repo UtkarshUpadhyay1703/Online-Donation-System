@@ -24,7 +24,10 @@ class EmployeeService{
         return axios.get(this.url+"/balance");
     }
     GetAllTopFiveBookBids(){
-        return axios.get(this.url+"/employees/books");
+        return axios.get(this.url+"/books");
+    }
+    GetSelected(){
+        return axios.get(this.url+"/getSelected");
     }
 }
 export default new EmployeeService();
