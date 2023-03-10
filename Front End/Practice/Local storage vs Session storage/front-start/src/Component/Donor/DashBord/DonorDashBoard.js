@@ -13,6 +13,9 @@ const DonorDashBoard = () => {
 
     useEffect(() => {
         // if (localStorage.getItem("don") != null) {
+            if(!localStorage.getItem('don')){
+                history.push("/DonorSignIn");
+            }
             setdonorob(JSON.parse(localStorage.getItem('don')));
     }, [])
     // const del=()=>{
@@ -22,12 +25,21 @@ const DonorDashBoard = () => {
     //     })
     // }
 
+    // const payment=()=>{
+    //     alert(donorob.id)
+    //     return <DonorDonationPayment donob={donorob}>Go</DonorDonationPayment>
+    // }
+    const logout=()=>{
+        localStorage.removeItem("don");
+    }
+
     return (
         <div>
             <body id="page-top">
-                <UserContext.Provider value={donorob}>
+                {/* <UserContext.Provider value={donorob}>
                     <DonorDonationPayment/>
                 </UserContext.Provider>
+                <button type="button" onClick={payment}>Donate</button> */}
 
                 {/* <!-- Page Wrapper --> */}
                 <div id="wrapper">
@@ -315,7 +327,7 @@ const DonorDashBoard = () => {
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                <button onClick={logout} > Logout </button>
                                             </a>
                                         </div>
                                     </li>

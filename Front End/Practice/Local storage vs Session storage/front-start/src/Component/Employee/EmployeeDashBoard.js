@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DonorService from "../Services/DonorService"
 import VendorService from "../Services/VendorService"
 
 const EmployeeDashBoard = () => {
+    let [vendorob, setvendorob] = useState({});
+    const history=useHistory();
+    useEffect(() => {
+        // if (localStorage.getItem("don") != null) {
+            if(!localStorage.getItem('emp')){
+                history.push("/EmployeeSignIn");
+            }
+            setvendorob(JSON.parse(localStorage.getItem('emp')));
+            
+    }, [])
     return (
         <div>
             

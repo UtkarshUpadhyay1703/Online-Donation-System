@@ -2,7 +2,7 @@ import axios from "axios";
 
 class EmployeeService{
     constructor(){
-        this.url="http://localhost:8080/donors";
+        this.url="http://localhost:8080/employees";
     }
     GetAllEmployees(){
         return axios.get(this.url+"/Employeetrue");
@@ -21,11 +21,10 @@ class EmployeeService{
     }
     GetBalance(){
         console.log("fetched data");
-        return axios.get("http://localhost:8080/employees/balance");
+        return axios.get(this.url+"/balance");
     }
-    GetAllDonors(){
-        console.log("hello");
-        return axios.get(this.url+"/Donortrue");
+    GetAllTopFiveBookBids(){
+        return axios.get(this.url+"/employees/books");
     }
 }
 export default new EmployeeService();
