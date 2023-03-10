@@ -26,6 +26,15 @@ class EmployeeService{
     GetAllTopFiveBookBids(){
         return axios.get(this.url+"/books");
     }
+    GetAllTopFiveClothBids(){
+        return axios.get(this.url+"/Cloths");
+    }
+    GetAllTopFiveToyBids(){
+        return axios.get(this.url+"/toys");
+    }
+    GetAllTopFiveCycleBids(){
+        return axios.get(this.url+"/cycles");
+    }
     GetSelected(){
         return axios.get(this.url+"/getSelected");
     }

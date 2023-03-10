@@ -6,7 +6,10 @@ import VendorService from "../Services/VendorService"
 
 const EmployeeBidsDashBoard = () => {
     const [empob, setempob] = useState({});
-    const [arrBids, setArrBids] = useState([]);
+    const [arrBooks, setArrBooks] = useState([]);
+    const [arrCloths, setArrCloths] = useState([]);
+    const [arrToys, setArrToys] = useState([]);
+    const [arrCycle, setArrCycle] = useState([]);
     const [flag, setFlag] = useState(false);
     const history = useHistory();
 
@@ -17,18 +20,80 @@ const EmployeeBidsDashBoard = () => {
         }
         setempob(JSON.stringify(localStorage.getItem('emp')));
         const date = new Date();
-        if (date.getDate() == 10) {
+        if (date.getDate() == 11) {
             EmployeeService.GetAllTopFiveBookBids().then((resp) => {
                 console.log(resp.data);
-                setArrBids(resp.data);
+                setArrBooks(resp.data);
                 setFlag(true);
             });
+            EmployeeService.GetAllTopFiveClothBids().then((resp) => {
+                console.log(resp.data);
+                setArrCloths(resp.data);
+        });
+            EmployeeService.GetAllTopFiveToyBids().then((resp) => {
+                console.log(resp.data);
+                setArrToys(resp.data);
+        });
+            EmployeeService.GetAllTopFiveCycleBids().then((resp) => {
+                console.log(resp.data);
+                setArrCycle(resp.data);
+        });
         }
     }, [])
 
 
-    const biddersDetails = () => {
-        return arrBids.map((bid) => {
+    const book = () => {
+        return arrBooks.map((bid) => {
+            // alert(bid.id);
+            return (<tr key={bid.id}>
+                <td> {bid.id} </td>
+                <td> {bid.lowPriceNotebook} </td>
+                <td>{bid.dateOfBid} </td>
+                <td>{bid.biddingStatusApprove} </td>
+                <td> {bid.vendor.id} </td>
+            <td> {bid.vendor.vendorCompanyName} </td>
+            <td> {bid.vendor.vendorCompanyAddress} </td>
+            <td> {bid.vendor.vendorMobileNo} </td>
+            <td> {bid.vendor.vendorAadharNo} </td>
+            <td> {bid.vendor.vendorCompanyBankAccountNo} </td>
+            <td> {bid.vendor.vendorEmailId} </td>
+            <td> {bid.vendor.vendorStatus} </td> 
+            
+<td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+           
+            </tr>)
+        })
+    }
+    const shirt = () => {
+        return arrCloths.map((bid) => {
+            // alert(bid.id);
+            return (<tr key={bid.id}>
+                <td> {bid.id} </td>
+                <td> {bid.lowPriceCloth} </td>
+                <td>{bid.dateOfBid} </td>
+                <td>{bid.biddingStatusApprove} </td>
+                <td> {bid.vendor.id} </td>
+            <td> {bid.vendor.vendorCompanyName} </td>
+            <td> {bid.vendor.vendorCompanyAddress} </td>
+            <td> {bid.vendor.vendorMobileNo} </td>
+            <td> {bid.vendor.vendorAadharNo} </td>
+            <td> {bid.vendor.vendorCompanyBankAccountNo} </td>
+            <td> {bid.vendor.vendorEmailId} </td>
+            <td> {bid.vendor.vendorStatus} </td> 
+            
+<td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+           
+            </tr>)
+        })
+    }
+    const toy = () => {
+        return arrToys.map((bid) => {
             // alert(bid.id);
             return (<tr key={bid.id}>
                 <td> {bid.id} </td>
@@ -52,11 +117,31 @@ const EmployeeBidsDashBoard = () => {
             </tr>)
         })
     }
-
-
-
-
-
+    const cycle = () => {
+        return arrCycle.map((bid) => {
+            // alert(bid.id);
+            return (<tr key={bid.id}>
+                <td> {bid.id} </td>
+                <td> {bid.lowPriceCycle} </td>
+                <td>{bid.dateOfBid} </td>
+                <td>{bid.biddingStatusApprove} </td>
+                <td> {bid.vendor.id} </td>
+            <td> {bid.vendor.vendorCompanyName} </td>
+            <td> {bid.vendor.vendorCompanyAddress} </td>
+            <td> {bid.vendor.vendorMobileNo} </td>
+            <td> {bid.vendor.vendorAadharNo} </td>
+            <td> {bid.vendor.vendorCompanyBankAccountNo} </td>
+            <td> {bid.vendor.vendorEmailId} </td>
+            <td> {bid.vendor.vendorStatus} </td> 
+            
+<td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+           
+            </tr>)
+        })
+    }
 
 
     return (
@@ -78,7 +163,7 @@ const EmployeeBidsDashBoard = () => {
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Employee Bids DashBoard</div>
                         </a>
 
                         {/* <!-- Divider --> */}
@@ -392,7 +477,7 @@ const EmployeeBidsDashBoard = () => {
 
 
                                 {flag ? (<div>
-                                    <h3> Bids available for Notebook</h3>
+                                    <h3> Bids available for Notebooks</h3>
                                     <table class="table table-hover table-danger">
                                         <thead>
                                             <tr>
@@ -410,7 +495,67 @@ const EmployeeBidsDashBoard = () => {
             <th> Status </th>
                                             </tr></thead>
                                         <tbody>
-                                            {biddersDetails()}</tbody>
+                                            {book()}</tbody>
+                                    </table>
+                                    <h3> Bids available for Cloths</h3>
+                                    <table class="table table-hover table-warning">
+                                        <thead>
+                                            <tr>
+                                                <th> Bidd id </th>
+                                                <th> Price </th>
+                                                <th> Date Of Bid </th>
+                                                <th> Bidding Status </th>
+                                                <th> vendor id </th>
+            <th> Name </th>
+            <th> Address </th>
+            <th> MobileNo </th>
+            <th> AadharNo </th>
+            <th> AccountNo </th>
+            <th> EmailId </th>
+            <th> Status </th>
+                                            </tr></thead>
+                                        <tbody>
+                                            {shirt()}</tbody>
+                                    </table>
+                                    <h3> Bids available for Toys</h3>
+                                    <table class="table table-hover table-success">
+                                        <thead>
+                                            <tr>
+                                                <th> Bidd id </th>
+                                                <th> Price </th>
+                                                <th> Date Of Bid </th>
+                                                <th> Bidding Status </th>
+                                                <th> vendor id </th>
+            <th> Name </th>
+            <th> Address </th>
+            <th> MobileNo </th>
+            <th> AadharNo </th>
+            <th> AccountNo </th>
+            <th> EmailId </th>
+            <th> Status </th>
+                                            </tr></thead>
+                                        <tbody>
+                                            {toy()}</tbody>
+                                    </table>
+                                    <h3> Bids available for Cycles</h3>
+                                    <table class="table table-hover table-info">
+                                        <thead>
+                                            <tr>
+                                                <th> Bidd id </th>
+                                                <th> Price </th>
+                                                <th> Date Of Bid </th>
+                                                <th> Bidding Status </th>
+                                                <th> vendor id </th>
+            <th> Name </th>
+            <th> Address </th>
+            <th> MobileNo </th>
+            <th> AadharNo </th>
+            <th> AccountNo </th>
+            <th> EmailId </th>
+            <th> Status </th>
+                                            </tr></thead>
+                                        <tbody>
+                                            {cycle()}</tbody>
                                     </table>
                                 </div>) : ""}
 
