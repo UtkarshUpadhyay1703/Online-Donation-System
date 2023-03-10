@@ -17,7 +17,7 @@ import DonorDonationPayment from './Component/Donor/DonorDonationPayment';
 
 import EmployeeSignIn from './Component/Employee/EmployeeSignIn';
 import EmployeeRegister from './Component/Employee/EmployeeRegister';
-
+import EmployeeBidsDashBoard from './Component/Employee/EmployeeBidsDashBoard';
 
 
 import VendorRegister from './Component/Vendor/VendorRegister';
@@ -28,6 +28,7 @@ import VendorDashBoard from './Component/Vendor/VendorDashBoard.js';
 
 import AvailableBidding from './Component/Bidding/AvailableBidding';
 import Tester from './Component/Bidding/Tester';
+import EmployeeSelectedBidsDashBoard from './Component/Employee/EmployeeSelectedBidsDashBoard';
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function App() {
         <Route path="/Employee" exact component={EmployeeDashBoard}></Route>
         <Route path="/EmployeeSignIn" exact component={EmployeeSignIn}></Route>
         <Route path="/EmployeeRegister" exact component={EmployeeRegister}></Route>
+        <Route path="/EmployeeBidsDashBoard" exact component={EmployeeBidsDashBoard}></Route>
+        <Route path="/EmployeeSelectedBidsDashBoard" exact component={EmployeeSelectedBidsDashBoard}></Route>
         
         
         

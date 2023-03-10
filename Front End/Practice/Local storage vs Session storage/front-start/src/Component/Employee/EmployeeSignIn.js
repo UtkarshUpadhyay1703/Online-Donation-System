@@ -18,7 +18,7 @@ const EmployeeSignIn=()=>{
     const SignInFun=(event)=>{
       EmployeeService.SignInEmployee(empob).then((response)=>{
          // localStorage.don=response;
-         localStorage.setItem("don",JSON.stringify(response.data));
+         localStorage.setItem("emp",JSON.stringify(response.data));
          history.push("/Employee")
          // setdonorob1(JSON.stringify(response));
          // alert(donorob1);

@@ -29,7 +29,7 @@ public class BiddingServiceImpl implements BiddingService {
 	
 	@Override
 	public List<Bidding> getRecentBiddingUpToFiveBooks(){
-		LocalDateTime biddingStartDate= LocalDateTime.now().minusDays(2);
+		LocalDateTime biddingStartDate= LocalDateTime.now().minusDays(15);
 		System.out.println("2 days before = "+biddingStartDate);
 		return bidRepo.getTopFiveBookBidders(biddingStartDate);
 	}
@@ -64,7 +64,7 @@ public class BiddingServiceImpl implements BiddingService {
 	}
 	@Override
 	public List<Bidding> getAllSelectedBidders(){
-		return bidRepo.getSelectedBidders(LocalDateTime.now().minusDays(2));
+		return bidRepo.getSelectedBidders(LocalDateTime.now().minusDays(15));
 	}
 	double curBalance;
 	

@@ -1,30 +1,67 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
-import DonorService from "../../Services/DonorService";
-// import VendorService from "../Services/VendorService"
+import { Link, useHistory } from "react-router-dom";
+import DonorService from "../Services/DonorService"
+import EmployeeService from "../Services/EmployeeService";
+import VendorService from "../Services/VendorService"
 
-const DonorTableDashBoard = () => {
-    const [Donors, setDonors] = useState([]);
+const EmployeeSelectedBidsDashBoard = () => {
+    const [empob, setempob] = useState({});
+    const [arrBids,setArrBids]=useState([]);
+    const [flag,setFlag]=useState(false);
+    const history=useHistory();
+
     useEffect(() => {
-        DonorService.GetAllDonors().then((resp) => {
-            console.log(resp.data);
-            setDonors(resp.data);
-        });
-    }, []);
+        // if (localStorage.getItem("don") != null) {
+            if(!localStorage.getItem('emp')){
+                history.push("/EmployeeSignIn");
+            }
+            setempob(JSON.stringify(localStorage.getItem('emp')));
+            const date=new Date();
+            if(date.getDate()==10){
+                EmployeeService.GetSelected().then((resp)=>{
+                    console.log(resp.data);
+                    setArrBids(resp.data);
+                    setFlag(true);
+                });
+            }
+    }, [])
 
 
-    let DonorRender = () => {
-        return Donors.map((don) => {
-            return <tr key={don.id}>
-                <td>{don.id}</td>
-                <td>{don.donorName}</td>
-                <td>{don.donorAddress}</td>
-                <td>{don.donorEmailId}</td>
-                <td>{don.donorStatus}</td>
-                <td>{don.donorMobileNo}</td>
-            </tr>
+    const biddersDetails = () => {
+        return arrBids.map((bid) => {
+            // alert(bid.id);
+            return (<tr key={bid.id}>
+                <td> {bid.id} </td>
+                <td> {bid.lowPriceToy} </td>
+                <td>{bid.dateOfBid} </td>
+                <td>{bid.biddingStatusApprove} </td>
+                <td> {bid.vendor.id} </td>
+            <td> {bid.vendor.vendorCompanyName} </td>
+            <td> {bid.vendor.vendorCompanyAddress} </td>
+            <td> {bid.vendor.vendorMobileNo} </td>
+            <td> {bid.vendor.vendorAadharNo} </td>
+            <td> {bid.vendor.vendorCompanyBankAccountNo} </td>
+            <td> {bid.vendor.vendorEmailId} </td>
+            <td> {bid.vendor.vendorStatus} </td> 
+            
+<td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+           
+            </tr>)
         })
     }
+
+
+
+
+<td>
+            <Link to="/VendorSignIn">
+            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            </td>
+
+
 
     return (
         <div>
@@ -41,23 +78,21 @@ const DonorTableDashBoard = () => {
                     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                         {/* <!-- Sidebar - Brand --> */}
-                        <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/Employee">
-                        
+                        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
                             <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
-                        
-                        </Link>
+                        </a>
 
                         {/* <!-- Divider --> */}
                         <hr className="sidebar-divider my-0" />
 
                         {/* <!-- Nav Item - Dashboard --> */}
                         <li className="nav-item active">
-                            <Link to="/Employee" className="nav-link">
+                            <a className="nav-link" href="index.html">
                                 <i className="fas fa-fw fa-tachometer-alt"></i>
-                                <span> Dashboard</span></Link>
+                                <span>Dashboard</span></a>
                         </li>
 
                         {/* <!-- Divider --> */}
@@ -70,21 +105,19 @@ const DonorTableDashBoard = () => {
 
                         {/* <!-- Nav Item - Pages Collapse Menu --> */}
                         <li className="nav-item">
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
-                                aria-expanded="true" aria-controls="collapseDonor">
-                                <i className="fas fa-fw fa-table"></i>
-                                <span>Tables</span>
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i className="fas fa-fw fa-cog"></i>
+                                <span>Components</span>
                             </a>
-                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
-                                    
-                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
-                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                    <a className="collapse-item" href="buttons.html" target={"lol"}>Buttons</a>
+                                    <a className="collapse-item" href="cards.html">Cards</a>
                                 </div>
                             </div>
                         </li>
-                        <hr className="sidebar-divider" />
 
                         {/* <!-- Nav Item - Utilities Collapse Menu --> */}
                         <li className="nav-item">
@@ -106,19 +139,34 @@ const DonorTableDashBoard = () => {
                         </li>
 
                         {/* <!-- Divider --> */}
-                        {/* <hr className="sidebar-divider" /> */}
+                        <hr className="sidebar-divider" />
 
 
 
                         {/* <!-- Nav Item - Tables --> */}
-                        {/* <li className="nav-item">
+                        <li className="nav-item">
                             <a className="nav-link" href="tables.html">
                                 <i className="fas fa-fw fa-table"></i>
                                 <span>Tables</span></a>
-                        </li> */}
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Tables</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Custom Components:</h6>
+                                    
+                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                </div>
+                            </div>
+                        </li>
 
                         {/* <!-- Divider --> */}
-                        {/* <hr className="sidebar-divider d-none d-md-block" /> */}
+                        <hr className="sidebar-divider d-none d-md-block" />
 
                         {/* <!-- Sidebar Toggler (Sidebar) --> */}
                         <div className="text-center d-none d-md-inline">
@@ -306,21 +354,22 @@ const DonorTableDashBoard = () => {
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Employee
+                                            </span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>
                                         {/* <!-- Dropdown - User Information --> */}
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a className="dropdown-item" href="#">
+                                            <Link to="/UpdateEmployee" className="dropdown-item">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Profile
-                                            </a>
-                                            <a className="dropdown-item" href="#">
-                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Settings
-                                            </a>
+                                                Update
+                                            </Link>
+                                            <Link to="/DeleteEmployee" className="dropdown-item">
+                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Delete
+                                            </Link>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -342,25 +391,35 @@ const DonorTableDashBoard = () => {
                                     <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
                                 </div>
 
 
-                                <div>
-                                <div class="m-4">
-                                        Donors Table
-                                        <table class="table table-hover table-dark">
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Address</th>
-                                                <th>Email Id</th>
-                                                <th>Name</th>
-                                                <th>Status</th>
-                                                <th>Mobile Number</th>
-                                            </tr>
-                                            {DonorRender()}
-                                        </table>
-                                    </div>
-                                </div>
+                                {flag?(<div>
+    <h3> Bids available for Notebook</h3>
+    <table>
+        <thead>
+        <tr>
+            <th> id </th>
+            <th> lowPriceToy </th>
+            <th> dateOfBid </th>
+            <th> biddingStatusApprove </th>
+            {/* <th> vendor id </th>
+            <th> vendorCompanyName </th>
+            <th> vendorCompanyAddress </th>
+            <th> vendorMobileNo </th>
+            <th> vendorAadharNo </th>
+            <th> vendorCompanyBankAccountNo </th>
+            <th> vendorEmailId </th>
+            <th> vendorStatus </th> */}
+            </tr></thead>
+            <tbody>
+                {biddersDetails()}
+                </tbody>
+        </table>
+    </div>):""}
+
+
                                 {/* <!-- Footer --> */}
                                 <footer className="sticky-footer bg-white">
                                     <div className="container my-auto">
@@ -407,4 +466,4 @@ const DonorTableDashBoard = () => {
         </div >
     );
 }
-export default DonorTableDashBoard;
+export default EmployeeSelectedBidsDashBoard;
