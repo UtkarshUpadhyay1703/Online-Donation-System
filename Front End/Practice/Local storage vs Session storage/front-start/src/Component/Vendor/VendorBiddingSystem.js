@@ -10,6 +10,9 @@ const VendorBiddingSystem=()=>{
     const [form3, setform3] = useState(false);
     const [form4, setform4] = useState(false);
     useEffect(() => {
+        if(!localStorage.getItem('ven')){
+            history.push("/VendorSignIn");
+        }
         EmployeeService.GetBalance().then((resp) => {
             alert("hello"+resp.data);
             let bal=resp.data-30000;
@@ -37,20 +40,59 @@ const VendorBiddingSystem=()=>{
     }, []);
 
     const [vendorob,setvendorob]=useState({});
-    const [vendorForm,setvendorForm]=useState({});
+
+
+
+    const [bookForm,setBookForm]=useState({});
     var history=useHistory();
 
-    const Change=(event)=>{
+    const Change1=(event)=>{
         var {name,value}=event.target
-        setvendorForm({...vendorForm,[name]:value});
+        setBookForm({...bookForm,[name]:value});
     }
 
-    const SignInFun=(event)=>{
-        VendorService.DoBidding(vendorForm,).then((response)=>{
-         localStorage.setItem("don",JSON.stringify(response.data));
-         history.push("/Vendor")
+    const funBook=(event)=>{
+        VendorService.DoBidding(bookForm,).then((response)=>{
+         console.log(response.data);
         });
     }
+    const [shirtForm,setShirtForm]=useState({});
+    const Change2=(event)=>{
+        var {name,value}=event.target
+        setShirtForm({...shirtForm,[name]:value});
+    }
+
+    const funShirt=(event)=>{
+        VendorService.DoBidding(shirtForm).then((response)=>{
+         console.log(response.data);
+        });
+    }
+    const [toyForm,setToyForm]=useState({});
+    const Change3=(event)=>{
+        var {name,value}=event.target
+        setToyForm({...toyForm,[name]:value});
+    }
+
+    const funToy=(event)=>{
+        VendorService.DoBidding(toyForm).then((response)=>{
+         console.log(response.data);
+        });
+    }   
+     
+    const [cycleForm,setCycleForm]=useState({});
+    const Change4=(event)=>{
+        var {name,value}=event.target
+        setCycleForm({...cycleForm,[name]:value});
+    }
+
+    const funCycle=(event)=>{
+        VendorService.DoBidding(cycleForm).then((response)=>{
+         console.log(response.data);
+        });
+    }
+    
+
+
 
     return (
         <div>
@@ -374,13 +416,6 @@ const VendorBiddingSystem=()=>{
                                 </div>
 
 
-
-
-                                <form>
-                  <div class="form-group">
-                     <label for="email">Email Id</label>
-                     <input type="text" class="form-control" id="email" name="donorEmailId" value={vendorob.donorEmailId} onChange={Change} autoFocus placeholder="Email Id"/>
-                  </div>
                   {form1?(<div>
                     <form>
     <table>
@@ -389,16 +424,147 @@ const VendorBiddingSystem=()=>{
                 <h3> Enter Price per 100 pages Notebook</h3>
                 </th>
                 <td>
-                <input type="number" class="form-control" id="email" name="lowPriceNotebook" value={vendorob.lowPriceNotebook} onChange={Change} autoFocus placeholder="Notebook Price"/>
+                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
                 </td>
             <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={SignInFun}>Bid</button>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
+            </td>
+        </tr>
+        </table></form>
+    </div>):""}
+
+
+
+
+    {form2?(<div>
+                    <form>
+    <table>
+        <tr>
+            <th>
+                <h3> Enter Price per 100 pages Notebook</h3>
+                </th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
+                </td>
+                <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
+            </td>
+                </tr>
+                
+                
+                <tr><th>
+                <h3> Enter Price per 30cm T-Shirt</h3></th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceCloth" name="lowPriceCloth" value={shirtForm.lowPriceCloth} onChange={Change2} autoFocus placeholder="Cloth Price"/>
+                </td>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funShirt}>Bid</button>
+            </td>
+        </tr>
+        </table></form>
+    </div>):""}
+
+
+
+
+
+    {form3?(<div>
+                    <form>
+    <table>
+        <tr>
+            <th>
+                <h3> Enter Price per 100 pages Notebook</h3>
+                </th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
+                </td>
+                <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
+            </td>
+                </tr>
+                
+                
+                <tr><th>
+                <h3> Enter Price per 30cm T-Shirt</h3></th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceCloth" name="lowPriceCloth" value={shirtForm.lowPriceCloth} onChange={Change2} autoFocus placeholder="Cloth Price"/>
+                </td>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funShirt}>Bid</button>
+            </td>
+        </tr>
+             
+             
+                <tr><th>
+                <h3> Enter Price per 32cm Toys</h3></th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceToy" name="lowPriceToy" value={toyForm.lowPriceToy} onChange={Change3} autoFocus placeholder="Toy Price"/>
+                </td>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funToy}>Bid</button>
+            </td>
+        </tr>
+        </table></form>
+    </div>):""}
+
+
+
+
+
+
+    {form4?(<div>
+                    <form>
+    <table>
+        <tr>
+            <th>
+                <h3> Enter Price per 100 pages Notebook</h3>
+                </th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
+                </td>
+                <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
+            </td>
+                </tr></table></form>
+                
+                <form><table>
+                <tr><th>
+                <h3> Enter Price per 30cm T-Shirt</h3></th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceCloth" name="lowPriceCloth" value={shirtForm.lowPriceCloth} onChange={Change2} autoFocus placeholder="Cloth Price"/>
+                </td>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funShirt}>Bid</button>
+            </td>
+        </tr></table></form>
+             
+        <form><table>
+                <tr><th>
+                <h3> Enter Price per 32cm Toys</h3></th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceToy" name="lowPriceToy" value={toyForm.lowPriceToy} onChange={Change3} autoFocus placeholder="Toy Price"/>
+                </td>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funToy}>Bid</button>
+            </td>
+        </tr>
+        </table></form>
+             
+             
+        <form><table>
+                <tr><th>
+                <h3> Enter Price per kids Cycle</h3></th>
+                <td>
+                <input type="number" class="form-control" id="lowPriceCycle" name="lowPriceCycle" value={cycleForm.lowPriceCycle} onChange={Change4} autoFocus placeholder="Cycle Price"/>
+                </td>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funCycle}>Bid</button>
             </td>
         </tr>
         </table></form>
     </div>):""}
                   
-               </form>
+               
 
 
 
