@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import DonorService from "../../Services/DonorService";
 // import DonorService from "../../Services/DonorService";
 // import DonorDonationPayment from "../DonorDonationPayment";
 export const UserContext = React.createContext()
@@ -22,6 +23,16 @@ const DonorDashBoard = () => {
     const logout = () => {
         localStorage.removeItem("don");
         history.push("/DonorSignIn");
+    }
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('don')).id)
+        DonorService.DeleteDonor(JSON.parse(localStorage.getItem('don')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+
+    const upd=()=>{
+        history.push("/DonorUpdate");
     }
 
     return (
@@ -83,11 +94,11 @@ const DonorDashBoard = () => {
 
 
                         {/* <!-- Nav Item - Tables --> */}
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link" href="tables.html">
                                 <i className="fas fa-fw fa-table"></i>
                                 <span>Tables</span></a>
-                        </li>
+                        </li> */}
 
                         {/* <!-- Divider --> */}
                         <hr className="sidebar-divider d-none d-md-block" />
@@ -128,11 +139,11 @@ const DonorDashBoard = () => {
                                             aria-labelledby="userDropdown">
                                             <a className="dropdown-item" href="#">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Profile
+                                                <button onClick={upd} > Update</button>
                                             </a>
                                             <a className="dropdown-item" href="#">
                                                 <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Settings
+                                                <button onClick={del} > Delete</button>
                                             </a>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

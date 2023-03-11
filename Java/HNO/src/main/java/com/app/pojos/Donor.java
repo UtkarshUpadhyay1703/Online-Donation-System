@@ -37,10 +37,10 @@ public class Donor extends BaseEntity {
 //	@Column(columnDefinition = "boolean default true")
 	private boolean donorStatus;
 //	@JsonBackReference
-	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
-	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ItemDonation> items = new ArrayList<ItemDonation>();
 
 //	@ManyToOne

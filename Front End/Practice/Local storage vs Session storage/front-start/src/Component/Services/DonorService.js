@@ -14,7 +14,10 @@ class DonorService{
         return axios.post(this.url+"/signIn",donor);
     }
     DeleteDonor(id){
-        return axios.put(this.url+"/",id);
+        console.log("----------------")
+        console.log("----------------")
+        console.log(id)
+        return axios.put(this.url+`/${id}`);
     }
     UpdateDonor(donor){
         return axios.put(this.url,donor);

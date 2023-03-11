@@ -23,7 +23,7 @@ const VendorUpdate = () => {
               
     const Add=(event)=>{
         alert(vendorob.vendorName)
-        VendorService.AddVendor(vendorob).then((response)=>{
+        VendorService.UpdateVendor(vendorob).then((response)=>{
             console.log(response.data);
             history.push("/VendorSignIn");
         });
