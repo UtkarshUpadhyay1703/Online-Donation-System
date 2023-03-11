@@ -107,6 +107,7 @@ const WelcomePage=()=>{
             <div class="container">
                 <div class="masthead-heading text-uppercase">Helping Needy Ones welcomes you</div>
                 <div class="masthead-subheading">It's Nice To Meet You</div>
+                {/* <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a> */}
             </div>
         </header>
         {/* <!-- Services--> */}
