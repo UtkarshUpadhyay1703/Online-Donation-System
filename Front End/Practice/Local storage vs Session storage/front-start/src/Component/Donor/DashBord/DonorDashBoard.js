@@ -18,42 +18,10 @@ const DonorDashBoard = () => {
         }
         setdonorob(JSON.parse(localStorage.getItem('don')));
     }, [])
-    // const del=()=>{
-    //     alert(donorob.id)
-    //     DonorService.DeleteDonor(donorob.id).then((resp)=>{
-    //         alert("deleted");
-    //     })
-    // }
-
-    // const payment=()=>{
-    //     alert(donorob.id)
-    //     return <DonorDonationPayment donob={donorob}>Go</DonorDonationPayment>
-    // }
-    const onFileChangeHandler = (e) => {
-        e.preventDefault();
-        this.setState({
-            selectedFile: e.target.files[0]
-        });
-
-    };
-    const Send = ((event) => {
-        const formData = new FormData();
-        formData.append('image', this.state.selectedFile);
-        alert(document.getElementById("type").value);//for checking
-        formData.append('type', document.getElementById("type").value);
-        fetch('http://localhost:8080/file/upload/{' + donorob.id + '}/donor', {
-            method: 'post',
-            body: formData
-        }).then(res => {
-            if (res.ok) {
-                console.log(res.data);
-                alert("File uploaded successfully.")
-            }
-        });
-    })
 
     const logout = () => {
         localStorage.removeItem("don");
+        history.push("/DonorSignIn");
     }
 
     return (
@@ -177,35 +145,7 @@ const DonorDashBoard = () => {
                                 </ul>
 
                             </nav>
-                            <div class="main">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="login-form">
-                                        <form>
-                                            <select class="selectpicker" data-style="btn-success" name="type" id="type">
-                                                <option value="Cloth">Cloth</option>
-                                                <option value="Books">Books</option>
-                                                <option value="Toys">Toys</option>
-                                                <option value="e-Items">Electronic Items</option>
-                                                <option value="Others">Others</option>
-                                            </select>
-                                            {/* <label for="formFileLg" class="form-label">Enter Image of your donation item</label>
-                                <input class="form-control form-control-lg" id="formFileLg" type="file" />
-                                <button type="button" class="btn btn-black" id="btn" name="btn1" onClick={SignInFun}>Submit</button> */}
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group files color">
-                                                            <label>Upload Your File </label>
-                                                            <input type="file" class="form-control" name="file" width="40px" onChange={onFileChangeHandler} />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="button" class="btn btn-black" id="btn" name="btn1" onClick={Send}>Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

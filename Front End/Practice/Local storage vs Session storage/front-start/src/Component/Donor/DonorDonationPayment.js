@@ -30,7 +30,6 @@ export default function DonorDonationPayment() {
     const Change=(event)=>{
         var {name,value}=event.target
         setpayob({...payob,[name]:value});
-        alert(payob.cardNumber);
     }
 
     const SignInFun=(event)=>{

@@ -23,7 +23,7 @@ const DonorUpdate = () => {
     }
 
     const Add = (event) => {
-        DonorService.AddDonor(donorob).then((response) => {
+        DonorService.UpdateDonor(donorob).then((response) => {
             console.log(response.data);
             history.push("/DonorsignIn");
 
