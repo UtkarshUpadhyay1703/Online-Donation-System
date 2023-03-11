@@ -105,9 +105,8 @@ const WelcomePage=()=>{
         {/* <!-- Masthead--> */}
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+                <div class="masthead-heading text-uppercase">Helping Needy Ones welcomes you</div>
+                <div class="masthead-subheading">It's Nice To Meet You</div>
             </div>
         </header>
         {/* <!-- Services--> */}
@@ -115,38 +114,38 @@ const WelcomePage=()=>{
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><Link to="/DonationPayment"><button> Donate </button></Link></h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                            {/* <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i> */}
                         </span>
-                        <h4 class="my-3">E-Commerce</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3"></h4>
+                        <p class="text-muted"></p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                            {/* <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i> */}
                         </span>
-                        <h4 class="my-3">Responsive Design</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3"></h4>
+                        <p class="text-muted"></p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                            {/* <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i> */}
                         </span>
-                        <h4 class="my-3">Web Security</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3"></h4>
+                        <p class="text-muted"></p>
                     </div>
                 </div>
-            </div>
+    </div>
         </section>
         {/* <!-- Portfolio Grid--> */}
-        <section class="page-section bg-light" id="portfolio">
+        {/* <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Portfolio</h2>
@@ -155,7 +154,7 @@ const WelcomePage=()=>{
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
                         {/* <!-- Portfolio item 1--> */}
-                        <div class="portfolio-item">
+                        {/* /* <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -168,9 +167,9 @@ const WelcomePage=()=>{
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-6 mb-4"> */}
                         {/* <!-- Portfolio item 2--> */}
-                        <div class="portfolio-item">
+                        {/* <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -183,9 +182,9 @@ const WelcomePage=()=>{
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-6 mb-4"> */}
                         {/* <!-- Portfolio item 3--> */}
-                        <div class="portfolio-item">
+                        {/* <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -198,9 +197,9 @@ const WelcomePage=()=>{
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0"> */}
                         {/* <!-- Portfolio item 4--> */}
-                        <div class="portfolio-item">
+                        {/* <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -213,9 +212,9 @@ const WelcomePage=()=>{
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0"> */}
                         {/* <!-- Portfolio item 5--> */}
-                        <div class="portfolio-item">
+                        {/* <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -228,9 +227,9 @@ const WelcomePage=()=>{
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6"> */}
                         {/* <!-- Portfolio item 6--> */}
-                        <div class="portfolio-item">
+                        {/* <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -245,9 +244,9 @@ const WelcomePage=()=>{
                     </div>
                 </div>
             </div>
-        </section>
+        </section>  */}
         {/* <!-- About--> */}
-        <section class="page-section" id="about">
+        {/* <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">About</h2>
@@ -307,9 +306,9 @@ const WelcomePage=()=>{
                     </li>
                 </ul>
             </div>
-        </section>
+        </section> */}
         {/* <!-- Team--> */}
-        <section class="page-section bg-light" id="team">
+        {/* <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
@@ -351,9 +350,9 @@ const WelcomePage=()=>{
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
                 </div>
             </div>
-        </section>
+        </section> */}
         {/* <!-- Clients--> */}
-        <div class="py-5">
+        {/* <div class="py-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-3 col-sm-6 my-3">
@@ -370,13 +369,13 @@ const WelcomePage=()=>{
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  */}
         {/* <!-- Contact--> */}
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
                 {/* <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
@@ -439,7 +438,7 @@ const WelcomePage=()=>{
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -672,6 +671,7 @@ const WelcomePage=()=>{
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *--> */}
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        
     </body>
         </div>
     )

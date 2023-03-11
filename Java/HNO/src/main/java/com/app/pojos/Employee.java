@@ -21,12 +21,15 @@ public class Employee extends BaseEntity {
 	private String employeeAddress;
 	@Column(length = 10, unique = true, nullable = false)
 	private String employeeMobileNo;
-	@Column(length = 12, unique = true, nullable = false)
+	@Column(length = 12, unique = true, nullable = true)
+//	@Column(length = 12)
 	private String employeeAadharNo;
-	@Column(length = 18, unique = true, nullable = false)
+	@Column(length = 18, unique = true, nullable = true)
+//	@Column(length = 18)
 	private String employeeBankAccountNo;
 //	@Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Please write right IFSC    Thank you!!!")
-	@Column(length = 11, unique = true, nullable = false)
+	@Column(length = 11, unique = true, nullable = true)
+//	@Column(length = 11)
 	private String employeeCompanyBankIFSC;
 	@Column(length = 30, unique = true, nullable = false)
 	private String employeeEmailId;
@@ -67,7 +70,6 @@ public class Employee extends BaseEntity {
 		super();
 	}
 
-	
 
 	public String getEmployeeName() {
 		return employeeName;
