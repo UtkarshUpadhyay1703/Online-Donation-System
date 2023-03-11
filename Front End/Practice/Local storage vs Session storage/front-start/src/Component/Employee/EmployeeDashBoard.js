@@ -8,9 +8,9 @@ const EmployeeDashBoard = () => {
     const history=useHistory();
     useEffect(() => {
         // if (localStorage.getItem("don") != null) {
-            // if(!localStorage.getItem('emp')){
-            //     history.push("/EmployeeSignIn");
-            // }
+            if(!localStorage.getItem('emp')){
+                history.push("/EmployeeSignIn");
+            }
             setvendorob(JSON.parse(localStorage.getItem('emp')));
             
     }, [])
@@ -68,6 +68,38 @@ const EmployeeDashBoard = () => {
                             </div>
                         </div>
                     </li>
+
+                    <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Tables</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Custom Components:</h6>
+
+                                    <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTableDashBoard">Vendor table</Link>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Bidding</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Bidding Components</h6>
+                                    
+                                    <Link className="collapse-item" to="/EmployeeBidsDashBoard">Bidding table</Link>
+                                    <Link className="collapse-item" to="/EmployeeSelectedBidsDashBoard">Selected Bidding table</Link>
+                                </div>
+                            </div>
+                        </li>
 
 
 
@@ -152,7 +184,7 @@ const EmployeeDashBoard = () => {
                             <footer className="sticky-footer bg-white">
                                 <div className="container my-auto">
                                     <div className="copyright text-center my-auto">
-                                        <span>Copyright &copy; Your Website 2021</span>
+                                        <span>Copyright &copy; Your Website 2023</span>
                                     </div>
                                 </div>
                             </footer>

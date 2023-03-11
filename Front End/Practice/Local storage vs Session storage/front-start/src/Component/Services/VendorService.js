@@ -22,5 +22,8 @@ class VendorService{
     DoBidding(formob,id){
         return axios.post(this.url+"/Bidding/Vendor"+id,formob);
     }
+    GetAllVendors(){
+        return axios.get(this.url+"/Vendortrue");
+    }
 }
 export default new VendorService();

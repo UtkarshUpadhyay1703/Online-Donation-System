@@ -245,11 +245,7 @@ const EmployeeBidsDashBoard = () => {
 
 
                         {/* <!-- Nav Item - Tables --> */}
-                        <li className="nav-item">
-                            <a className="nav-link" href="tables.html">
-                                <i className="fas fa-fw fa-table"></i>
-                                <span>Tables</span></a>
-                        </li>
+                        
                         <li className="nav-item">
                             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
                                 aria-expanded="true" aria-controls="collapseDonor">
@@ -260,8 +256,24 @@ const EmployeeBidsDashBoard = () => {
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
 
-                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
-                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTableDashBorad">Vendor table</Link>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Bidding</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Bidding Components</h6>
+                                    
+                                    <Link className="collapse-item" to="/EmployeeBidsDashBoard">Bidding table</Link>
+                                    <Link className="collapse-item" to="/EmployeeSelectedBidsDashBoard">Selected Bidding table</Link>
                                 </div>
                             </div>
                         </li>

@@ -1,27 +1,37 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DonorService from "../../Services/DonorService";
+import VendorService from "../../Services/VendorService";
 // import VendorService from "../Services/VendorService"
 
-const DonorTableDashBoard = () => {
+const VendorTableDashBoard = () => {
     const [Donors, setDonors] = useState([]);
+    const history=useHistory();
     useEffect(() => {
-        DonorService.GetAllDonors().then((resp) => {
+        if(!localStorage.getItem('emp')){
+            history.push("/EmployeeSignIn");
+        }
+        VendorService.GetAllVendors().then((resp) => {
             console.log(resp.data);
             setDonors(resp.data);
         });
     }, []);
 
-
+    const logout = () => {
+        localStorage.removeItem("emp");
+        history.push("/EmployeeSignIn");
+    }
     let DonorRender = () => {
         return Donors.map((don) => {
             return <tr key={don.id}>
                 <td>{don.id}</td>
-                <td>{don.donorName}</td>
-                <td>{don.donorAddress}</td>
-                <td>{don.donorEmailId}</td>
-                <td>{don.donorStatus}</td>
-                <td>{don.donorMobileNo}</td>
+                <td>{don.vendorCompanyName}</td>
+                <td>{don.vendorCompanyAddress}</td>
+                <td>{don.vendorMobileNo}</td>
+                <td>{don.vendorAadharNo}</td>
+                <td>{don.vendorCompanyBankAccountNo}</td>
+                <td>{don.vendorEmailId}</td>
+                <td>{don.vendorStatus}</td>
             </tr>
         })
     }
@@ -79,8 +89,23 @@ const DonorTableDashBoard = () => {
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
                                     
-                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
-                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTableDashBoard">Vendor table</Link>
+                                </div>
+                            </div>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Bidding</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Custom Components:</h6>
+                                    
+                                    <Link className="collapse-item" to="/DonorTableDashBorad">Bidding table</Link>
+                                    <Link className="collapse-item" to="/VendorTableDashBoard">Selected Bidding table</Link>
                                 </div>
                             </div>
                         </li>
@@ -324,7 +349,7 @@ const DonorTableDashBoard = () => {
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                <button onClick={logout} > Logout </button>
                                             </a>
                                         </div>
                                     </li>
@@ -347,15 +372,17 @@ const DonorTableDashBoard = () => {
 
                                 <div>
                                 <div class="m-4">
-                                        Donors Table
+                                        Vendor Table
                                         <table class="table table-hover table-secondary">
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Address</th>
+                                                <th>Company Name</th>
+                                                <th>Company Address</th>
+                                                <th>Mobile No</th>
+                                                <th>Aadhar No</th>
+                                                <th>Bank Account No</th>
                                                 <th>Email Id</th>
-                                                <th>Name</th>
                                                 <th>Status</th>
-                                                <th>Mobile Number</th>
                                             </tr>
                                             {DonorRender()}
                                         </table>
@@ -407,4 +434,4 @@ const DonorTableDashBoard = () => {
         </div >
     );
 }
-export default DonorTableDashBoard;
+export default VendorTableDashBoard;

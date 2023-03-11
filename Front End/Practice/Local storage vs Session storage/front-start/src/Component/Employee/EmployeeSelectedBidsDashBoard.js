@@ -32,7 +32,10 @@ const EmployeeSelectedBidsDashBoard = () => {
             // alert(bid.id);
             return (<tr key={bid.id}>
                 <td> {bid.id} </td>
+                <td> {bid.lowPriceNotebook} </td>
+                <td> {bid.lowPriceCloth} </td>
                 <td> {bid.lowPriceToy} </td>
+                <td> {bid.lowPriceCycle} </td>
                 <td>{bid.dateOfBid} </td>
                 <td>{bid.biddingStatusApprove} </td>
                 <td> {bid.vendor.id} </td>
@@ -42,7 +45,7 @@ const EmployeeSelectedBidsDashBoard = () => {
             <td> {bid.vendor.vendorAadharNo} </td>
             <td> {bid.vendor.vendorCompanyBankAccountNo} </td>
             <td> {bid.vendor.vendorEmailId} </td>
-            <td> {bid.vendor.vendorStatus} </td> 
+            <td> {bid.vendor.vendorStatus} </td>
             
 <td>
             <Link to="/VendorSignIn">
@@ -134,11 +137,7 @@ const EmployeeSelectedBidsDashBoard = () => {
 
 
                         {/* <!-- Nav Item - Tables --> */}
-                        <li className="nav-item">
-                            <a className="nav-link" href="tables.html">
-                                <i className="fas fa-fw fa-table"></i>
-                                <span>Tables</span></a>
-                        </li>
+                        
                         <li className="nav-item">
                             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
                                 aria-expanded="true" aria-controls="collapseDonor">
@@ -151,6 +150,22 @@ const EmployeeSelectedBidsDashBoard = () => {
                                     
                                     <Link className="collapse-item" to="/DonorTable">Donor table</Link>
                                     <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Bidding</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Bidding Components</h6>
+                                    
+                                    <Link className="collapse-item" to="/EmployeeBidsDashBoard">Bidding table</Link>
+                                    <Link className="collapse-item" to="/EmployeeSelectedBidsDashBoard">Selected Bidding table</Link>
                                 </div>
                             </div>
                         </li>
@@ -394,14 +409,14 @@ const EmployeeSelectedBidsDashBoard = () => {
             <th> lowPriceToy </th>
             <th> dateOfBid </th>
             <th> biddingStatusApprove </th>
-            {/* <th> vendor id </th>
+            <th> vendor id </th>
             <th> vendorCompanyName </th>
             <th> vendorCompanyAddress </th>
             <th> vendorMobileNo </th>
             <th> vendorAadharNo </th>
             <th> vendorCompanyBankAccountNo </th>
             <th> vendorEmailId </th>
-            <th> vendorStatus </th> */}
+            <th> vendorStatus </th>
             </tr></thead>
             <tbody>
                 {biddersDetails()}
