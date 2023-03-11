@@ -70,8 +70,10 @@ public class DonorController {
 		return donoServ.getOneDonor(donId);
 	}
 
-	@PutMapping
-	public Donor updateDonor(@RequestBody Donor don) {
+	@PutMapping("/{donId}")
+	public Donor updateDonor(@RequestBody Donor don,@PathVariable Long donId) {
+		System.out.println("donor = "+don+"id = "+donId);
+		don.setId(donId);
 		return donoServ.updateDonor(don);
 	}
 
@@ -88,7 +90,7 @@ public class DonorController {
 		return donoServ.getAllTrueDonors();
 	}
 
-	@PutMapping("/{donId}")
+	@PutMapping("/false/{donId}")
 	public String deleteFalseDonor(@PathVariable Long donId) {
 		System.out.println("inside false");
 		return donoServ.deleteFalseDonor(donId);

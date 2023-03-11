@@ -14,13 +14,10 @@ class DonorService{
         return axios.post(this.url+"/signIn",donor);
     }
     DeleteDonor(id){
-        console.log("----------------")
-        console.log("----------------")
-        console.log(id)
-        return axios.put(this.url+`/${id}`);
+        return axios.put(this.url+"/false"+`/${id}`);
     }
-    UpdateDonor(donor){
-        return axios.put(this.url,donor);
+    UpdateDonor(donor,id){
+        return axios.put(this.url+`/${id}`,donor);
     }
     DonateMoney(payob,id){
         return axios.post(this.url+"/Transaction/deposit/"+id,payob);

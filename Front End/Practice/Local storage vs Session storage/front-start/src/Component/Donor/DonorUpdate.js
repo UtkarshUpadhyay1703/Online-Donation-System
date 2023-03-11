@@ -23,7 +23,7 @@ const DonorUpdate = () => {
     }
 
     const Add = (event) => {
-        DonorService.UpdateDonor(donorob).then((response) => {
+        DonorService.UpdateDonor(donorob,JSON.parse(localStorage.getItem('don')).id).then((response) => {
             console.log(response.data);
             history.push("/DonorsignIn");
 
@@ -65,10 +65,6 @@ const DonorUpdate = () => {
                     <div class="col-md-3 col-sm-12">
                         <div class="login-form">
                             <form>
-                            <div class="form-group">
-                                    <label>Id</label>
-                                    <input type="number" class="form-control" id="id" name="id" value={donorobOld.id} onChange={Change} placeholder="id" readOnly />
-                                </div>
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" class="form-control" id="name11" name="donorName" value={donorob.donorName} onChange={Change} placeholder="Name" autoFocus required />
