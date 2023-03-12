@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react"
+import React,{ useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 
 import VendorService from "../Services/VendorService";
 import EmployeeService from "../Services/EmployeeService";
+export const UserContext = React.createContext()
 
 const VendorBidding=()=>{
     const [form1, setform1] = useState(false);
     const [form2, setform2] = useState(false);
     const [form3, setform3] = useState(false);
     const [form4, setform4] = useState(false);
+    let [vendorob, setvendorob] = useState({});
+    const history=useHistory();
     useEffect(() => {
         EmployeeService.GetBalance().then((resp) => {
             alert("hello"+resp.data);
@@ -34,7 +37,29 @@ const VendorBidding=()=>{
             setform1(true);
            }
         });
+        // if(!localStorage.getItem('ven')){
+        //     history.push("/VendorSignIn");
+        // }
+        setvendorob(JSON.parse(localStorage.getItem('ven')));
+        
+
     }, []);
+
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('ven')).id)
+        VendorService.DeleteVendor(JSON.parse(localStorage.getItem('ven')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+
+    const upd=()=>{
+        history.push("/VendorUpdate");
+    }
+
+    const logout = () => {
+        localStorage.removeItem("ven");
+        history.push("/VendorSignIn");
+    }
 
     return (
         <div>
@@ -100,7 +125,7 @@ const VendorBidding=()=>{
                         <hr className="sidebar-divider" />
 
                         {/* <!-- Nav Item - Utilities Collapse Menu --> */}
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                                 aria-expanded="true" aria-controls="collapseUtilities">
                                 <i className="fas fa-fw fa-wrench"></i>
@@ -116,7 +141,7 @@ const VendorBidding=()=>{
                                     <a className="collapse-item" href="utilities-other.html">Other</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> */}
 
                         {/* <!-- Divider --> */}
                         {/* <hr className="sidebar-divider" /> */}
@@ -319,7 +344,7 @@ const VendorBidding=()=>{
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Vendor</span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>
@@ -328,16 +353,16 @@ const VendorBidding=()=>{
                                             aria-labelledby="userDropdown">
                                             <a className="dropdown-item" href="#">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Profile
+                                                <button onClick={upd} > Update</button>
                                             </a>
                                             <a className="dropdown-item" href="#">
                                                 <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Settings
+                                                <button onClick={del} > Delete</button>
                                             </a>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                <button onClick={logout} > Logout </button>
                                             </a>
                                         </div>
                                     </li>

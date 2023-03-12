@@ -13,6 +13,10 @@ const DonorRegister = () => {
         // <gyf hui={uh}></gyf>
     }
 
+    useEffect(() => {
+        localStorage.removeItem("don"); 
+ }, [])
+
     const Add = (event) => {
         DonorService.AddDonor(donorob).then((response) => {
             console.log(response.data);

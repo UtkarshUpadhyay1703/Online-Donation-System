@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DonorService from "../Services/DonorService";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useHistory } from "react-router-dom";
@@ -14,6 +14,10 @@ const DonorSignIn=()=>{
         var {name,value}=event.target
         setdonorob({...donorob,[name]:value});
     }
+    
+    useEffect(() => {
+         localStorage.removeItem("don"); 
+  }, [])
 
     const SignInFun=(event)=>{
         DonorService.SignInDonor(donorob).then((response)=>{

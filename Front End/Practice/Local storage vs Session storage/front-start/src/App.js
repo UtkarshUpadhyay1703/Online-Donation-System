@@ -22,6 +22,7 @@ import EmployeeBidsDashBoard from './Component/Employee/EmployeeBidsDashBoard';
 
 import VendorRegister from './Component/Vendor/VendorRegister';
 import VendorSignIn from './Component/Vendor/VendorSignIn';
+import VendorBidding from './Component/Vendor/VendorBidding';
 import VendorBiddingSystem from './Component/Vendor/VendorBiddingSystem';
 import VendorDashBoard from './Component/Vendor/VendorDashBoard.js';
 import VendorUpdate from './Component/Vendor/VendorUpdate';
@@ -69,6 +70,8 @@ function App() {
         <Route path="/VendorTableDashBoard" exact component={VendorTableDashBoard}></Route>
         {/* <Route path="/VendorSignInDashBoard" exact component={VendorSignInDashBoard}></Route> */}
         {/* <Route path="/VendorRegisterDashBoard" exact component={VendorRegisterDashBoard}></Route> */}
+        <Route path="/VendorBidding" exact component={VendorBidding}></Route>
+
 
 
         <Route path="/AvailableBidding" exact component={AvailableBidding}></Route>

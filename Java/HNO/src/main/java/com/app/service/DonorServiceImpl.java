@@ -10,6 +10,7 @@ import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.Donor.DonorLoginDto;
 import com.app.pojos.BankTransaction;
 import com.app.pojos.Donor;
+import com.app.pojos.ItemDonation;
 import com.app.repository.BankTransactionRepository;
 import com.app.repository.DonorRepository;
 
@@ -91,6 +92,36 @@ public class DonorServiceImpl implements DonorService {
 		return bankRepo.save(transaction);
 	}
 
+	
+//	@Override
+//	public List<Donor> findAllTransaction(){
+//		return donRepo.findAllDonorTransactions();
+//	}
+	
+	
+//	   public Donor getDonorById(Long id) {
+//	        return donRepo.findByIdWithTransactionsAndItems(id)
+//	                               .orElseThrow(() -> new ResourceNotFoundException("Donor"+ "id"+ id));
+//	    }
+	
+	
+	public Donor findDonorById(Long id) {
+        return donRepo.findById(id).orElse(null);
+    }
+
+    public List<BankTransaction> findTransactionsByDonorId(Long id) {
+        Donor donor = donRepo.findById(id).orElse(null);
+        return donor != null ? donor.getTransactions() : null;
+    }
+
+    public List<ItemDonation> findItemsByDonorId(Long id) {
+        Donor donor = donRepo.findById(id).orElse(null);
+        return donor != null ? donor.getItems() : null;
+    }
+	
+	
+	
+	
 //	@Override
 //	public BankTransaction withdrawBankTransaction(BankTransaction Transaction) {
 //		

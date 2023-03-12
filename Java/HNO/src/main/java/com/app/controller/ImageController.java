@@ -5,8 +5,10 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.app.custom_exception.ResourceNotFoundException;
 import com.app.extra.ImageResponse;
 import com.app.pojos.Donor;
+import com.app.pojos.Employee;
 import com.app.repository.DonorRepository;
+import com.app.repository.EmployeeRepository;
 import com.app.service.ImageService;
 
 @RestController
@@ -30,11 +34,15 @@ public class ImageController {
 
 	@Autowired
 	private DonorRepository donRepo;
+	
+	@Autowired
+	private EmployeeRepository empRepo;
+	
 
 	@Value("${project.image}")
 	private String path;
 
-	@PostMapping(value = "/upload/{donId}/donor",consumes = "multipart/form-data")
+	@PostMapping(value = "/upload/donor/image/{donId}",consumes = "multipart/form-data")
 	// public ResponseEntity<ImageResponse> imageUploadDonor(@RequestParam("type")
 	// String itemType,@RequestParam("image") MultipartFile image,@RequestBody Donor
 	// donor)
@@ -45,7 +53,7 @@ public class ImageController {
 		Donor donor = donRepo.findById(donId).orElseThrow(() -> new ResourceNotFoundException("Invalid id"));
 		System.out.println(donor);
 		try {
-			imageName = this.imageService.uploadImage(itemType, path, image, donor);
+			imageName = this.imageService.uploadImageDonor(itemType, path, image, donor);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,7 +66,57 @@ public class ImageController {
 		return new ResponseEntity<>(new ImageResponse(imageName, "Image is successfully uploaded"), HttpStatus.OK);
 	}
 
-//	@PostMapping("/upload/employee")
+
+	
+	
+	
+	@PostMapping(value = "/upload/employee/image/{empId}",consumes = "multipart/form-data")
+	// public ResponseEntity<ImageResponse> imageUploadDonor(@RequestParam("type")
+	// String itemType,@RequestParam("image") MultipartFile image,@RequestBody Donor
+	// donor)
+	// will happen with jwt or session
+	public ResponseEntity<ImageResponse> imageUploadEmployee(@PathVariable Long empId,
+			@RequestParam("type") String itemType, @RequestParam("image") MultipartFile image) {
+		String imageName = null;
+		Employee employee = empRepo.findById(empId).orElseThrow(() -> new ResourceNotFoundException("Invalid id"));
+		System.out.println(employee);
+		try {
+			imageName = this.imageService.uploadImageEmployee(itemType, path, image, employee);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity<>(new ImageResponse(null, "Image not uploaded successfully"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+//		ItemDonation item=new ItemDonation();
+
+		return new ResponseEntity<>(new ImageResponse(imageName, "Image is successfully uploaded"), HttpStatus.OK);
+	}
+	
+	
+	
+	
+	@GetMapping(value = "/download/employee/image/{empId}", produces = { MediaType.IMAGE_GIF_VALUE, 
+			MediaType.IMAGE_JPEG_VALUE,
+			MediaType.IMAGE_PNG_VALUE })
+	public ResponseEntity<?> serveImageFromServerSideFolderEmployee(@PathVariable Long empId) throws IOException {
+		
+		return new ResponseEntity<>(imageService.serveImageEmployee(empId), HttpStatus.OK);
+	}
+	
+
+	@GetMapping(value = "/download/donor/image/{donId}", produces = { MediaType.IMAGE_GIF_VALUE, 
+			MediaType.IMAGE_JPEG_VALUE,
+			MediaType.IMAGE_PNG_VALUE })
+	public ResponseEntity<?> serveImageFromServerSideFolderDonor(@PathVariable Long donId) throws IOException {
+		
+		return new ResponseEntity<>(imageService.serveImageDonor(donId), HttpStatus.OK);
+	}
+	
+	
+	
+	//	@PostMapping("/upload/employee")
 //    public ResponseEntity<ImageResponse> imageUploadEmployee(@RequestParam("Image") MultipartFile image)
 //    {
 //		String imageName=null;

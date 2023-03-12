@@ -1,5 +1,5 @@
 //import { useEffect, useState } from "react";
-// import DonorService from "../Services/DonorService";
+import DonorService from "../Services/DonorService";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -16,9 +16,9 @@ const DonorDonateForm = () => {
     let [donorob, setdonorob] = useState({});
     var history = useHistory();
     useEffect(() => {
-            if(!localStorage.getItem('don')){
-                history.push("/DonorSignIn");
-            }
+            // if(!localStorage.getItem('don')){
+            //     history.push("/DonorSignIn");
+            // }
             setdonorob(JSON.parse(localStorage.getItem('don')));
     }, [])
 
@@ -64,6 +64,18 @@ const DonorDonateForm = () => {
         localStorage.removeItem("don");
         history.push("/DonorSignIn");
     }
+
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('don')).id)
+        DonorService.DeleteDonor(JSON.parse(localStorage.getItem('don')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+       
+    const upd=()=>{
+        history.push("/DonorUpdate");
+    }
+
 
     return (
         <div>
@@ -185,12 +197,12 @@ const DonorDonateForm = () => {
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
                                             <a className="dropdown-item" href="#">
-                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Profile
+                                            <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                <button onClick={upd} > Update</button>
                                             </a>
                                             <a className="dropdown-item" href="#">
-                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Settings
+                                            <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                <button onClick={del} > Delete</button>
                                             </a>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

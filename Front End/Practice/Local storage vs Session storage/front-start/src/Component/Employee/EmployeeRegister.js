@@ -11,6 +11,10 @@ const EmployeeRegister = () => {
         setemployeeob({ ...employeeob, [name]: value });
     }
 
+    useEffect(() => {
+        localStorage.removeItem("emp"); 
+  }, [])
+
     const Add = (event) => {
         EmployeeService.AddEmployees(employeeob).then((response) => {
             console.log(response.data);

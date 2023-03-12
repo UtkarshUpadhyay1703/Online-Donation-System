@@ -11,6 +11,10 @@ const VendorRegister = () => {
         var {name,value}=event.target
         setvendorob({...vendorob,[name]:value});
     }
+
+    useEffect(() => {
+        localStorage.removeItem("ven"); 
+  }, [])
               
     const Add=(event)=>{
         VendorService.AddVendor(vendorob).then((response)=>{

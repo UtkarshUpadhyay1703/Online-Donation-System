@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -44,7 +45,7 @@ public class Employee extends BaseEntity {
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
-	@OneToMany(mappedBy = "itemEmployee", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "itemEmployee", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<ItemDonation> items = new ArrayList<ItemDonation>();
 
 

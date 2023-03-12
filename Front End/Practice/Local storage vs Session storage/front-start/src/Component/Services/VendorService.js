@@ -14,10 +14,10 @@ class VendorService{
         return axios.post(this.url+"/signIn",vendor);
     }
     DeleteVendor(id){
-        return axios.put(this.url+"/",id);
+        return axios.put(this.url+`/false/${id}`);
     }
-    UpdateVendor(vendor){
-        return axios.put(this.url,vendor);
+    UpdateVendor(vendor,id){
+        return axios.put(this.url+`/${id}`,vendor);
     }
     DoBidding(formob,id){
         return axios.post(this.url+"/Bidding/Vendor"+id,formob);

@@ -43,8 +43,9 @@ public class VendorController {
 		System.out.println("in all dono");
 		return venServ.getAllVendors();
 	}
-	@PutMapping
-	public Vendor updateVendor(@RequestBody Vendor ven ) {
+	@PutMapping("/{venId}")
+	public Vendor updateVendor(@RequestBody Vendor ven,@PathVariable Long venId ) {
+		ven.setId(venId);
 		return venServ.updateVendor(ven);
 	}
 	@PostMapping
@@ -64,7 +65,7 @@ public class VendorController {
 		System.out.println("inside true");
 		return venServ.getAllTrueVendors();
 	}
-	@PutMapping("/{venId}")
+	@PutMapping("/false/{venId}")
 	public String deleteFalseVendor(@PathVariable Long venId) {
 		System.out.println("inside false");
 		return venServ.deleteFalseVendor(venId);

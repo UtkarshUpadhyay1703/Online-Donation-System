@@ -14,6 +14,18 @@ const EmployeeDashBoard = () => {
             setvendorob(JSON.parse(localStorage.getItem('emp')));
             
     }, [])
+
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('emp')).id)
+        EmployeeService.DeleteEmployee(JSON.parse(localStorage.getItem('emp')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+       
+    const upd=()=>{
+        history.push("/EmployeeUpdate");
+    }
+    
     const logout = () => {
         localStorage.removeItem("emp");
         history.push("/EmployeeSignIn");
@@ -151,21 +163,21 @@ const EmployeeDashBoard = () => {
                                     </a>
                                     {/* <!-- Dropdown - User Information --> */}
                                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                        aria-labelledby="userDropdown">
-                                        <Link to="/UpdateEmployee" className="dropdown-item">
-                                            <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Update
-                                        </Link>
-                                        <Link to="/DeleteEmployee" className="dropdown-item">
-                                            <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Delete
-                                        </Link>
-                                        <div className="dropdown-divider"></div>
-                                        <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                            aria-labelledby="userDropdown">
+                                            <a className="dropdown-item" href="#">
+                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                <button onClick={upd} > Update</button>
+                                            </a>
+                                            <a className="dropdown-item" href="#">
+                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                <button onClick={del} > Delete</button>
+                                            </a>
+                                            <div className="dropdown-divider"></div>
+                                            <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 <button onClick={logout} > Logout </button>
                                             </a>
-                                    </div>
+                                        </div>
                                 </li>
 
                             </ul>

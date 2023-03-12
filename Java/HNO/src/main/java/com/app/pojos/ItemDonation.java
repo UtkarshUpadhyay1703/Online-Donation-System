@@ -55,6 +55,15 @@ public class ItemDonation extends BaseEntity {
 		this.itemStatusDonation = itemStatusDonation;
 		this.itemDonor = itemDonor;
 	}
+	
+	
+	public ItemDonation(String itemType, String itemPicViaEmployee, boolean itemStatusDonation, Employee itemEmployee) {
+		super();
+		this.itemType = itemType;
+		this.itemPicViaEmployee = itemPicViaEmployee;
+		this.itemStatusDonation = itemStatusDonation;
+		this.itemEmployee = itemEmployee;
+	}
 
 
 	public ItemDonation() {

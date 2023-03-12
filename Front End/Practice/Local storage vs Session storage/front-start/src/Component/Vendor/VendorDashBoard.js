@@ -1,5 +1,5 @@
 // import CustomerLogin from "../Login/CustomerLogin";
-
+import VendorService from "../Services/VendorService";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 // import DonorService from "../../Services/DonorService";
@@ -18,6 +18,22 @@ const VendorDashBoard = () => {
             setvendorob(JSON.parse(localStorage.getItem('ven')));
             
     }, [])
+
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('ven')).id)
+        VendorService.DeleteVendor(JSON.parse(localStorage.getItem('ven')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+
+    const upd=()=>{
+        history.push("/VendorUpdate");
+    }
+
+    const logout = () => {
+        localStorage.removeItem("ven");
+        history.push("/VendorSignIn");
+    }
     return (
         <div>
             
@@ -317,18 +333,18 @@ const VendorDashBoard = () => {
                                         {/* <!-- Dropdown - User Information --> */}
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <Link to="/UpdateEmployee" className="dropdown-item">
+                                            <a className="dropdown-item" href="#">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Update
-                                            </Link>
-                                            <Link to="/DeleteEmployee" className="dropdown-item">
-                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Delete
-                                            </Link>
+                                                <button onClick={upd} > Update</button>
+                                            </a>
+                                            <a className="dropdown-item" href="#">
+                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                <button onClick={del} > Delete</button>
+                                            </a>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                <button onClick={logout} > Logout </button>
                                             </a>
                                         </div>
                                     </li>

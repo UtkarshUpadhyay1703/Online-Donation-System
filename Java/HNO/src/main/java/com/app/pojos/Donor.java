@@ -10,6 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.repository.BankTransactionRepository;
+import com.app.repository.DonorRepository;
+import com.app.repository.ItemDonationRepository;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -36,12 +42,30 @@ public class Donor extends BaseEntity {
 //	@Column
 //	@Column(columnDefinition = "boolean default true")
 	private boolean donorStatus;
+	
+//	@Autowired
+//	private DonorRepository donRepo;
+	
+//	@Autowired
+//	private BankTransactionRepository bankRepo;
+//	
+//	@Autowired
+//	private ItemDonationRepository itemRepo;
+	
+	
+	
+	
 //	@JsonBackReference
-	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+//	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
-
+//	private List<BankTransaction> transactions=bankRepo.findAll();
+	
+//	@JsonBackReference
 	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true)
+//	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<ItemDonation> items = new ArrayList<ItemDonation>();
+//	private List<ItemDonation> items=itemRepo.findAll();
 
 //	@ManyToOne
 //	@JoinColumn(name="donor_id")
@@ -63,6 +87,30 @@ public class Donor extends BaseEntity {
 	this.donorPassword = donorPassword;
 	this.donorStatus = donorStatus;
 }
+
+
+
+	public List<BankTransaction> getTransactions() {
+		return transactions;
+	}
+
+
+
+	public void setTransactions(List<BankTransaction> transactions) {
+		this.transactions = transactions;
+	}
+
+
+
+	public List<ItemDonation> getItems() {
+		return items;
+	}
+
+
+
+	public void setItems(List<ItemDonation> items) {
+		this.items = items;
+	}
 
 
 

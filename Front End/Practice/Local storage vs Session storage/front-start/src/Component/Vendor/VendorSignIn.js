@@ -12,6 +12,10 @@ const VendorSignIn=()=>{
         setvendorob({...vendorob,[name]:value});
     }
 
+    useEffect(() => {
+      localStorage.removeItem("ven"); 
+}, [])
+
     const SignInFun=(event)=>{
         VendorService.SignInVendor(vendorob).then((response)=>{
          localStorage.setItem("ven",JSON.stringify(response.data));

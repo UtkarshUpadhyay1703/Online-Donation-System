@@ -15,6 +15,11 @@ const EmployeeSignIn=()=>{
         setempob({...empob,[name]:value});
     }
 
+    useEffect(() => {
+      localStorage.removeItem("emp"); 
+}, [])
+
+
     const SignInFun=(event)=>{
       EmployeeService.SignInEmployee(empob).then((response)=>{
          // localStorage.don=response;

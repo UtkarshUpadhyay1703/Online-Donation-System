@@ -26,18 +26,42 @@ const EmployeeSelectedBidsDashBoard = () => {
             }
     }, [])
 
+    const logout=()=>{
+        localStorage.removeItem("emp");
+        history.push("/EmployeeSignIn");
+    }
+
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('emp')).id)
+        EmployeeService.DeleteEmployee(JSON.parse(localStorage.getItem('emp')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+       
+    const upd=()=>{
+        history.push("/EmployeeUpdate");
+    }
+
+
+
+    const setBook=(id)=>{
+        EmployeeService.SetReceivedBooks(id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
 
     const biddersDetails = () => {
         return arrBids.map((bid) => {
             // alert(bid.id);
             return (<tr key={bid.id}>
                 <td> {bid.id} </td>
-                <td> {bid.lowPriceNotebook} </td>
-                <td> {bid.lowPriceCloth} </td>
                 <td> {bid.lowPriceToy} </td>
+                <td> {bid.lowPriceCloth} </td>
+                <td> {bid.lowPriceNotebook} </td>
                 <td> {bid.lowPriceCycle} </td>
                 <td>{bid.dateOfBid} </td>
                 <td>{bid.biddingStatusApprove} </td>
+                <td>{bid.quantity}</td>
                 <td> {bid.vendor.id} </td>
             <td> {bid.vendor.vendorCompanyName} </td>
             <td> {bid.vendor.vendorCompanyAddress} </td>
@@ -47,10 +71,10 @@ const EmployeeSelectedBidsDashBoard = () => {
             <td> {bid.vendor.vendorEmailId} </td>
             <td> {bid.vendor.vendorStatus} </td>
             
-<td>
-            <Link to="/VendorSignIn">
-            <button type="button" class="btn btn-black"  id="btn" name="btn1">Bid</button></Link>
+            <td>
+            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={()=>setBook(bid.id)}>Bid</button>
             </td>
+
            
             </tr>)
         })
@@ -113,7 +137,7 @@ const EmployeeSelectedBidsDashBoard = () => {
                         </li>
 
                         {/* <!-- Nav Item - Utilities Collapse Menu --> */}
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                                 aria-expanded="true" aria-controls="collapseUtilities">
                                 <i className="fas fa-fw fa-wrench"></i>
@@ -129,7 +153,7 @@ const EmployeeSelectedBidsDashBoard = () => {
                                     <a className="collapse-item" href="utilities-other.html">Other</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> */}
 
                         {/* <!-- Divider --> */}
                         <hr className="sidebar-divider" />
@@ -367,18 +391,18 @@ const EmployeeSelectedBidsDashBoard = () => {
                                         {/* <!-- Dropdown - User Information --> */}
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <Link to="/UpdateEmployee" className="dropdown-item">
+                                            <a className="dropdown-item" href="#">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Update
-                                            </Link>
-                                            <Link to="/DeleteEmployee" className="dropdown-item">
-                                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Delete
-                                            </Link>
+                                                <button onClick={upd} > Update</button>
+                                            </a>
+                                            <a className="dropdown-item" href="#">
+                                                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                <button onClick={del} > Delete</button>
+                                            </a>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                <button onClick={logout} > Logout </button>
                                             </a>
                                         </div>
                                     </li>
@@ -401,22 +425,26 @@ const EmployeeSelectedBidsDashBoard = () => {
 
 
                                 {flag?(<div>
-    <h3> Bids available for Notebook</h3>
+    <h3> Bids Selected </h3>
     <table>
         <thead>
         <tr>
             <th> id </th>
-            <th> lowPriceToy </th>
-            <th> dateOfBid </th>
-            <th> biddingStatusApprove </th>
+            <th> Toy </th>
+            <th> Cloth </th>
+            <th> Notebook </th>
+            <th> Cycle </th>
+            <th> Date Of Bid </th>
+            <th> Status</th>
+            <th> Quantity</th>
             <th> vendor id </th>
-            <th> vendorCompanyName </th>
-            <th> vendorCompanyAddress </th>
-            <th> vendorMobileNo </th>
-            <th> vendorAadharNo </th>
-            <th> vendorCompanyBankAccountNo </th>
-            <th> vendorEmailId </th>
-            <th> vendorStatus </th>
+            <th> Company Name </th>
+            <th> Company Address </th>
+            <th> Mobile No </th>
+            <th> Aadhar No </th>
+            <th> Account No </th>
+            <th> Email Id </th>
+            <th> vendor Status </th>
             </tr></thead>
             <tbody>
                 {biddersDetails()}
