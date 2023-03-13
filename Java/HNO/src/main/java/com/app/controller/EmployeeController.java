@@ -18,7 +18,9 @@ import com.app.dto.Employee.EmployeeDto;
 import com.app.dto.Employee.EmployeeLoginDto;
 import com.app.pojos.Bidding;
 import com.app.pojos.Employee;
+import com.app.pojos.ItemDonation;
 import com.app.repository.BankTransactionRepository;
+import com.app.repository.ItemDonationRepository;
 import com.app.service.BiddingService;
 import com.app.service.EmployeeService;
 
@@ -38,6 +40,9 @@ public class EmployeeController {
 //	@Autowired
 //	private BankTransactionService bankService;
 
+	@Autowired
+	private ItemDonationRepository itemRepo;
+	
 	@Autowired
 	private EmployeeService empServ;
 
@@ -70,8 +75,9 @@ public class EmployeeController {
 		return empServ.getOneEmployee(empId);
 	}
 
-	@PutMapping
-	public Employee updateEmployee(@RequestBody Employee emp) {
+	@PutMapping("/update/{empId}")
+	public Employee updateEmployee(@PathVariable Long empId,@RequestBody Employee emp) {
+		emp.setId(empId);
 		return empServ.updateEmployee(emp);
 	}
 
@@ -198,6 +204,12 @@ public class EmployeeController {
 	public boolean setStatusToReceivedCycle(@PathVariable Long bidId) {
 		System.out.println("inside set status to approve");
 		return bidService.setBiddingStatusToApproveCycle(bidId);
+	}
+	
+	@GetMapping("/ItemDonation")
+	public List<ItemDonation> getAllItems(){
+		System.out.println("inside Get All Itemdonation");
+		return itemRepo.findAll();
 	}
 
 }

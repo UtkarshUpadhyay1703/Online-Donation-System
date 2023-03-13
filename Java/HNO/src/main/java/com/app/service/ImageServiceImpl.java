@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.custom_exception.ResourceNotFoundException;
@@ -16,6 +17,7 @@ import com.app.pojos.ItemDonation;
 import com.app.repository.ItemDonationRepository;
 
 @Service
+@Transactional
 public class ImageServiceImpl implements ImageService {
 //	@Autowired
 //	private ModelMapper mapper;
@@ -41,7 +43,7 @@ public class ImageServiceImpl implements ImageService {
 System.out.println("Paths.get(filepath) = "+Paths.get(filepath));
 		Files.copy(file.getInputStream(), Paths.get(filepath));
 		System.out.println(itemDonor.getId()+" "+itemDonor);
-		ItemDonation item =new ItemDonation(type, filepath, true, itemDonor);
+		ItemDonation item =new ItemDonation(type, filepath, false, itemDonor);
 		System.out.println(item);
 //		donationRepo.save(item);
 		itemDonor.addItemDonor(item);
@@ -51,7 +53,7 @@ System.out.println("Paths.get(filepath) = "+Paths.get(filepath));
 	
 	
 	@Override
-	public String uploadImageEmployee(String type,String path, MultipartFile file,Employee itemEmployee) throws IOException {
+	public String uploadImageEmployee(Long imgId,String path, MultipartFile file,Employee itemEmployee) throws IOException {
 		System.out.println(itemEmployee);
 		String name = file.getOriginalFilename();
 
@@ -64,7 +66,13 @@ System.out.println("Paths.get(filepath) = "+Paths.get(filepath));
 System.out.println("Paths.get(filepath) = "+Paths.get(filepath));
 		Files.copy(file.getInputStream(), Paths.get(filepath));
 		System.out.println(itemEmployee.getId()+" "+itemEmployee);
-		ItemDonation item =new ItemDonation(type, filepath, false, itemEmployee);
+		ItemDonation item=donationRepo.getById(imgId);
+		System.out.println("before setting items"+item);
+		//ItemDonation(String itemPicViaEmployee, boolean itemStatusDonation, Employee itemEmployee)
+		item.setItemPicViaEmployee(filepath);
+		item.setItemStatusDonation(true);
+		item.setItemEmployee(itemEmployee);
+//		ItemDonation item1 =new ItemDonation(filepath, true, itemEmployee);
 		System.out.println(item);
 //		donationRepo.save(item);
 		itemEmployee.addItemDonation(item);

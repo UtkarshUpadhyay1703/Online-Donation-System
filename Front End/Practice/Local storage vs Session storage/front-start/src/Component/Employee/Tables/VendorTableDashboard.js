@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 import DonorService from "../../Services/DonorService";
+import EmployeeService from "../../Services/EmployeeService";
 import VendorService from "../../Services/VendorService";
 // import VendorService from "../Services/VendorService"
 
@@ -34,6 +35,17 @@ const VendorTableDashBoard = () => {
                 <td>{don.vendorStatus}</td>
             </tr>
         })
+    }
+
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('emp')).id)
+        EmployeeService.DeleteEmployee(JSON.parse(localStorage.getItem('emp')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+       
+    const upd=()=>{
+        history.push("/EmployeeUpdate");
     }
 
     return (
@@ -91,6 +103,7 @@ const VendorTableDashBoard = () => {
                                     
                                     <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
                                     <Link className="collapse-item" to="/VendorTableDashBoard">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonationsTableDashboard">Donations Till Now</Link>
                                 </div>
                             </div>
                         </li>
@@ -331,7 +344,7 @@ const VendorTableDashBoard = () => {
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>

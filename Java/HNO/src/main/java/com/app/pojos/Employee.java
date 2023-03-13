@@ -45,10 +45,9 @@ public class Employee extends BaseEntity {
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 
-	@OneToMany(mappedBy = "itemEmployee", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "itemEmployee", cascade = CascadeType.ALL, orphanRemoval = true)
+//	@OneToMany(mappedBy = "itemEmployee", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<ItemDonation> items = new ArrayList<ItemDonation>();
-
-
 
 	public Employee(String employeeName, String employeeAddress, String employeeMobileNo, String employeeAadharNo,
 			String employeeBankAccountNo, String employeeCompanyBankIFSC, String employeeEmailId,

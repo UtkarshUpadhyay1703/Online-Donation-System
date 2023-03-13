@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import EmployeeService from "../Services/EmployeeService";
 
-const EmployeeRegister = () => {
+const EmployeeUpdate = () => {
     let [employeeob, setemployeeob] = useState({});
     var history = useHistory();
 
@@ -10,15 +10,17 @@ const EmployeeRegister = () => {
         var { name, value } = event.target
         setemployeeob({ ...employeeob, [name]: value });
     }
-
     useEffect(() => {
-        localStorage.removeItem("emp");
-  }, [])
-
+        //if (localStorage.getItem("don") != null) {
+            if(!localStorage.getItem('emp')){
+                history.push("/EmployeeSignIn");
+            }
+        }, [])
     const Add = (event) => {
-        EmployeeService.AddEmployees(employeeob).then((response) => {
+        alert(JSON.parse(localStorage.getItem('emp')).id)
+        EmployeeService.UpdateEmployee(JSON.parse(localStorage.getItem('emp')).id,employeeob).then((response) => {
             console.log(response.data);
-            history.push("/SignIn");
+            history.push("/EmployeeSignIn");
 
         });
     }
@@ -95,4 +97,4 @@ const EmployeeRegister = () => {
         </div>
     )
 }
-export default EmployeeRegister;
+export default EmployeeUpdate;

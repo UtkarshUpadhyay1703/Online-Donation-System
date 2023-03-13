@@ -1,29 +1,27 @@
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import VendorService from "../Services/VendorService";
-// import './Donor.css';
 
 const VendorUpdate = () => {
     let [vendorobOld, setvendorobOld] = useState({});
-    let [vendorob,setvendorob]=useState({});
-    var history=useHistory();
-              
-    useEffect(() => {
-        //if (localStorage.getItem("don") != null) {
-            if(!localStorage.getItem('don')){
-                history.push("/VendorSignIn");
-            }
-            setvendorobOld(JSON.parse(localStorage.getItem('ven')));
-        }, [])
+    let [vendorob, setvendorob] = useState({});
+    var history = useHistory();
 
-    const Change=(event)=>{
-        var {name,value}=event.target
-        setvendorob({...vendorob,[name]:value});
+    useEffect(() => {
+        if (!localStorage.getItem('don')) {
+            history.push("/VendorSignIn");
+        }
+        setvendorobOld(JSON.parse(localStorage.getItem('ven')));
+    }, [])
+
+    const Change = (event) => {
+        var { name, value } = event.target
+        setvendorob({ ...vendorob, [name]: value });
     }
-              
-    const Add=(event)=>{
+
+    const Add = (event) => {
         alert(vendorob.vendorName)
-        VendorService.UpdateVendor(vendorob,JSON.parse(localStorage.getItem('ven')).id).then((response)=>{
+        VendorService.UpdateVendor(vendorob, JSON.parse(localStorage.getItem('ven')).id).then((response) => {
             console.log(response.data);
             history.push("/VendorSignIn");
         });
@@ -38,19 +36,15 @@ const VendorUpdate = () => {
             </head>
             <body>
                 <div class="sidenav">
-         <div class="login-main-text">
-            <h2>Application<br/>Update Vendor</h2>
-            <p>Register from here to access.</p>
-         </div>
-      </div>
+                    <div class="login-main-text">
+                        <h2>Application<br />Update Vendor</h2>
+                        <p>Register from here to access.</p>
+                    </div>
+                </div>
                 <div class="main">
                     <div class="col-md-3 col-sm-12">
                         <div class="login-form">
                             <form>
-                            <div class="form-group">
-                                    <label>Id</label>
-                                    <input type="number" class="form-control" id="id" name="id" value={vendorobOld.id} onChange={Change} placeholder="id" readOnly />
-                                </div>
                                 <div class="form-group">
                                     <label for="name11">Name</label>
                                     <input type="text" class="form-control" id="name11" name="vendorCompanyName" value={vendorob.vendorName} onChange={Change} placeholder="Name" autoFocus required />
@@ -59,7 +53,7 @@ const VendorUpdate = () => {
                                     <label for="address">Address</label>
                                     <textarea type="text" class="form-control" id="address" name="vendorCompanyAddress" value={vendorob.vendorAddress} onChange={Change} placeholder="Address" required />
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Mobile Number</label>
                                     <input type="tel" class="form-control" id="mobile" name="vendor_mobile_no" value={vendorob.vendor_mobile_no} onChange={Change} placeholder="Mobile Number" required />
@@ -84,11 +78,7 @@ const VendorUpdate = () => {
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="vendorPassword" value={vendorob.vendorPassword} onChange={Change} placeholder="Password" required />
                                 </div>
-                                <Link to={"/VendorSignIn"}>
-                                    <button type="button" class="btn btn-black" id="btn" name="btn1" onClick={Add} >Submit</button>
-                                </Link>
-                                <Link to={"/VendorSignIn"}>
-                                <button type="submit" class="btn btn-secondary" >SignIn</button></Link>
+                                <button type="button" class="btn btn-black" id="btn" name="btn1" onClick={Add} >Submit</button>
                             </form>
                         </div>
                     </div>

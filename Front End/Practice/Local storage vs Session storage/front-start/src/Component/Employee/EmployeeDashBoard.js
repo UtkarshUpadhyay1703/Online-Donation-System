@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 import DonorService from "../Services/DonorService"
+import EmployeeService from "../Services/EmployeeService";
 import VendorService from "../Services/VendorService"
 
 const EmployeeDashBoard = () => {
@@ -25,7 +26,7 @@ const EmployeeDashBoard = () => {
     const upd=()=>{
         history.push("/EmployeeUpdate");
     }
-    
+
     const logout = () => {
         localStorage.removeItem("emp");
         history.push("/EmployeeSignIn");
@@ -67,21 +68,6 @@ const EmployeeDashBoard = () => {
 
                     {/* <!-- Nav Item - Pages Collapse Menu --> */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                            aria-expanded="true" aria-controls="collapseTwo">
-                            <i className="fas fa-fw fa-cog"></i>
-                            <span>Components</span>
-                        </a>
-                        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">Custom Components:</h6>
-                                <a className="collapse-item" href="buttons.html" target={"lol"}>Buttons</a>
-                                <a className="collapse-item" href="cards.html">Cards</a>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="nav-item">
                             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
                                 aria-expanded="true" aria-controls="collapseDonor">
                                 <i className="fas fa-fw fa-table"></i>
@@ -93,6 +79,7 @@ const EmployeeDashBoard = () => {
 
                                     <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
                                     <Link className="collapse-item" to="/VendorTableDashBoard">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonationsTableDashboard">Donations Till Now</Link>
                                 </div>
                             </div>
                         </li>

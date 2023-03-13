@@ -1,7 +1,0 @@
-C:\Users\dac\Desktop\helping\Pappu\obj\Debug\net7.0\Pappu.csproj.AssemblyReference.cache
-C:\Users\dac\Desktop\helping\Pappu\obj\Debug\net7.0\Pappu.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\dac\Desktop\helping\Pappu\obj\Debug\net7.0\Pappu.AssemblyInfoInputs.cache
-C:\Users\dac\Desktop\helping\Pappu\obj\Debug\net7.0\Pappu.AssemblyInfo.cs
-C:\Users\dac\Desktop\helping\Pappu\obj\Debug\net7.0\Pappu.csproj.CoreCompileInputs.cache
-C:\Users\dac\Desktop\helping\Pappu\obj\Debug\net7.0\Pappu.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\dac\Desktop\helping\Pappu\obj\Debug\net7.0\Pappu.MvcApplicationPartsAssemblyInfo.cache

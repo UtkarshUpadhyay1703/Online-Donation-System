@@ -109,15 +109,15 @@ public class DonorServiceImpl implements DonorService {
         return donRepo.findById(id).orElse(null);
     }
 
-    public List<BankTransaction> findTransactionsByDonorId(Long id) {
-        Donor donor = donRepo.findById(id).orElse(null);
-        return donor != null ? donor.getTransactions() : null;
-    }
-
-    public List<ItemDonation> findItemsByDonorId(Long id) {
-        Donor donor = donRepo.findById(id).orElse(null);
-        return donor != null ? donor.getItems() : null;
-    }
+//    public List<BankTransaction> findTransactionsByDonorId(Long id) {
+//        Donor donor = donRepo.findById(id).orElse(null);
+//        return donor != null ? donor.getTransactions() : null;
+//    }
+//
+//    public List<ItemDonation> findItemsByDonorId(Long id) {
+//        Donor donor = donRepo.findById(id).orElse(null);
+//        return donor != null ? donor.getItems() : null;
+//    }
 	
 	
 	

@@ -23,6 +23,7 @@ const DonorUpdate = () => {
     }
 
     const Add = (event) => {
+        // alert(JSON.parse(localStorage.getItem('don')).id)
         DonorService.UpdateDonor(donorob,JSON.parse(localStorage.getItem('don')).id).then((response) => {
             console.log(response.data);
             history.push("/DonorsignIn");

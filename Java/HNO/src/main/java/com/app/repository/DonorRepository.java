@@ -26,8 +26,8 @@ public interface DonorRepository extends JpaRepository<Donor,Long> {
 //	List<Donor> findAllDonorTransactions();
 
 	
-	    @Query("SELECT d FROM Donor d JOIN FETCH d.transactions t JOIN FETCH d.items i WHERE d.id = :id")
-	    Optional<Donor> findByIdWithTransactionsAndItems(@Param("id") Long id);
+//	    @Query("SELECT d FROM Donor d JOIN FETCH d.transactions t JOIN FETCH d.items i WHERE d.id = :id")
+//	    Optional<Donor> findByIdWithTransactionsAndItems(@Param("id") Long id);
 	
 
 

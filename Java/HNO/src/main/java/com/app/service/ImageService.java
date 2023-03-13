@@ -11,7 +11,7 @@ import com.app.pojos.Employee;
 public interface ImageService {
 	String uploadImageDonor(String type,String path, MultipartFile file,Donor donor) throws IOException;
 	
-	String uploadImageEmployee(String type,String path, MultipartFile file,Employee employee) throws IOException;
+	String uploadImageEmployee(Long imgId,String path, MultipartFile file,Employee employee) throws IOException;
 
 	byte[] serveImageEmployee(Long conId) throws IOException;
 	

@@ -16,8 +16,8 @@ class EmployeeService{
     DeleteEmployee(id){
         return axios.put(this.url+"/",id);
     }
-    UpdateEmployee(employee){
-        return axios.put(this.url,employee);
+    UpdateEmployee(id,employee){
+        return axios.put(this.url+`/update/${id}`,employee);
     }
     GetBalance(){
         console.log("fetched data");
@@ -62,5 +62,8 @@ class EmployeeService{
     SetReceivedCycles(id){
         return axios.put(this.url+"/setReceived/Cycles/"+id);
     }
+    GetAllItemDonations(){
+        return axios.get(this.url+"/ItemDonation");
+      }
 }
 export default new EmployeeService();

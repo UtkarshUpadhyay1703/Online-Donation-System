@@ -58,8 +58,8 @@ const WelcomePage=()=>{
     </button>
   <div class="collapse navbar-collapse" id="main_nav">
 	<ul class="navbar-nav">
-		<li class="nav-item"><a class="nav-link" href="#"> About </a></li>
-		<li class="nav-item"><a class="nav-link" href="#"> Services </a></li>
+		{/* <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+		<li class="nav-item"><a class="nav-link" href="#"> Services </a></li> */}
 		<li class="nav-item dropdown">
 			<Link class="nav-link  dropdown-toggle" to="/Donor" data-bs-toggle="dropdown"> Donor </Link>
 		    <ul class="dropdown-menu">
@@ -81,22 +81,14 @@ const WelcomePage=()=>{
 		    <ul class="dropdown-menu">
             <li><Link class="dropdown-item" to="/VendorSignIn"> VendorSignIn </Link></li>
             <li><Link class="dropdown-item" to="/VendorRegister"> VendorRegister </Link></li>
+            <li><Link class="dropdown-item" to="/VendorBidding">Vendor Bidding table</Link></li>
 			  
 		    </ul>
 		</li>
+        
+	</ul>
 
-	</ul>
-	<ul class="navbar-nav ms-auto">
-		<li class="nav-item"><Link class="nav-link" to="/AvailableBidding"> Menu item </Link></li>
-		<li class="nav-item"><a class="nav-link" href="#"> Menu item </a></li>
-		<li class="nav-item dropdown">
-			<a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Dropdown right </a>
-		    <ul class="dropdown-menu dropdown-menu-end">
-			  <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
-			  <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
-		    </ul>
-		</li>
-	</ul>
+
   </div> 
   {/* <!-- navbar-collapse.// --> */}
  </div>
@@ -114,7 +106,7 @@ const WelcomePage=()=>{
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase"><Link to="/DonationPayment"><button> Donate </button></Link></h2>
+                    <h2 class="section-heading text-uppercase"><Link to="/DonationPayment"><button class="btn btn-warning"> Donate </button></Link></h2>
                     <h3 class="section-subheading text-muted"></h3>
                 </div>
                 <div class="row text-center">

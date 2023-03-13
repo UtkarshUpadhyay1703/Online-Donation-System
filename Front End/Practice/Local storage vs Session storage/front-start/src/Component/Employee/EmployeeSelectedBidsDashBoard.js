@@ -172,8 +172,9 @@ const EmployeeSelectedBidsDashBoard = () => {
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
                                     
-                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
-                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTableDashBoard">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonationsTableDashboard">Donations Till Now</Link>
                                 </div>
                             </div>
                         </li>

@@ -15,13 +15,16 @@ const DonorSignIn=()=>{
         setdonorob({...donorob,[name]:value});
     }
     
-    useEffect(() => {
-         localStorage.removeItem("don"); 
-  }, [])
+//     useEffect(() => {
+//          localStorage.removeItem("emp");
+//          localStorage.removeItem("ven");
+//   }, [])
 
     const SignInFun=(event)=>{
         DonorService.SignInDonor(donorob).then((response)=>{
          // localStorage.don=response;
+         alert(response.data)
+         console.log(response.data);
          localStorage.setItem("don",JSON.stringify(response.data));
          history.push("/Donor")
          // setdonorob1(JSON.stringify(response));

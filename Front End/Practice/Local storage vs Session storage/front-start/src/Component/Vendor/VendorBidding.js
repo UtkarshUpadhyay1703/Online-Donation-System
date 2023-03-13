@@ -14,26 +14,26 @@ const VendorBidding=()=>{
     const history=useHistory();
     useEffect(() => {
         EmployeeService.GetBalance().then((resp) => {
-            alert("hello"+resp.data);
+            // alert("hello"+resp.data);
             let bal=resp.data-30000;
             let book=.3*bal;
             let cloth=.3*bal;
             let toy=.2*bal;
             let cycle=.2*bal;
             if(cycle>50000){
-             alert(resp.data);
+            //  alert(resp.data);
              setform4(true);
             }
             else if(toy>20000){
-             alert(resp.data);
+            //  alert(resp.data);
              setform3(true);
             }
             else if(cloth>10000){
-             alert(resp.data);
+            //  alert(resp.data);
              setform2(true);
             }
            else if(book>5000){
-            alert(resp.data);
+            // alert(resp.data);
             setform1(true);
            }
         });
@@ -117,8 +117,9 @@ const VendorBidding=()=>{
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
                                     
-                                    <Link className="collapse-item" to="/DonorTable">Donor table</Link>
-                                    <Link className="collapse-item" to="/VendorTable">Vendor table</Link>
+                                    <Link className="collapse-item" to="/VendorBidding">Vendor Bidding table</Link>
+                                    <Link className="collapse-item" to="/VendorBiddingSystem">Vendor available bids table</Link>
+                                    
                                 </div>
                             </div>
                         </li>
@@ -381,7 +382,7 @@ const VendorBidding=()=>{
                                     <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                                 </div>
-                                <table>
+                                {/* <table>
                             <tr>
                                 <td>
                                     <h3> Bidding available for Books</h3>
@@ -391,7 +392,7 @@ const VendorBidding=()=>{
                                 <button type="button" id="btn" name="btn1">Bid</button></Link>
                                 </td>
                             </tr>
-                            </table>
+                            </table> */}
                 {/* {form1?(<div>
                         <table>
                             <tr>

@@ -89,6 +89,7 @@ const DonorTableDashBoard = () => {
                                     
                                     <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
                                     <Link className="collapse-item" to="/VendorTableDashBoard">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonationsTableDashboard">Donations Till Now</Link>
                                 </div>
                             </div>
                         </li>
@@ -331,7 +332,7 @@ const DonorTableDashBoard = () => {
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>

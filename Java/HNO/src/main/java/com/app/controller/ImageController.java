@@ -42,7 +42,7 @@ public class ImageController {
 	@Value("${project.image}")
 	private String path;
 
-	@PostMapping(value = "/upload/donor/image/{donId}",consumes = "multipart/form-data")
+	@PostMapping(value = "/upload/donor/{donId}",consumes = "multipart/form-data")
 	// public ResponseEntity<ImageResponse> imageUploadDonor(@RequestParam("type")
 	// String itemType,@RequestParam("image") MultipartFile image,@RequestBody Donor
 	// donor)
@@ -70,18 +70,18 @@ public class ImageController {
 	
 	
 	
-	@PostMapping(value = "/upload/employee/image/{empId}",consumes = "multipart/form-data")
+	@PostMapping(value = "/upload/employee/{empId}/{imgId}",consumes = "multipart/form-data")
 	// public ResponseEntity<ImageResponse> imageUploadDonor(@RequestParam("type")
 	// String itemType,@RequestParam("image") MultipartFile image,@RequestBody Donor
 	// donor)
 	// will happen with jwt or session
-	public ResponseEntity<ImageResponse> imageUploadEmployee(@PathVariable Long empId,
-			@RequestParam("type") String itemType, @RequestParam("image") MultipartFile image) {
+	public ResponseEntity<ImageResponse> imageUploadEmployee(@PathVariable Long empId,@PathVariable Long imgId,
+			@RequestParam("image") MultipartFile image) {
 		String imageName = null;
 		Employee employee = empRepo.findById(empId).orElseThrow(() -> new ResourceNotFoundException("Invalid id"));
 		System.out.println(employee);
 		try {
-			imageName = this.imageService.uploadImageEmployee(itemType, path, image, employee);
+			imageName = this.imageService.uploadImageEmployee(imgId,path, image, employee);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,7 +97,7 @@ public class ImageController {
 	
 	
 	
-	@GetMapping(value = "/download/employee/image/{empId}", produces = { MediaType.IMAGE_GIF_VALUE, 
+	@GetMapping(value = "/download/employee/{empId}", produces = { MediaType.IMAGE_GIF_VALUE, 
 			MediaType.IMAGE_JPEG_VALUE,
 			MediaType.IMAGE_PNG_VALUE })
 	public ResponseEntity<?> serveImageFromServerSideFolderEmployee(@PathVariable Long empId) throws IOException {
@@ -106,7 +106,7 @@ public class ImageController {
 	}
 	
 
-	@GetMapping(value = "/download/donor/image/{donId}", produces = { MediaType.IMAGE_GIF_VALUE, 
+	@GetMapping(value = "/download/donor/{donId}", produces = { MediaType.IMAGE_GIF_VALUE, 
 			MediaType.IMAGE_JPEG_VALUE,
 			MediaType.IMAGE_PNG_VALUE })
 	public ResponseEntity<?> serveImageFromServerSideFolderDonor(@PathVariable Long donId) throws IOException {

@@ -11,6 +11,7 @@ class DonorService{
         return axios.post(this.url,donor);
     }
     SignInDonor(donor){
+        alert(donor.donorEmailId);
         return axios.post(this.url+"/signIn",donor);
     }
     DeleteDonor(id){

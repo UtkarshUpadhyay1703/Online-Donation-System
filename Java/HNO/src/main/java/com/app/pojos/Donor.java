@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.repository.BankTransactionRepository;
 import com.app.repository.DonorRepository;
@@ -56,10 +57,11 @@ public class Donor extends BaseEntity {
 	
 	
 //	@JsonBackReference
-//	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+//	@OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 //	private List<BankTransaction> transactions=bankRepo.findAll();
+	
 	
 //	@JsonBackReference
 	@OneToMany(mappedBy = "itemDonor", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -90,27 +92,27 @@ public class Donor extends BaseEntity {
 
 
 
-	public List<BankTransaction> getTransactions() {
-		return transactions;
-	}
-
-
-
-	public void setTransactions(List<BankTransaction> transactions) {
-		this.transactions = transactions;
-	}
-
-
-
-	public List<ItemDonation> getItems() {
-		return items;
-	}
-
-
-
-	public void setItems(List<ItemDonation> items) {
-		this.items = items;
-	}
+//	public List<BankTransaction> getTransactions() {
+//		return transactions;
+//	}
+//
+//
+//
+//	public void setTransactions(List<BankTransaction> transactions) {
+//		this.transactions = transactions;
+//	}
+//
+//
+//
+//	public List<ItemDonation> getItems() {
+//		return items;
+//	}
+//
+//
+//
+//	public void setItems(List<ItemDonation> items) {
+//		this.items = items;
+//	}
 
 
 

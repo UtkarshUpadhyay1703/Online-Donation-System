@@ -1,106 +1,57 @@
 import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom";
+import EmployeeService from "../../Services/EmployeeService";
 
-import VendorService from "../Services/VendorService";
-import EmployeeService from "../Services/EmployeeService";
-
-const VendorBiddingSystem=()=>{
-    const [form1, setform1] = useState(false);
-    const [form2, setform2] = useState(false);
-    const [form3, setform3] = useState(false);
-    const [form4, setform4] = useState(false);
-    useEffect(() => {
-        if(!localStorage.getItem('ven')){
-            history.push("/VendorSignIn");
-        }
-        EmployeeService.GetBalance().then((resp) => {
-            alert("hello"+resp.data);
-            let bal=resp.data-30000;
-            let book=.3*bal;
-            let cloth=.3*bal;
-            let toy=.2*bal;
-            let cycle=.2*bal;
-            if(cycle>50000){
-             alert(resp.data);
-             setform4(true);
-            }
-            else if(toy>20000){
-             alert(resp.data);
-             setform3(true);
-            }
-            else if(cloth>10000){
-             alert(resp.data);
-             setform2(true);
-            }
-           else if(book>5000){
-            alert(resp.data);
-            setform1(true);
-           }
-        });
-    }, []);
-
-    const [vendorob,setvendorob]=useState({});
-
-
-
-    const [bookForm,setBookForm]=useState({});
-    var history=useHistory();
-
-    const Change1=(event)=>{
-        var {name,value}=event.target
-        setBookForm({...bookForm,[name]:value});
-    }
-
-    const funBook=(event)=>{
-        VendorService.DoBidding(bookForm,).then((response)=>{
-         console.log(response.data);
-        });
-    }
-    const [shirtForm,setShirtForm]=useState({});
-    const Change2=(event)=>{
-        var {name,value}=event.target
-        setShirtForm({...shirtForm,[name]:value});
-    }
-
-    const funShirt=(event)=>{
-        VendorService.DoBidding(shirtForm).then((response)=>{
-         console.log(response.data);
-        });
-    }
-    const [toyForm,setToyForm]=useState({});
-    const Change3=(event)=>{
-        var {name,value}=event.target
-        setToyForm({...toyForm,[name]:value});
-    }
-
-    const funToy=(event)=>{
-        VendorService.DoBidding(toyForm).then((response)=>{
-         console.log(response.data);
-        });
-    }   
-     
-    const [cycleForm,setCycleForm]=useState({});
-    const Change4=(event)=>{
-        var {name,value}=event.target
-        setCycleForm({...cycleForm,[name]:value});
-    }
-
-    const funCycle=(event)=>{
-        VendorService.DoBidding(cycleForm).then((response)=>{
-         console.log(response.data);
-        });
-    }
+const DonationsTableDashboard = () => {
     
+    const [itemsArr,setitemsArr]=useState([]);
+
+    const history=useHistory();
+    useEffect(() => {
+        // if (localStorage.getItem("don") != null) {
+
+            if(!localStorage.getItem('emp')){
+                history.push("/EmployeeSignIn");
+            }
+            EmployeeService.GetAllItemDonations().then((resp)=>{
+                console.log(resp.data);
+                setitemsArr(resp.data);
+            })
+    }, []);
+    const logout = () => {
+        localStorage.removeItem("emp");
+        history.push("/EmployeeSignIn");
+    }
+
+    let DonorRender = () => {
+        return itemsArr.map((don) => {
+            return <tr key={don.id}>
+                <td>{don.id}</td>
+                <td>{don.itemType}</td>
+                <td><img className="don1" src={`http://localhost:8080/file/download/donor/${don.id}`}/></td>
+                <td><img className="emp1" src={`http://localhost:8080/file/download/employee/${don.id}`}/></td>
+                <td>{don.itemStatusDonation}</td>
+            </tr>
+        })
+    }
+
+    const del=()=>{
+        alert(JSON.parse(localStorage.getItem('emp')).id)
+        EmployeeService.DeleteEmployee(JSON.parse(localStorage.getItem('emp')).id).then((resp)=>{
+            console.log(resp.data);
+        })
+    }
+       
+    const upd=()=>{
+        history.push("/EmployeeUpdate");
+    }
 
 
 
     return (
         <div>
-          <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-          
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+            
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
             
             <body id="page-top">
@@ -117,7 +68,7 @@ const VendorBiddingSystem=()=>{
                             <div className="sidebar-brand-icon rotate-n-15">
                                 <i className="fas fa-laugh-wink"></i>
                             </div>
-                            <div className="sidebar-brand-text mx-3">Bidding DashBoard</div>
+                            <div className="sidebar-brand-text mx-3">Employee DashBoard</div>
                         
                         </Link>
 
@@ -150,8 +101,24 @@ const VendorBiddingSystem=()=>{
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Custom Components:</h6>
                                     
-                                    <Link className="collapse-item" to="/VendorBidding">Vendor Bidding table</Link>
-                                    <Link className="collapse-item" to="/VendorBiddingSystem">Vendor available bids table</Link>
+                                    <Link className="collapse-item" to="/DonorTableDashBorad">Donor table</Link>
+                                    <Link className="collapse-item" to="/VendorTableDashBoard">Vendor table</Link>
+                                    <Link className="collapse-item" to="/DonationsTableDashboard">Donations Till Now</Link>
+                                </div>
+                            </div>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDonor"
+                                aria-expanded="true" aria-controls="collapseDonor">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Bidding</span>
+                            </a>
+                            <div id="collapseDonor" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Custom Components:</h6>
+                                    
+                                    <Link className="collapse-item" to="/DonorTableDashBorad">Bidding table</Link>
+                                    <Link className="collapse-item" to="/VendorTableDashBoard">Selected Bidding table</Link>
                                 </div>
                             </div>
                         </li>
@@ -377,7 +344,7 @@ const VendorBiddingSystem=()=>{
                                     <li className="nav-item dropdown no-arrow">
                                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mohak & Rushabh</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                             <img className="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg" />
                                         </a>
@@ -386,16 +353,16 @@ const VendorBiddingSystem=()=>{
                                             aria-labelledby="userDropdown">
                                             <a className="dropdown-item" href="#">
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Profile
+                                                <button onClick={upd} > Update</button>
                                             </a>
                                             <a className="dropdown-item" href="#">
                                                 <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Settings
+                                                <button onClick={del} > Delete</button>
                                             </a>
                                             <div className="dropdown-divider"></div>
                                             <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                                 <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                <button onClick={logout} > Logout </button>
                                             </a>
                                         </div>
                                     </li>
@@ -416,166 +383,26 @@ const VendorBiddingSystem=()=>{
                                 </div>
 
 
-                  {form1?(<div>
-                    <form>
-    <table>
+                                <div>
+                                <div class="m-4">
+                                Items Table
+    <table class="table table-hover table-dark">
         <tr>
-            <th>
-                <h3> Enter Price per 100 pages Notebook</h3>
-                </th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
-                </td>
-            <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
-            </td>
+            <th>Id</th>
+            <th>Item Type</th>
+            <th>Donor pic</th>
+            <th>Employee Pic</th>
+            <th>Status</th>
         </tr>
-        </table></form>
-    </div>):""}
-
-
-
-
-    {form2?(<div>
-                    <form>
-    <table>
-        <tr>
-            <th>
-                <h3> Enter Price per 100 pages Notebook</h3>
-                </th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
-                </td>
-                <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
-            </td>
-                </tr>
-                
-                
-                <tr><th>
-                <h3> Enter Price per 30cm T-Shirt</h3></th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceCloth" name="lowPriceCloth" value={shirtForm.lowPriceCloth} onChange={Change2} autoFocus placeholder="Cloth Price"/>
-                </td>
-            <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funShirt}>Bid</button>
-            </td>
-        </tr>
-        </table></form>
-    </div>):""}
-
-
-
-
-
-    {form3?(<div>
-                    <form>
-    <table>
-        <tr>
-            <th>
-                <h3> Enter Price per 100 pages Notebook</h3>
-                </th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
-                </td>
-                <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
-            </td>
-                </tr>
-                
-                
-                <tr><th>
-                <h3> Enter Price per 30cm T-Shirt</h3></th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceCloth" name="lowPriceCloth" value={shirtForm.lowPriceCloth} onChange={Change2} autoFocus placeholder="Cloth Price"/>
-                </td>
-            <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funShirt}>Bid</button>
-            </td>
-        </tr>
-             
-             
-                <tr><th>
-                <h3> Enter Price per 32cm Toys</h3></th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceToy" name="lowPriceToy" value={toyForm.lowPriceToy} onChange={Change3} autoFocus placeholder="Toy Price"/>
-                </td>
-            <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funToy}>Bid</button>
-            </td>
-        </tr>
-        </table></form>
-    </div>):""}
-
-
-
-
-
-
-    {form4?(<div>
-                    <form>
-    <table>
-        <tr>
-            <th>
-                <h3> Enter Price per 100 pages Notebook</h3>
-                </th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceNotebook" name="lowPriceNotebook" value={bookForm.lowPriceNotebook} onChange={Change1} autoFocus placeholder="Notebook Price"/>
-                </td>
-                <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funBook}>Bid</button>
-            </td>
-                </tr></table></form>
-                
-                <form><table>
-                <tr><th>
-                <h3> Enter Price per 30cm T-Shirt</h3></th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceCloth" name="lowPriceCloth" value={shirtForm.lowPriceCloth} onChange={Change2} autoFocus placeholder="Cloth Price"/>
-                </td>
-            <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funShirt}>Bid</button>
-            </td>
-        </tr></table></form>
-             
-        <form><table>
-                <tr><th>
-                <h3> Enter Price per 32cm Toys</h3></th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceToy" name="lowPriceToy" value={toyForm.lowPriceToy} onChange={Change3} autoFocus placeholder="Toy Price"/>
-                </td>
-            <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funToy}>Bid</button>
-            </td>
-        </tr>
-        </table></form>
-             
-             
-        <form><table>
-                <tr><th>
-                <h3> Enter Price per kids Cycle</h3></th>
-                <td>
-                <input type="number" class="form-control" id="lowPriceCycle" name="lowPriceCycle" value={cycleForm.lowPriceCycle} onChange={Change4} autoFocus placeholder="Cycle Price"/>
-                </td>
-            <td>
-            <button type="button" class="btn btn-black"  id="btn" name="btn1" onClick={funCycle}>Bid</button>
-            </td>
-        </tr>
-        </table></form>
-    </div>):""}
-                  
-               
-
-
-
-
-
-                                
+        {DonorRender()}
+    </table>
+                                    </div>
+                                </div>
                                 {/* <!-- Footer --> */}
                                 <footer className="sticky-footer bg-white">
                                     <div className="container my-auto">
                                         <div className="copyright text-center my-auto">
-                                            <span>Copyright &copy; Your Website 2023</span>
+                                            <span>Copyright &copy; Your Website 2021</span>
                                         </div>
                                     </div>
                                 </footer>
@@ -615,6 +442,6 @@ const VendorBiddingSystem=()=>{
                 </div>
             </body >
         </div >
-        )
+    );
 }
-export default VendorBiddingSystem;
+export default DonationsTableDashboard;

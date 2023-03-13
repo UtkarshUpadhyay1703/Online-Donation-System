@@ -18,6 +18,10 @@ import DonorUpdate from './Component/Donor/DonorUpdate';
 import EmployeeSignIn from './Component/Employee/EmployeeSignIn';
 import EmployeeRegister from './Component/Employee/EmployeeRegister';
 import EmployeeBidsDashBoard from './Component/Employee/EmployeeBidsDashBoard';
+// import EmployeeImage from './Component/Employee/EmployeeImage';
+import DonationsTableDashboard from './Component/Employee/Tables/DonationsTableDashboard';
+import EmployeeUpdate from './Component/Employee/EmployeeUpdate';
+
 
 
 import VendorRegister from './Component/Vendor/VendorRegister';
@@ -57,7 +61,14 @@ function App() {
         <Route path="/EmployeeSignIn" exact component={EmployeeSignIn}></Route>
         <Route path="/EmployeeRegister" exact component={EmployeeRegister}></Route>
         <Route path="/EmployeeBidsDashBoard" exact component={EmployeeBidsDashBoard}></Route>
-        <Route path="/EmployeeSelectedBidsDashBoard" exact component={EmployeeSelectedBidsDashBoard}></Route>
+        <Route path="/EmployeeSelectedBidsDashBoard" exact component={EmployeeSelectedBidsDashBoard}></Route>        
+        {/* <Route path="/EmployeeImage" exact component={EmployeeImage}></Route> */}
+        <Route path="/DonationsTableDashboard" exact component={DonationsTableDashboard}/>
+        <Route path="/EmployeeUpdate" exact component={EmployeeUpdate}/>
+
+
+
+
         
         
         
