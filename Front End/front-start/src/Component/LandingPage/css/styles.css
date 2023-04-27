@@ -11785,3 +11785,39 @@ section#contact form#contactForm :-ms-input-placeholder {
 	.navbar .nav-item:hover .dropdown-menu{ display: block; }
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
 }	
+
+/* .button {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+} */
+
+.all{
+  background-color: lightgray;
+}
+
+#hp{
+  border: 15px solid yellowgreen;
+  float: right;    
+   margin: 0 0 0 15px;
+  }
+  .objective{
+    /* background-color: lightseagreen; */
+    border: 7px solid yellow;
+    margin-left: 50px;
+    text-align: left;
+    text-justify: auto;
+    font-size: 25px;
+  }
+  .work{
+    border: 7px solid yellow;
+    margin-left: 50px;
+    text-align: left;
+    text-justify: auto;
+    font-size: 25px;
+  }

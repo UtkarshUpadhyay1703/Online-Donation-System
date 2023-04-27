@@ -12,6 +12,7 @@ import EmployeeDashBoard from './Component/Employee/EmployeeDashBoard';
 import DonorTableDashBoard from './Component/Employee/Tables/DonorTableDashboard';
 import WelcomePage from './Component/LandingPage/WelcomePage';
 import DonationPayment from './Component/Payment/DonationPayment';
+import QRDonation from './Component/Payment/QRDonation';
 import DonorDonationPayment from './Component/Donor/DonorDonationPayment';
 import DonorUpdate from './Component/Donor/DonorUpdate';
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/Donor" exact component={DonorDashBoard}></Route>
         <Route path="/DonorTableDashBorad" exact component={DonorTableDashBoard}></Route>
         <Route path="/DonationPayment" exact component={DonationPayment}></Route>
+        <Route path="/QRDonation" exact component={QRDonation}></Route>
         <Route path="/DonorDonationPayment" exact component={DonorDonationPayment}></Route>
         <Route path="/DonorUpdate" exact component={DonorUpdate}></Route>
         

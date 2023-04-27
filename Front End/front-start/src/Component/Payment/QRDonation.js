@@ -9,28 +9,9 @@ import {
   MDBInput,
   MDBRow,
 } from "mdb-react-ui-kit";
-import AnonymousService from "../Services/AnonymousService";
+import QR from './Utkarsh_Paytm.jpg';
 
-export default function DonationPayment() {
-
-  
-  let [payob,setpayob]=useState({});
-    var history=useHistory();
-
-    const Change=(event)=>{
-        var {name,value}=event.target
-        setpayob({...payob,[name]:value});
-    }
-
-    const SignInFun=(event)=>{
-        AnonymousService.DonateMoney(payob).then((response)=>{
-          console.log(response.data);
-         history.push("/");
-        });
-    }
-
-
-
+export default function QRDonation() {
   return (
     <MDBContainer
       className="py-5"
@@ -46,16 +27,16 @@ export default function DonationPayment() {
             <MDBCardBody className="p-4">
               <div className="text-center mb-4">
                 <h3>Donation</h3>
-                <h5>Payment</h5>
+                <h5>QR Code</h5>
               </div>
-              <div className="d-flex flex-row align-items-center mb-4 pb-1">
+              {/* <div className="d-flex flex-row align-items-center mb-4 pb-1">
                 <img
                   className="img-fluid"
                   src="https://cdn.iconscout.com/icon/free/png-512/payment-rupay-card-pay-bank-transaction-51318.png?f=avif&w=256"
                 />
-              </div>
+              </div> */}
               {/* <div><img src="./Utkarsh_Paytm.jpg"/></div> */}
-              <div className="lol"></div>
+              {/* <div className="lol"></div>
               <h6><label for="form"> Amount for Donation </label></h6>
               <input
                 id="form"
@@ -71,15 +52,13 @@ export default function DonationPayment() {
                     type="text"
                     size="lg"
                     name="cardNumber" value={payob.cardNumber} onChange={Change} placeholder="Enter card number"
-                  /><br/><br/>
-                
-              <button type="button" class="btn btn-success" size="lg" block id="btn" name="btn1" onClick={SignInFun}>
-                Pay
-              </button><br/>
-              OR<br/>
-              <Link to="/QRDonation">
+                  /><br/><br/> */}
+                  <div className="qr">
+                    <img src={QR} alt="qr" id="QR" height="500px"></img>
+                  </div>
+                <Link to="/DonationPayment">
               <button type="button" class="btn btn-success" size="lg" block id="btn" name="btn1">
-                Pay using QR Code
+                Pay using Card
               </button></Link>
             </MDBCardBody>
           </MDBCard>

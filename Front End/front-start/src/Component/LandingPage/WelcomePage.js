@@ -106,36 +106,66 @@ const WelcomePage=()=>{
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase"><Link to="/DonationPayment"><button class="btn btn-warning"> Donate </button></Link></h2>
+                    <h2 class="section-heading text-uppercase"><Link to="/DonationPayment"><button class="btn btn-warning" style={{ fontSize: '2.0rem' }} > Donate </button></Link></h2>
                     <h3 class="section-subheading text-muted"></h3>
                 </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
+                {/* <div class="row text-center"> */}
+                    {/* <div class="col-md-4">
                         <span class="fa-stack fa-4x">
-                            {/* <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i> */}
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3"></h4>
                         <p class="text-muted"></p>
-                    </div>
-                    <div class="col-md-4">
+                    </div> */}
+                    {/* <div class="col-md-4">
                         <span class="fa-stack fa-4x">
-                            {/* <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i> */}
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3"></h4>
                         <p class="text-muted"></p>
-                    </div>
-                    <div class="col-md-4">
+                    </div> */}
+                    {/* <div class="col-md-4">
                         <span class="fa-stack fa-4x">
-                            {/* <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i> */}
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3"></h4>
                         <p class="text-muted"></p>
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
     </div>
+    <div className='all'>
+        <h2>Objective</h2>
+    
+    <div  className='objective'>
+    <img className='cloth' alt="" width="400" height="300" src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/http://www.sabrihelpage.org/wp-content/uploads/2019/12/cloth_distribution50.jpg" id='hp'/>
+    The Helping Needy Ones is a website helping those who don't have basic amenities like clothes, books and uplift those who are not as fortunate as you. The items that are unused by donors and willing to donate the items to help the needy, so our website is like a bridge between rich and poor by providing basic amenities and fulfilling there one of the necessities of life: Roti, Kapada aur Makan.<br/><br/>
+    
+    When we help the needy, it gives them moral support, and showing heartfelt humility and respect makes them aware that someone really cares about them and is trying to improve their condition and fulfill one of the necessities of life: Roti, Kapada aur Makan. Helping people who are in need gives them the inner piece. It will boost our self-esteem. Our motto is not only to help the needy people, but also to help the local vendors improve their business and expand their business.
+    </div>
+    <br/><br/>
+
+    <h2>Functions of this Website</h2>
+    
+    <div className='work'>
+        
+1. An anonymous donor can donate monetarily only, But after login, the donor can donate money as well as items.<br/><br/>
+
+2. The anonymous donors can donate money directly from the website home page link, which will redirect the donor to the webpage from where they can transfer the donation amount to our bank account.<br/><br/>
+
+3. The donors who want to donate money after signing in, their details will be stored and they can transfer the donation amount to our bank account. Those who want to donate items have to fill in the details about the product and then apply for a donation.<br/><br/>
+
+4. Vendors get information on our website about tenders. The tender is released automatically on the 1st day of the month when the amount obtained through donation has fulfilled the minimum amount needed for the tender to be released. After the tender is released, the vendor can see the information about the tender on our website and can bid for the tender after login.<br/><br/>
+
+5. Now, after the bidding process, the top 5 contenders will be shortlisted automatically and our employee physically visits the 5 contenders and tests the quality with price, then the employee will select one vendor from which we will get the items. Now the whole delivery will be received at our warehouse.<br/><br/>
+
+6. The employee will receive the delivery as per the details at the warehouse and update the status. When any donor wants to donate any item, then, as he uploads the item details, then our employee gets a status for approval or hold. When the donor donates the item at our warehouse, then the employee receives the donated items and then he approves the request of the donator to then, automatically, a receipt is generated and sent via email.<br/><br/>
+
+7. The employee maintains the details about donated items, generates receipts, and also takes images of donated items with the person. The database is maintained about how many donations happened till the date and how many people benefited from this process.
+</div>
+</div>
         </section>
         {/* <!-- Portfolio Grid--> */}
         {/* <section class="page-section bg-light" id="portfolio">
