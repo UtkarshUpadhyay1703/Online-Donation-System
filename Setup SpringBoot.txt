@@ -1,0 +1,7 @@
+Setup Spring Boot for first time for Project:
+* Download java JDK 11.0.16 and install
+* Get sts-bundle with version-3.9.18
+* First add java environment
+* Create workspase outside the pom project
+* Import pom.xml file using import, maven, Existing Maven Project
+* Apache 9.0.80 and add its folder path by creating new, server, Apache, 9th version, browse and add folder path.
